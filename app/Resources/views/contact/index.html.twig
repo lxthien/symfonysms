@@ -11,25 +11,25 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container contacts">
-        {{ include('news/components/breadcrumbs.html.twig') }}
-        
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-8">
+    <div class="container contacts wrapper-post-container">
+        {{ include('news/components/listPrices.html.twig', {hasContainer:false}) }}
+
+        <div class="row post-container">
+            {{ include('layout/sidebar.html.twig') }}
+            
+            <div class="col-xs-12 col-sm-12 col-md-9">
+                {{ include('news/components/breadcrumbs.html.twig') }}
+                
                 <div class="company">
                     <h3 class="text-uppercase">Xây Dựng Minh Duy</h3>
                     <ul>
                         <li>
                             <i class="fa fa-map-marker"></i>
-                            <span><strong>VPGD: 165 Đường 51, KP 4, P. Tân Quy, Quận 7, TP.HCM</strong></span>
-                        </li>
-                        <li>
-                            <i class="fa fa-map-marker"></i>
-                            <span><strong>VPGD: 108/40/10 Lê Văn Lương, KP 4, P. Tân Hưng, Quận 7, TP.HCM</strong></span>
+                            <span><strong>VPGD: 10E3 Đường 30, P. Tân Phong, Quận 7, TP.HCM</strong></span>
                         </li>
                         <li>
                             <i class="fa fa-phone"></i>
-                            <span><strong>0982.96.93.79 A Minh</strong></span>
+                            <span><strong>0982.969.379 A Minh</strong></span>
                         </li>
                         <li>
                             <i class="fa fa-envelope-o"></i>
@@ -57,8 +57,6 @@
                 {{ form_widget(form) }}
                 {{ form_end(form) }}
             </div>
-            
-            {{ include('layout/sidebar.html.twig') }}
         </div>
     </div>
 {% endblock %}

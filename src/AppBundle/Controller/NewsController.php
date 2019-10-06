@@ -181,7 +181,7 @@ class NewsController extends Controller
             ->setParameter('postType', $post->getPostType())
             ->setParameter('category', $post->getCategory())
             ->setParameter('enable', 1)
-            ->setMaxResults( 6 )
+            ->setMaxResults( 8 )
             ->orderBy('r.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
@@ -346,13 +346,25 @@ class NewsController extends Controller
         $category = $this->getDoctrine()
             ->getRepository(NewsCategory::class)
             ->find($categoryId);
+        
+        $listCategoriesIds = array($category->getId());
+        $allSubCategories = $this->getDoctrine()
+                            ->getRepository(NewsCategory::class)
+                            ->createQueryBuilder('c')
+                            ->where('c.parentcat = (:parentcat)')
+                            ->setParameter('parentcat', $category->getId())
+                            ->getQuery()->getResult();
+
+        foreach ($allSubCategories as $value) {
+            $listCategoriesIds[] = $value->getId();
+        }
 
         $posts = $this->getDoctrine()
             ->getRepository(News::class)
             ->createQueryBuilder('r')
-            ->where('r.category = :category')
+            ->where('r.category IN (:listCategoriesIds)')
             ->andWhere('r.enable = :enable')
-            ->setParameter('category', $categoryId)
+            ->setParameter('listCategoriesIds', $listCategoriesIds)
             ->setParameter('enable', 1)
             ->setMaxResults( 10 )
             ->orderBy('r.viewCounts', 'DESC')

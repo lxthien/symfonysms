@@ -166,6 +166,10 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [406, 280], mode: outbound }
+        news_564_440:
+            quality: 100
+            filters:
+                thumbnail: { size: [564, 440], mode: outbound }
 
 # KnpPaginationBundle
 knp_paginator:

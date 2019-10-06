@@ -5,7 +5,7 @@
     right: 25px;
     width: 35px;
     height: 35px;
-    background-color: $killarney;
+    background-color: $primaryColor2;
     z-index: 100;
 
     @media only screen and (max-width: 767.98px) {
@@ -24,100 +24,13 @@
     }
 }
 
-.hotline {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    text-align: center;
-    background-color: $primaryColor;
-    color: $white;
-    z-index: 100;
-    font-family: $robotoCondesed;
-    font-size: 20px;
-    text-transform: uppercase;
-    padding: 0px 15px;
-    font-weight: bold;
-
-    a {
-        color: $white;
-
-        &:hover {
-            text-decoration: none;
-        }
-    }
-}
-
-.hotline {
-    -webkit-animation-duration: 1s;
-    -webkit-animation-name: tada_keyframe;
-    -webkit-animation-fill-mode: both;
-    animation-duration: 1s;
-    animation-name: tada_keyframe;
-    animation-fill-mode: both;
-    -webkit-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
-}
-
-@keyframes tada_keyframe {
-    0% {
-        -webkit-transform: translate(0, 0) scale(1, 1);
-        transform: translate(0, 0) scale(1, 1)
-    }
-    10%,
-    20% {
-        -webkit-transform: translate(0, 0) scale(.9, .9) rotateZ(-3deg);
-        transform: translate(0, 0) scale(.9, .9) rotateZ(-3deg)
-    }
-    30%,
-    50%,
-    70%,
-    90% {
-        -webkit-transform: translate(0, 0) scale(1.1, 1.1) rotateZ(3deg);
-        transform: translate(0, 0) scale(1.1, 1.1) rotateZ(3deg)
-    }
-    40%,
-    60%,
-    80% {
-        -webkit-transform: translate(0, 0) scale(1.1, 1.1) rotateZ(-3deg);
-        transform: translate(0, 0) scale(1.1, 1.1) rotateZ(-3deg)
-    }
-    100% {
-        -webkit-transform: translate(0, 0) scale(1, 1) rotateZ(0);
-        transform: translate(0, 0) scale(1, 1) rotateZ(0)
-    }
-}
-
-@-webkit-keyframes tada_keyframe {
-    0% {
-        -webkit-transform: translate(0, 0) scale(1, 1)
-    }
-    10%,
-    20% {
-        -webkit-transform: translate(0, 0) scale(.9, .9) rotateZ(-3deg)
-    }
-    30%,
-    50%,
-    70%,
-    90% {
-        -webkit-transform: translate(0, 0) scale(1.1, 1.1) rotateZ(3deg)
-    }
-    40%,
-    60%,
-    80% {
-        -webkit-transform: translate(0, 0) scale(1.1, 1.1) rotateZ(-3deg)
-    }
-    100% {
-        -webkit-transform: translate(0, 0) scale(1, 1) rotateZ(0)
-    }
-}
-
 .floating {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 2;
-    background-color: #f37022;
+    background-color: $primaryColor2;
 
     .inside {
         .call-now,

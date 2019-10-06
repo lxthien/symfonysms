@@ -1,33 +1,66 @@
 <!-- Begin header -->
-<div class="header">
+<div class="wrapper-container header d-none hidden-xs hidden-sm">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-sm-8 col-md-6 text-left">
-                <span>
-                    <i class="fa fa-phone"></i>
-                    <a href="tel:0982969379">0982.96.93.79</a>
-                </span>
-                <span>
-                    <i class="fa fa-envelope-o"></i>
-                    <a href="mailto:xaydungminhduy@gmail.com">xaydungminhduy@gmail.com</a>
-                </span>
+            <div class="col-12 col-sm-8 col-md-6 marquee">
+                <marquee scrollamount="7">{{ get_setting('marqueeHomepage')|raw }}</marquee>
             </div>
             <div class="col-12 col-sm-4 col-md-6 text-right header-social hidden-xs">
-                <a target="_blank" href="{{ get_setting('linkToFacebook') }}" title="Xây Dựng Minh Duy trên Facebook">
-                    <i class="fa fa-facebook"></i>
-                </a>
-                <a target="_blank" href="{{ get_setting('linkToGooglePlus') }}" title="Xây Dựng Minh Duy trên Google plus">
-                    <i class="fa fa-google-plus"></i>
-                </a>
-                <a target="_blank" href="{{ get_setting('linkToTwitter') }}" title="Xây Dựng Minh Duy trên Twitter">
-                    <i class="fa fa-twitter"></i>
-                </a>
-                <a target="_blank" href="{{ get_setting('linkToYoutube') }}" title="Xây Dựng Minh Duy trên Youtube">
-                    <i class="fa fa-youtube"></i>
-                </a>
-                <a target="_blank" href="{{ get_setting('linkToLinkedin') }}" title="Xây Dựng Minh Duy trên Linkedin">
-                    <i class="fa fa-linkedin"></i>
-                </a>
+                <div class="skew-divider"></div>
+                <div class="header-social-wrapper">
+                    <span class="text-left">
+                        <i class="fa fa-phone"></i>
+                        <a href="tel:0982969379">0982.969.379</a>
+                    </span>
+                    <span class="text-left">
+                        <i class="fa fa-envelope-o"></i>
+                        <a href="mailto:xaydungminhduy@gmail.com">xaydungminhduy@gmail.com</a>
+                    </span>
+                    <a target="_blank" href="{{ get_setting('linkToFacebook') }}" title="Xây Dựng Minh Duy trên Facebook">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a target="_blank" href="{{ get_setting('linkToTwitter') }}" title="Xây Dựng Minh Duy trên Twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a target="_blank" href="{{ get_setting('linkToYoutube') }}" title="Xây Dựng Minh Duy trên Youtube">
+                        <i class="fa fa-youtube"></i>
+                    </a>
+                    <a target="_blank" href="{{ get_setting('linkToLinkedin') }}" title="Xây Dựng Minh Duy trên Linkedin">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper-container banner d-none hidden-xs hidden-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" id="logo_top">
+                <div id="logo">								
+                    <a href="{{ path('homepage') }}" title="{{ get_setting('siteName') }}">
+                        <img alt="{{ get_setting('siteName') }}" src="{{ asset('assets/images/logo.png') }}">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-top">
+                    <div class="wp90">
+                        <div class="info-nd" id="output">
+                            <p class="tel text-uppercase" id="header-company"></p>
+                            <p class="text-uppercase" id="header-address"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="info-top hotline-top">
+                    <div class="wp90 pull-right">
+                        <div class="info-nd">
+                            <p class="tel text-uppercase"><i class="fas fa-mobile-alt"></i> <a href="tel:0982969379">0982.969.379</a></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

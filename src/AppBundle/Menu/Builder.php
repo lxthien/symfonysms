@@ -18,7 +18,12 @@ class Builder implements ContainerAwareInterface
             ),
         ));
 
-        // About Us
+        $menu->addChild('<i class="fa fa-home"></i>', [
+            'route' => 'homepage',
+            'extras' => ['safe_label' => true]
+        ])
+        ->setLinkAttribute('class', 'home');
+
         $menu->addChild('Giới thiệu', [
             'route' => 'news_show',
             'routeParameters' => ['slug' => 'gioi-thieu']
@@ -80,9 +85,10 @@ class Builder implements ContainerAwareInterface
             'routeParameters' => ['level1' => 'thiet-ke', 'level2' => 'thiet-ke-thi-cong-quan-cafe']
         ]);
 
-        $menu->addChild('Sửa chữa nhà', array('uri' => 'https://suanhaminhduy.com/'))
-            ->setLinkAttribute('target', '_blank')
-            ->setLinkAttribute('rel', 'nofollow');
+        $menu->addChild('Sửa chữa nhà', [
+            'route' => 'news_category',
+            'routeParameters' => ['level1' => 'sua-chua-nha']
+        ]);
 
         $menu->addChild('Phong thủy xây dựng', [
             'route' => 'news_category',
@@ -92,6 +98,23 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('Dự án thi công', [
             'route' => 'news_category',
             'routeParameters' => ['level1' => 'du-an']
+        ])
+        ->setAttribute('class', 'dropdown')
+        ->setLinkAttribute('class', 'dropdown-toggle')
+        ->setLinkAttribute('data-toggle', 'dropdown')
+        ->setChildrenAttribute('class', 'dropdown-menu');
+        
+        $menu['Dự án thi công']->addChild('Xây mới', [
+            'route' => 'list_category',
+            'routeParameters' => ['level1' => 'du-an', 'level2' => 'xay-moi']
+        ]);
+        $menu['Dự án thi công']->addChild('Sửa chữa', [
+            'route' => 'list_category',
+            'routeParameters' => ['level1' => 'du-an', 'level2' => 'sua-chua']
+        ]);
+        $menu['Dự án thi công']->addChild('Quán cafe, trà sữa', [
+            'route' => 'list_category',
+            'routeParameters' => ['level1' => 'du-an', 'level2' => 'quan-cafe-tra-sua']
         ]);
 
         $menu->addChild('Tư vấn', [

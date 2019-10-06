@@ -5,12 +5,17 @@
 {% block keyword %}{{ post.getPageKeyword() }}{% endblock %}
 
 {% block body %}
-    <div class="container wrapper-container costs">
-        {# breadcrumbs #}
-        {{ include('news/components/breadcrumbs.html.twig') }}
+    <div class="container wrapper-container costs wrapper-post-container">
+        {{ include('news/components/listPrices.html.twig', {hasContainer:false}) }}
+        
+        <div class="row post-container">
+            {# Side bar #}
+            {{ include('layout/sidebar.html.twig') }}
 
-        <div class="row">
-            <div class="col-12 col-md-12 col-lg-8">
+            <div class="col-12 col-md-12 col-lg-9">
+                {# breadcrumbs #}
+                {{ include('news/components/breadcrumbs.html.twig') }}
+
                 <div class="news-container">
                     {{ post.getContents()|raw }}
                 </div>
@@ -103,9 +108,6 @@
                 </div>
                 {% endif %}
             </div>
-
-            {# Side bar #}
-            {{ include('layout/sidebar.html.twig') }}
         </div>
 
         {{ render(controller(
