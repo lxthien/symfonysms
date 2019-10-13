@@ -21,7 +21,7 @@
         <meta http-equiv="content-language" content="vi">
 
         {% if app.request.attributes.get('_route') is not null %}
-        <link rel="canonical" href="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}"/>
+        <link rel="canonical" href="{{ app.request.uri }}"/>
         {% endif %}
         
         <!-- Open Graph data -->
@@ -32,7 +32,7 @@
             <meta property="og:description" content="{{ block('description') }}" />
         {% endblock %}
         {% if app.request.attributes.get('_route') is not null %}
-            <meta property="og:url" content="{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" />
+            <meta property="og:url" content="{{ app.request.uri }}" />
         {% endif %}
         <meta property="og:site_name" content="{{ get_setting('siteName') }}" />
         <meta property="fb:app_id" content="1384538691837107" />

@@ -90,19 +90,23 @@ function initFixedSidebar() {
     $(window).scroll(function() {
         var $sidebar = $("#sidebar .sidebar"),
             $pageDetail = $('.wrapper-post-container'),
+            $pageDetailLeft = $('.wrapper-post-container-left'),
             scrollTop = $(this).scrollTop(),
             pageDetailHeight =  $pageDetail.outerHeight(),
+            pageDetailLeftHeight =  $pageDetailLeft.outerHeight(),
             sidebarHeight = $sidebar.height(),
             positionFixedMax = pageDetailHeight - sidebarHeight,
             positionFixed = scrollTop < 65 ? 65 : positionFixedMax > scrollTop ? 65 : positionFixedMax - scrollTop + 65 ;
         
-        if (scrollTop > 220) {
-            $sidebar.css({
-                'top': positionFixed,
-                'position': 'fixed'
-            });
-        } else {
-            $sidebar.removeAttr("style");
+        if (pageDetailLeftHeight > sidebarHeight) {
+            if (scrollTop > 220) {
+                $sidebar.css({
+                    'top': positionFixed,
+                    'position': 'fixed'
+                });
+            } else {
+                $sidebar.removeAttr("style");
+            }
         }
     });
 }

@@ -290,8 +290,7 @@ class NewsController extends Controller
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem("home", $this->generateUrl("homepage"));
-        $breadcrumbs->addItem('post.tags');
-        $breadcrumbs->addItem($tag->getName());
+        $breadcrumbs->addItem('Tags > ' . $tag->getName());
 
         return $this->render('news/tags.html.twig', [
             'tag' => $tag,

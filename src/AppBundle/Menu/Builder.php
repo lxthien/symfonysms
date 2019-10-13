@@ -38,14 +38,19 @@ class Builder implements ContainerAwareInterface
             'routeParameters' => ['slug' => 'gioi-thieu']
         ]);
 
+        $menu['Giới thiệu']->addChild('Chính sách chất lượng', [
+            'route' => 'news_show',
+            'routeParameters' => ['slug' => 'chinh-sach-chat-luong']
+        ]);
+
         $menu['Giới thiệu']->addChild('Tuyển dụng', [
             'route' => 'news_show',
             'routeParameters' => ['slug' => 'tuyen-dung']
         ]);
 
-        $menu->addChild('Dịch vụ', [
+        $menu->addChild('Sửa chữa nhà', [
             'route' => 'news_category',
-            'routeParameters' => ['level1' => 'dich-vu']
+            'routeParameters' => ['level1' => 'sua-chua-nha']
         ]);
 
         $menu->addChild('Xây dựng', [
@@ -83,11 +88,6 @@ class Builder implements ContainerAwareInterface
         $menu['Thiết kế']->addChild('Thiết kế quán cafe', [
             'route' => 'list_category',
             'routeParameters' => ['level1' => 'thiet-ke', 'level2' => 'thiet-ke-thi-cong-quan-cafe']
-        ]);
-
-        $menu->addChild('Sửa chữa nhà', [
-            'route' => 'news_category',
-            'routeParameters' => ['level1' => 'sua-chua-nha']
         ]);
 
         $menu->addChild('Phong thủy xây dựng', [

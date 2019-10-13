@@ -12,7 +12,7 @@
             {# Side bar #}
             {{ include('layout/sidebar.html.twig') }}
 
-            <div class="col-12 col-md-12 col-lg-9">
+            <div class="col-12 col-md-12 col-lg-9 wrapper-post-container-left">
                 {# breadcrumbs #}
                 {{ include('news/components/breadcrumbs.html.twig') }}
 
@@ -101,7 +101,7 @@
                         <p><span>Tổng diện tích:</span> {{ costs.areaTotal }} m<sup>2</sup></p>
                         <p><span>{{ costs.title }}:</span> {{ costs.cost|number_format(0, '.', ',') }} <sup>đ</sup></p>
                         <p><span>Chi phí dự kiến:</span> {{ costs.costTotal|number_format(0, '.', ',') }} <sup>đ</sup></p>
-                        <p>Liên hệ hotline: <a href="tel:0982969379">0982.96.93.79</a> A Minh để nhận tư vấn, <a href="{{ path('news_show', {'slug': 'bao-gia-xay-nha-tron-goi' }) }}">báo giá xây nhà</a> miễn phí</p>
+                        <p>Liên hệ hotline: <a href="tel:0982969379">0982.969.379</a> A Minh để nhận tư vấn, <a href="{{ path('news_show', {'slug': 'bao-gia-xay-nha-tron-goi' }) }}">báo giá xây nhà</a> miễn phí</p>
                         <p><strong>Email:</strong> <a href="mailto:xaydungminhduy@gmail.com">xaydungminhduy@gmail.com</a></p>
                         <p><i><strong>Lưu ý: {{ costs.note|raw }}</strong></i></p>
                     </div>
@@ -109,9 +109,5 @@
                 {% endif %}
             </div>
         </div>
-
-        {{ render(controller(
-            'AppBundle:News:listNewsByCategory', { 'categoryId': 2 }
-        )) }}
     </div>
 {% endblock %}
