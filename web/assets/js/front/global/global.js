@@ -95,14 +95,16 @@ function initFixedSidebar() {
             pageDetailHeight =  $pageDetail.outerHeight(),
             pageDetailLeftHeight =  $pageDetailLeft.outerHeight(),
             sidebarHeight = $sidebar.height(),
+            parentSidebarWidth = $sidebar.parent('.col-md-12').width(),
             positionFixedMax = pageDetailHeight - sidebarHeight,
-            positionFixed = scrollTop < 65 ? 65 : positionFixedMax > scrollTop ? 65 : positionFixedMax - scrollTop + 65 ;
+            positionFixed = scrollTop < 65 ? 65 : positionFixedMax > scrollTop ? 65 : positionFixedMax - scrollTop ;
         
         if (pageDetailLeftHeight > sidebarHeight) {
             if (scrollTop > 220) {
                 $sidebar.css({
                     'top': positionFixed,
-                    'position': 'fixed'
+                    'position': 'fixed',
+                    'width': parentSidebarWidth
                 });
             } else {
                 $sidebar.removeAttr("style");

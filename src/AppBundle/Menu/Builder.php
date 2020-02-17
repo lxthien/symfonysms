@@ -48,9 +48,43 @@ class Builder implements ContainerAwareInterface
             'routeParameters' => ['slug' => 'tuyen-dung']
         ]);
 
-        $menu->addChild('Sửa chữa nhà', [
+        $menu->addChild('Bảng giá', [
             'route' => 'news_category',
-            'routeParameters' => ['level1' => 'sua-chua-nha']
+            'routeParameters' => ['level1' => 'bang-gia']
+        ])
+        ->setAttribute('class', 'dropdown')
+        ->setLinkAttribute('class', 'dropdown-toggle')
+        ->setLinkAttribute('data-toggle', 'dropdown')
+        ->setChildrenAttribute('class', 'dropdown-menu');
+
+        $menu['Bảng giá']->addChild('Xây nhà trọn gói', [
+            'route' => 'news_show',
+            'routeParameters' => ['slug' => 'bao-gia-xay-nha-tron-goi']
+        ]);
+
+        $menu['Bảng giá']->addChild('Sửa nhà trọn gói', [
+            'route' => 'news_show',
+            'routeParameters' => ['slug' => 'bao-gia-sua-nha-tron-goi']
+        ]);
+
+        $menu['Bảng giá']->addChild('Xây nhà phần thô', [
+            'route' => 'news_show',
+            'routeParameters' => ['slug' => 'bang-gia-xay-dung-nha-phan-tho']
+        ]);
+
+        $menu['Bảng giá']->addChild('Sửa chữa căn hộ chung cư', [
+            'route' => 'news_show',
+            'routeParameters' => ['slug' => 'dich-vu-bao-gia-sua-chua-can-ho-chung-cu']
+        ]);
+
+        $menu['Bảng giá']->addChild('Thiết kế nhà phố, biệt thự', [
+            'route' => 'news_show',
+            'routeParameters' => ['slug' => 'bao-gia-thiet-ke-nha-pho']
+        ]);
+        
+        $menu['Bảng giá']->addChild('Thiết kế, thi công quán cafe', [
+            'route' => 'news_show',
+            'routeParameters' => ['slug' => 'bao-gia-thiet-ke-thi-cong-quan-cafe-tron-goi-tai-tphcm']
         ]);
 
         $menu->addChild('Xây dựng', [
@@ -74,6 +108,11 @@ class Builder implements ContainerAwareInterface
         $menu['Xây dựng']->addChild('Chính sách bảo hành', [
             'route' => 'news_show',
             'routeParameters' => ['slug' => 'chinh-sach-bao-hanh']
+        ]);
+
+        $menu->addChild('Sửa chữa nhà', [
+            'route' => 'news_category',
+            'routeParameters' => ['level1' => 'sua-chua-nha']
         ]);
 
         $menu->addChild('Thiết kế', [
