@@ -96,7 +96,7 @@ class Builder implements ContainerAwareInterface
         ->setLinkAttribute('data-toggle', 'dropdown')
         ->setChildrenAttribute('class', 'dropdown-menu');
 
-        $menu['Xây dựng']->addChild('Nhà phố', [
+        $menu['Xây dựng']->addChild('Xây nhà phố', [
             'route' => 'news_category',
             'routeParameters' => ['level1' => 'xay-dung']
         ]);
@@ -124,6 +124,11 @@ class Builder implements ContainerAwareInterface
         ->setLinkAttribute('data-toggle', 'dropdown')
         ->setChildrenAttribute('class', 'dropdown-menu');
 
+        $menu['Thiết kế']->addChild('Thiết kế nhà phố', [
+            'route' => 'list_category',
+            'routeParameters' => ['level1' => 'thiet-ke', 'level2' => 'thiet-ke-nha-pho']
+        ]);
+        
         $menu['Thiết kế']->addChild('Thiết kế quán cafe', [
             'route' => 'list_category',
             'routeParameters' => ['level1' => 'thiet-ke', 'level2' => 'thiet-ke-thi-cong-quan-cafe']

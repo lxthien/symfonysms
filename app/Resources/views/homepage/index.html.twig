@@ -180,7 +180,7 @@
         </div>
 
         {% for blockOnHomepage in blocksOnHomepage %}
-            {% if blockOnHomepage.category.getUrl() != 'du-an' %}
+            {% if blockOnHomepage.category.getId() != 10 and blockOnHomepage.category.getId() != 11 and blockOnHomepage.category.getId() != 12 %}
                 <div class="wrapper-container-item">
                     <div class="container">
                         <div class="row">
@@ -212,7 +212,7 @@
                                 <h1 class="text-center text-uppercase">
                                     <img alt="{{ blockOnHomepage.category.getName() }}" src="{{ asset('assets/images/icon-logo.png') }}" />
                                     <i class="fas fa-angle-right"></i>
-                                    Dự án nổi bật
+                                    Dự án {{ blockOnHomepage.category.getName() }}
                                 </h1>
                                 <span class="text-center block-underline"></span>
                                 <p>{{ blockOnHomepage.description }}</p>

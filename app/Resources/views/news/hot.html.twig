@@ -10,6 +10,7 @@
                         <img
                             class="lazyload"
                             alt="{{ row.getTitle() }}"
+                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                             data-src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('news_70_50') }}" />
                         <span>{{ row.getTitle() }}</span>
                     </a>
