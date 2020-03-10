@@ -48,7 +48,8 @@ function initProjectHotSlider() {
         moveSlides: 1,
         slideMargin: 20,
         touchEnabled: false,
-        autoHover: true
+        autoHover: true,
+        adaptiveHeight: true
     });
 }
 
