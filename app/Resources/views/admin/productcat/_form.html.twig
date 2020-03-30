@@ -1,0 +1,26 @@
+{{ form_start(form, {attr: attr|default({})}) }}
+    {{ form_row(form.parentcat) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.url) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.enable) }}
+
+    <div class="card-title">
+        <h3>{{ 'label.seo'|trans }}</h3>
+    </div>
+    <hr>
+
+    {{ form_row(form.pageTitle) }}
+    {{ form_row(form.pageDescription) }}
+    {{ form_row(form.pageKeyword) }}
+
+    <button type="submit" class="{{ button_css|default("btn btn-primary") }}">
+        <i class="fa fa-save" aria-hidden="true"></i> {{ button_label|default('label.create_post'|trans) }}
+    </button>
+
+    {% if include_back_to_home_link|default(false) %}
+        <a href="{{ path('admin_productcat_index') }}" class="btn btn-link">
+            <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'action.back_to_list'|trans }}
+        </a>
+    {% endif %}
+{{ form_end(form) }}

@@ -41,7 +41,7 @@ class Product
      *  }
      * )
      */
-    protected $productCats;
+    protected $productCat;
 
     /**
      * @var string
@@ -101,6 +101,14 @@ class Product
     private $viewCounts = 0;
 
     /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
+
+    /**
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
@@ -125,7 +133,7 @@ class Product
 
     public function __construct()
     {
-        $this->productCats = new ArrayCollection();
+        $this->productCat = new ArrayCollection();
     }
 
     /**
@@ -136,6 +144,32 @@ class Product
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return ProductCat[]
+     */
+    public function addProductCat(ProductCat $productCat)
+    {
+        if (!$this->productCat->contains($productCat)) {
+            $this->productCat->add($productCat);
+        }
+    }
+
+    /**
+     * @return ProductCat[]
+     */
+    public function removeProductCat(ProductCat $productCat)
+    {
+        $this->productCat->removeElement($productCat);
+    }
+
+    /**
+     * @return \AppBundle\Entity\ProductCat
+     */
+    public function getProductCat()
+    {
+        return $this->productCat;
     }
 
     /**
@@ -299,6 +333,28 @@ class Product
     public function getViewCounts()
     {
         return $this->viewCounts;
+    }
+
+    /**
+     * Get author
+     *
+     * @return User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set author
+     *
+     * @param User $author
+     *
+     * @return Product
+     */
+    public function setAuthor(User $author)
+    {
+        $this->author = $author;
     }
 
     /**
