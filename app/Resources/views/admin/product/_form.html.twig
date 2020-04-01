@@ -1,13 +1,99 @@
 {{ form_start(form, {attr: attr|default({})}) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.url) }}
+    {{ form_row(form.enable) }}
+    {{ form_row(form.productCat) }}
+    {{ form_row(form.imageFile) }}
+    {{ form_row(form.contents) }}
+    
+    <hr>
+    <div id="product_productImages" data-prototype="{{ form_widget(form.productImages.vars.prototype)|e }}"></div>
+    <div class="row">
+        <div class="col col-xs-12" id="filesBox">
+            {% set pos = 0 %}
+                {% for doc in form.productImages %}
+
+                <div class="row">
+                    <div class="col col-xs-1" id="jsRemove{{ pos }}" style="">
+                        <button type="button" class="btn btn-danger" onclick="removeFile($(this));"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="col col-xs-11" id="jsPreview{{ pos }}">{{ doc.vars.value.name }}</div>
+
+                    <div style="display:none">
+                        {{ form_widget(doc) }}
+                    </div>
+                </div>
+                {% set pos = pos + 1 %}
+            {% endfor %}
+        </div>
+    </div>
+    <hr>
+    <div class="card-title">
+        <h3>{{ 'label.seo'|trans }}</h3>
+    </div>
+    <hr>
+    {{ form_row(form.pageTitle) }}
+    {{ form_row(form.pageDescription) }}
+    {{ form_row(form.pageKeyword) }}
 
     <button type="submit" class="{{ button_css|default("btn btn-primary") }}">
-        <i class="fa fa-save" aria-hidden="true"></i> {{ button_label|default('label.create_post'|trans) }}
+        <i class="fa fa-save" aria-hidden="true"></i>
+        {{ button_label|default('label.create_post'|trans) }}
     </button>
 
     {% if include_back_to_home_link|default(false) %}
-        <a href="{{ path('admin_news_index') }}" class="btn btn-link">
-            <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'action.back_to_list'|trans }}
+        <a href="{{ path('admin_product_index') }}" class="btn btn-link">
+            <i class="fa fa-list-alt" aria-hidden="true"></i>
+            {{ 'action.back_to_list'|trans }}
         </a>
     {% endif %}
 {{ form_end(form) }}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+    var fileCount = '{{ form.productImages|length }}';
+    var removeButton = "<button type='button' class='btn btn-danger btn-xs' onclick='removeFile($(this));'><i class='fa fa-times' aria-hidden='true'></i></button>";
+
+    function removeFile(ob) {
+        ob.parent().parent().remove();
+    }
+
+    function createAddFile(fileCount) { // grab the prototype template
+        var newWidget = $("#product_productImages").attr('data-prototype');
+        // replace the "__name__" used in the id and name of the prototype
+        newWidget = newWidget.replace(/__name__/g, fileCount);
+        newWidget = "<div style='display:none'>" + newWidget + "</div>";
+        hideStuff = "";
+        hideStuff += "<div class='col col-xs-1' id='jsRemove" + fileCount + "' style='display: none;'>";
+        hideStuff += removeButton;
+        hideStuff += "</div>";
+        hideStuff += "<div class='col col-xs-11' id='jsPreview" + fileCount + "'>";
+        hideStuff += "</div>";
+        hideStuff += "<div class='col col-xs-12'>";
+        hideStuff += "<button type='button' id='jsBtnUpload" + fileCount + "' class='btn btn-warning'>";
+        hideStuff += "<i class='fa fa-plus'></i>    {{ 'document' | trans }}";
+        hideStuff += "</button>";
+        hideStuff += "</div>";
+        $("#filesBox").append("<div class='row'>" + hideStuff + newWidget + "</div>");
+        // On click => Simulate file behaviour
+        $("#jsBtnUpload" + fileCount).on('click', function(e) {
+            $('#product_productImages_' + fileCount + '_file').trigger('click');
+        });
+        // Once the file is added
+        $('#product_productImages_' + fileCount + '_file').on('change', function() {
+            // Show its name
+            fileName = $(this).prop('files')[0].name;
+            $("#jsPreview" + fileCount).append(fileName);
+            // Hide the add file button
+            $("#jsBtnUpload" + fileCount).hide();
+            // Show the remove file button
+            $("#jsRemove" + fileCount).show();
+            // Create another instance of add file button and company
+            createAddFile(parseInt(fileCount) + 1);
+        });
+    }
+    $(document).ready(function() {
+        createAddFile(fileCount);
+        fileCount++;
+    });
+</script>

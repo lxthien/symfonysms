@@ -5,11 +5,13 @@ namespace AppBundle\Form;
 use AppBundle\Entity\ProductCat;
 use AppBundle\Entity\Product;
 use AppBundle\Form\Type\TagsInputType;
+use AppBundle\Form\ProductImageType;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -39,6 +41,23 @@ class ProductType extends AbstractType
                 'required' => false,
                 'label' => 'label.category',
             ])
+            ->add('imageFile', VichFileType::class, [
+                'required' => false,
+                'allow_delete' => true,
+            ])
+            ->add('contents', TextareaType::class, [
+                'attr' => ['class' => 'txt-ckeditor', 'data-height' => '500'],
+                'label' => 'label.contents',
+            ])
+            ->add('productImages', CollectionType::class, array(
+                'entry_type'   		=> ProductImageType::class,
+                'prototype'			=> true,
+                'allow_add'			=> true,
+                'allow_delete'		=> true,
+                'by_reference' 		=> false,
+                'required'			=> false,
+                'label'				=> true,
+            ))
             ->add('pageTitle', TextType::class, [
                 'required' => false,
                 'label' => 'label.pageTitle',

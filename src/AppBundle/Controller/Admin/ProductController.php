@@ -6,6 +6,7 @@ use AppBundle\Entity\ProductCat;
 use AppBundle\Entity\Product;
 use AppBundle\Form\ProductCatType;
 use AppBundle\Form\ProductType;
+use AppBundle\Form\ProductImageType;
 use AppBundle\Utils\Slugger;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -43,8 +44,7 @@ class ProductController extends Controller
         $object = new Product();
         $object->setAuthor($this->getUser());
 
-        $form = $this->createForm(ProductType::class, $object)
-            ->add('saveAndCreateNew', SubmitType::class);
+        $form = $this->createForm(ProductType::class, $object);
 
         $form->handleRequest($request);
 
@@ -55,10 +55,6 @@ class ProductController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'action.created_successfully');
-
-            if ($form->get('saveAndCreateNew')->isClicked()) {
-                return $this->redirectToRoute('admin_news_new');
-            }
 
             return $this->redirectToRoute('admin_product_edit', array(
                 'id' => $object->getId()
@@ -94,5 +90,23 @@ class ProductController extends Controller
             'object' => $object,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{id}/delete", methods={"POST"}, name="admin_product_delete")
+     */
+    public function deleteAction(Request $request, $id, Product $object)
+    {
+        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
+            return $this->redirectToRoute('admin_product_index');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($object);
+        $em->flush();
+
+        $this->addFlash('success', 'action.deleted_successfully');
+
+        return $this->redirectToRoute('admin_product_index');
     }
 }

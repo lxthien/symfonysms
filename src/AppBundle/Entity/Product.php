@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -14,6 +15,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="products")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductRepository")
+ * @Vich\Uploadable
  */
 class Product
 {
@@ -44,6 +46,12 @@ class Product
     protected $productCat;
 
     /**
+     * Many ProductImage have one (the same) Product
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProductImage", mappedBy="product", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $productImages;
+
+    /**
      * @var string
      *
      * @Assert\NotBlank()
@@ -71,6 +79,27 @@ class Product
      * @ORM\Column(name="enable", type="boolean")
      */
     private $enable = true;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="images", type="string", length=255, nullable=true)
+     */
+    private $images;
+
+    /**
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="images")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @var text
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(name="contents", type="text")
+     */
+    private $contents;
 
     /**
      * @var string
@@ -134,6 +163,7 @@ class Product
     public function __construct()
     {
         $this->productCat = new ArrayCollection();
+        $this->productImages = new ArrayCollection();
     }
 
     /**
@@ -170,6 +200,36 @@ class Product
     public function getProductCat()
     {
         return $this->productCat;
+    }
+
+    /**
+     * @param \AppBundle\Entity\ProductImage $productImage
+     *
+     * @return ProductImage
+     */
+    public function addProductImage(\AppBundle\Entity\ProductImage $productImage)
+    {
+        $productImage->setProduct($this);
+
+        $this->productImages[] = $productImage;
+
+        return $this;
+    }
+
+    /**
+     * @param \AppBundle\Entity\ProductImage $productImage
+     */
+    public function removeProductImage(\AppBundle\Entity\ProductImage $productImage)
+    {
+        $this->productImages->removeElement($productImage);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProductImages()
+    {
+        return $this->productImages;
     }
 
     /**
@@ -241,6 +301,71 @@ class Product
     public function getEnable()
     {
         return $this->enable;
+    }
+
+    /**
+     * Set imageFile file
+     *
+     * @param File $imageFile
+     * @return Product
+     */
+    public function setImageFile(File $imageFile = null)
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set images
+     *
+     * @param string $images
+     * @return Product
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    /**
+     * Get images
+     *
+     * @return string
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param string $contents
+     * @return Product
+     */
+    public function setContents($contents)
+    {
+        $this->contents = $contents;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContents()
+    {
+        return $this->contents;
     }
 
     /**

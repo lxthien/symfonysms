@@ -1,83 +1,33 @@
 {% if showSlide is defined %}
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="3" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="4" class=""></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <img class="lazyload"
-                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    data-src="{{ asset('assets/images/banner/banner-cafe-cach-coffee.jpg') }}"
-                    alt="Cach Cafe">
-                <div class="container">
-                    <div class="carousel-caption text-left">
-                        <h2>Cach Cafe</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <img class="lazyload"
-                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    data-src="{{ asset('assets/images/banner/banner-cafe.jpg') }}"
-                    alt="Xây Dựng Minh Duy">
-                <div class="container">
-                    <div class="carousel-caption text-left">
-                        <h3>Xây Dựng Minh Duy</h3>
-                    </div>
-                </div>
-            </div>
-			<div class="item">
-                <a href="{{ path('news_show', {'slug': 'du-an-xay-nha-tron-goi-cmt8-quan-10-tp-hcm' }) }}">
-                    <img class="lazyload"
-                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    data-src="{{ asset('assets/images/banner/xay-nha-tron-goi-cmt8.jpg') }}"
-                    alt="Công Trình Xây Nhà Trọn Gói CMT8">
-                </a>
-                <div class="container">
-                    <div class="carousel-caption text-left">
-                        <h3>Công Trình Xây Nhà Trọn Gói CMT8</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <a href="{{ path('homepage') }}">
+    <div class="container">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
                     <img class="lazyload"
                         src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-src="{{ asset('assets/images/banner/minhduyconstruction.jpg') }}"
-                        alt="Minh Duy Construction">
-                </a>
-                <div class="container">
-                    <div class="carousel-caption text-left">
-                        <h3>Minh Duy Construction</h3>
-                    </div>
+                        data-src="{{ asset('assets/images/banner/home-slide-1.webp') }}"
+                        alt="Cach Cafe">
                 </div>
-            </div>
-            <div class="item">
-                <a href="{{ path('news_show', {'slug': 'xay-nha-pho-4-tang-anh-huu-quan-12' }) }}">
+                <div class="item">
                     <img class="lazyload"
                         src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-src="{{ asset('assets/images/banner/banner-xay-nha-pho-3-tang-thay-hanh.jpg') }}"
-                        alt="Xây nhà phố 3 tầng, Thầy Hạnh">
-                </a>
-                <div class="container">
-                    <div class="carousel-caption text-left">
-                        <h3>Xây nhà phố 3 tầng, Thầy Hạnh</h3>
-                    </div>
+                        data-src="{{ asset('assets/images/banner/home-slide-3.webp') }}"
+                        alt="Xây Dựng Minh Duy">
                 </div>
             </div>
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
 {% endif %}

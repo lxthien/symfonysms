@@ -46,11 +46,11 @@
                                     <tr>
                                         <td>
                                             <div class="images-container">
-                                                <img src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('admin_thumb') }}" alt="{{ row.getTitle() }}" />
+                                                <img src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('admin_thumb') }}" />
                                             </div>
                                         </td>
-                                        <td><a class="btn-link" href="{{ path('admin_product_edit', {id: row.id}) }}">{{ row.getTitle() }}</a></td>
-                                        <td>{{ row.getCategory() }}</td>
+                                        <td><a class="btn-link" href="{{ path('admin_product_edit', {id: row.id}) }}">{{ row.getName() }}</a></td>
+                                        <td>Category</td>
                                         <td>
                                             <label class="switch switch-text switch-primary switch-pill">
                                                 <input type="checkbox" class="switch-input" {{ row.getEnable() ? 'checked="true"' : '' }}>
