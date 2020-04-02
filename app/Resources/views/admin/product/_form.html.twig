@@ -4,7 +4,13 @@
     {{ form_row(form.enable) }}
     {{ form_row(form.productCat) }}
     {{ form_row(form.imageFile) }}
+    {{ form_row(form.description) }}
     {{ form_row(form.contents) }}
+
+    <hr>
+    {{ form_row(form.isHot) }}
+    {{ form_row(form.regularPrice) }}
+    {{ form_row(form.salePrice) }}
     
     <hr>
     <div id="product_productImages" data-prototype="{{ form_widget(form.productImages.vars.prototype)|e }}"></div>

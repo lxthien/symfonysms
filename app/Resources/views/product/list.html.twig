@@ -1,0 +1,270 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %} {{ category.getPageTitle() ~ ' - Trang ' ~ pagination.currentPageNumber }} {% endblock %}
+{% block description %} {{category.getPageDescription()}} {% endblock %}
+{% block keyword %} {{category.getPageKeyword()}} {% endblock %}
+
+{% block body %}
+<div class="wrapper-body wrapper-container" id="PageContainer">
+    <div class="main-content" id="MainContent">
+        <div class="product-template product-template-default">
+            <div class="container">
+                {{ include('news/components/breadcrumbs.html.twig') }}
+
+                <div class="halo-product-content">
+                    <div class="row pro-page">
+                        <div id="shopify-section-sidebar-section" class="shopify-section col-12 col-xl-3 col-sidebar">
+                            <div class="sidebar">
+                                <div class="widget sidebar-links">
+                                    <div class="widget-title">
+                                        <h3 class="sidebar-title">
+                                            <span>
+                                                Danh mục sản phẩm
+                                            </span>
+                                        </h3>
+                                    </div>
+                                    <div class="widget-content">
+                                        <ul>
+                                            <li class="sidebar-link-lv1 dropdown">
+                                                <p class="link-action-wrapper">
+                                                    <a href="/collections/lorem-dorus">
+                                                        <span>
+                                                            Lorem Dorus
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </li>
+                                            <li class="sidebar-link-lv1">
+                                                <p class="link-action-wrapper">
+                                                    <a href="/collections/all">
+                                                        <span>
+                                                            Milancelos
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </li>
+                                            <li class="sidebar-link-lv1">
+                                                <p class="link-action-wrapper">
+                                                    <a href="#">
+                                                        <span>
+                                                            Cosmopolis
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </li>
+                                            <li class="sidebar-link-lv1">
+                                                <p class="link-action-wrapper">
+                                                    <a href="#">
+                                                        <span>
+                                                            Nor Loremirus
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </li>
+                                            <li class="sidebar-link-lv1">
+                                                <p class="link-action-wrapper">
+                                                    <a href="#">
+                                                        <span>
+                                                            Comos Milano
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </li>
+                                            <li class="sidebar-link-lv1">
+                                                <p class="link-action-wrapper">
+                                                    <a href="#">
+                                                        <span>
+                                                            Dapibor
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="shopify-section-product-template-default" class="shopify-section col-12 col-xl-9 col-main">
+                            <div>
+                                <header class="collection-header">
+                                    {% if vich_uploader_asset(category, 'imageFile') %}
+                                    <div class="collection-image">
+                                        <img
+                                            data-src="{{ (vich_uploader_asset(category, 'imageFile') ? vich_uploader_asset(category, 'imageFile') : absolute_url(asset('assets/images/no-image.png'))) | imagine_filter('product_cat_930_310') }}"
+                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                            class="lazyload"
+                                            alt="{{ category.getName() }}" >
+                                    </div>
+                                    {% endif %}
+                                    <div class="collection-wrapper page-header">
+                                        <h1>
+                                            <span>
+                                                {{ category.getName() }}
+                                            </span>
+                                        </h1>
+                                        <div class="collection-des">
+                                            <div class="rte">
+                                                {{ category.getDescription()|raw }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sub-categories"></div>
+                                </header>
+                                <div class="product-collection products-grid row">
+                                    {% for row in pagination %}
+                                    <div class="grid-item col-6 col-md-4 col-lg-3">
+                                        <div class="products-item">
+                                            <div class="products-item-wrapper">
+                                                <div class="media-thumb">
+                                                    <picture>
+                                                        <img
+                                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                            data-src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('news_220_220') }}"
+                                                            class="mr-3 img-thumbnail lazyload"
+                                                            alt="{{ row.getName() }}" />
+                                                    </picture>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">
+                                                        <a href="{{ path('product_show', {'slug': row.getUrl() }) }}" title="{{ row.getName() }}">
+                                                            <span>{{ row.getName() }}</span>
+                                                        </a>
+                                                    </h5>
+                                                    {{ 4|rating }}
+                                                    <div class="price-box">
+                                                        {% if row.getRegularPrice() is empty and row.getSalePrice() is empty %}
+                                                            <div class="price-regular">
+                                                                <span><span class="money">Liên hệ</span></span>
+                                                            </div>
+                                                        {% elseif row.getRegularPrice() > 0 and row.getSalePrice() > 0 %}
+                                                            <div class="price-sale">
+                                                                <span class="old-price"><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                                <span class="special-price"><span class="money">{{ row.getSalePrice()|number_format(0, ',', '.') }}</span></span>
+                                                            </div>
+                                                        {% elseif row.getRegularPrice() > 0 and row.getSalePrice() is empty %}
+                                                            <div class="price-regular">
+                                                                <span><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    <div class="grid-item col-6 col-md-4 col-lg-3">
+                                        <div class="products-item">
+                                            <div class="products-item-wrapper">
+                                                <div class="media-thumb">
+                                                    <picture>
+                                                        <img
+                                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                            data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/11-compressor_076662b4-fa80-4ebb-97f6-f26db5adec01_300x.png?v=1574410402"
+                                                            class="mr-3 img-thumbnail lazyload"
+                                                            alt="" />
+                                                    </picture>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">
+                                                        <a href="{{ path('product_show', {'slug': 'this-is-a-demo-product'}) }}" title="">
+                                                            <span>Ainterdu pretium de miancelos dincidunts</span>
+                                                        </a>
+                                                    </h5>
+                                                    <div class="rating">
+                                                        <div class="star-full "></div>
+                                                        <div class="star-full "></div>
+                                                        <div class="star-full "></div>
+                                                        <div class="star-full "></div>
+                                                        <div class="star "></div>
+                                                    </div>
+                                                    <div class="price-box">
+                                                        <div class="price-sale">
+                                                            <span class="old-price"><span class="money">320.000</span></span>
+                                                            <span class="special-price"><span class="money">300.000</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid-item col-6 col-md-4 col-lg-3">
+                                        <div class="products-item">
+                                            <div class="products-item-wrapper">
+                                                <div class="media-thumb">
+                                                    <picture>
+                                                        <img
+                                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                            data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/11-compressor_076662b4-fa80-4ebb-97f6-f26db5adec01_300x.png?v=1574410402"
+                                                            class="mr-3 img-thumbnail lazyload"
+                                                            alt="" />
+                                                    </picture>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">
+                                                        <a href="{{ path('product_show', {'slug': 'this-is-a-demo-product'}) }}" title="">
+                                                            <span>Ainterdu pretium de miancelos dincidunts</span>
+                                                        </a>
+                                                    </h5>
+                                                    <div class="rating">
+                                                        <div class="star-full "></div>
+                                                        <div class="star-full "></div>
+                                                        <div class="star-full "></div>
+                                                        <div class="star-full "></div>
+                                                        <div class="star "></div>
+                                                    </div>
+                                                    <div class="price-box">
+                                                        <div class="price-sale">
+                                                            <span class="old-price"><span class="money">320.000</span></span>
+                                                            <span class="special-price"><span class="money">300.000</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid-item col-6 col-md-4 col-lg-3">
+                                        <div class="products-item">
+                                            <div class="products-item-wrapper">
+                                                <div class="media-thumb">
+                                                    <picture>
+                                                        <img
+                                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                            data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/11-compressor_076662b4-fa80-4ebb-97f6-f26db5adec01_300x.png?v=1574410402"
+                                                            class="mr-3 img-thumbnail lazyload"
+                                                            alt="" />
+                                                    </picture>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h5 class="mt-0 mb-1">
+                                                        <a href="{{ path('product_show', {'slug': 'this-is-a-demo-product'}) }}" title="">
+                                                            <span>Ainterdu pretium de miancelos dincidunts</span>
+                                                        </a>
+                                                    </h5>
+                                                    <div class="rating">
+                                                        <div class="star-full "></div>
+                                                        <div class="star-full "></div>
+                                                        <div class="star-full "></div>
+                                                        <div class="star-full "></div>
+                                                        <div class="star "></div>
+                                                    </div>
+                                                    <div class="price-box">
+                                                        <div class="price-sale">
+                                                            <span class="old-price"><span class="money">320.000</span></span>
+                                                            <span class="special-price"><span class="money">300.000</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -82,85 +82,14 @@
 }
 
 .banner {
-    height: 120px;
-    font-family: $robotoCondesed;
-    background: #f1f1f1;
+    background-color: #f7f7f7;
 
-    #logo_top {
-        padding: 0;
+    #logo {
+        padding: 35px 0;
 
-        #logo {
-            float: left;
-            padding: 0;
-            margin-top: 15px;
-
-            a {
-                img {
-                    padding: 10px 0;
-                    width: 85%;
-                }
-            }
-        }
-    }
-
-    .info-top {
-        margin-top: 35px;
-        overflow: hidden;
-
-        &.hotline-top {
-            margin-top: 42px;
-
-            .wp90 {
-                .info-nd {
-                    background: #fff;
-                    border: 2px solid $primaryColor2;
-                    padding: 0 15px;
-                    border-radius: 30px;
-
-                    p {
-                        font-size: 20px;
-                        line-height: 20px;
-                        padding: 5px 0;
-                    }
-                }
-            }
-        }
-
-        .wp90 {
-            width: 90%;
-            float: left;
-
-            .info-nd {
-                p {
-                    margin-bottom: 0;
-                    color: $primaryColor2;
-                    font-family: $robotoCondesed;
-                    font-size: 17px;
-                    text-align: center;
-                    font-weight: bold;
-
-                    &#header-address {
-                        text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
-                    }
-                }
-
-                .tel {
-                    font-weight: bold;
-                    font-family: $robotoCondesed;
-                    font-size: 23px;
-                    line-height: 27px;
-                    color: $primaryColor2;
-
-                    &#header-company {
-                        text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
-                    }
-
-                    a {
-                        &:hover {
-                            text-decoration: none;
-                        }
-                    }
-                }
+        a {
+            img {
+                width: 25%;
             }
         }
     }

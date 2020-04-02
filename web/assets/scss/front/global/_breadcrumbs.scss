@@ -1,18 +1,17 @@
 .breadcrumbs {
-    .container {
-        position: relative;
-        z-index: 1;
-    }
-
+    margin-bottom: 20px;
+    
     .breadcrumb {
-        padding: 8px 0px;
-        margin-top: 15px;
-        margin-bottom: 5px;
-        background: none;
-
-        @media only screen and (max-width: 767.98px) {
-            margin: 5px 0;
-        }
+        margin: 0;
+        font-size: 13px;
+        line-height: 24px;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        -ms-border-radius: 0;
+        -o-border-radius: 0;
+        border-radius: 0;
+        background-color: rgba(255,255,255,0);
+        padding: 17px 0 15px;
 
         li {
             margin-bottom: 0em;

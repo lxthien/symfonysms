@@ -1,0 +1,191 @@
+.col-sidebar {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 249px;
+    flex: 0 0 249px;
+    max-width: 249px;
+    padding-right: 10px;
+}
+
+.col-main {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 calc(100% - 249px);
+    flex: 0 0 calc(100% - 249px);
+    max-width: -moz-calc(100% - 249px);
+    max-width: -webkit-calc(100% - 249px);
+    max-width: -ms-calc(100% - 249px);
+    max-width: calc(100% - 249px);
+    padding-left: 10px;
+}
+
+.sidebar-links {
+    margin-bottom: 40px;
+
+    .widget-title {
+        padding-top: 0;
+        text-align: left;
+        margin-bottom: 13px;
+
+        .sidebar-title {
+            font-size: 18px;
+            letter-spacing: .02em;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: $robotoCondesed;
+            line-height: 22px;
+            color: $black;
+            border-bottom: 1px solid #efefef;
+            margin: 0;
+            padding-bottom: 3px;
+
+            span {
+                position: relative;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: -5px;
+                    width: 100%;
+                    height: 2px;
+                    background: $black;
+                }
+            }
+        }
+    }
+
+    .widget-content {
+        ul {
+            margin: 0;
+            padding: 0;
+
+            li {
+                margin: 0;
+                position: relative;
+                cursor: pointer;
+                list-style: none;
+
+                .link-action-wrapper {
+                    display: block;
+                    position: relative;
+                    cursor: pointer;
+                    margin-bottom: 0;
+
+                    a {
+                        font-size: 12px;
+                        display: inline-block;
+                        font-weight: bold;
+                        color: $black;
+                        padding: 7px 0px 6px 0;
+                        line-height: 22px;
+                        position: relative;
+                        -webkit-transition: padding-left 0.3s linear;
+                        -moz-transition: padding-left 0.3s linear;
+                        -ms-transition: padding-left 0.3s linear;
+                        -o-transition: padding-left 0.3s linear;
+                        transition: padding-left 0.3s linear;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.product-shop {
+    .product-title {
+        font-family: Arimo,sans-serif;
+        font-size: 18px;
+        letter-spacing: normal;
+        line-height: 30px;
+        font-weight: bold;
+        margin-bottom: 18px;
+        display: block;
+    }
+}
+
+.products-item {
+    border: 1px solid $white;
+
+    &:hover {
+        border: 1px solid #ccc;
+    }
+
+    .products-item-wrapper {
+        position: relative;
+
+        .media-thumb {
+            img {
+                border: none;
+            }
+        }
+
+        .media-body {
+            h5 {
+                margin-top: 10px;
+                margin-bottom: 5px;
+                min-height: 40px;
+
+                a {
+                    color: $black;
+                    font-size: 15px;
+                    line-height: 20px;
+                    font-weight: 500;
+                    font-family: $arimo;
+                    text-align: center;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            .rating {
+                margin-bottom: 9px;
+                width: 100%;
+                display: block;
+                text-align: center;
+
+                .star-full, .star, .star-empty  {
+                    font-size: 18px;
+
+                    &::before {
+                        padding-right: 0;;
+                    }
+                }
+
+                .spr-badge-caption {
+                    display: none;
+                }
+            }
+
+            .price-box {
+                letter-spacing: 0;
+                margin-bottom: 15px;
+                font-size: 14px;
+                font-weight: bold;
+                text-align: center;
+
+                .price-regular {
+                    color: #000;
+                }
+
+                .price-sale {
+                    .old-price {
+                        color: #969696;
+                        text-decoration: line-through;
+                        margin-right: 5px;
+                    }
+
+                    .special-price {
+                        color: #e7040f;
+                    }
+                }
+            }
+        }
+    }
+}

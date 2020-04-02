@@ -37,6 +37,10 @@ class ProductType extends AbstractType
                 'required' => false,
                 'label' => 'label.enable',
             ])
+            ->add('isHot', CheckboxType::class, [
+                'required' => false,
+                'label' => 'label.isHot',
+            ])
             ->add('productCat', null, [
                 'required' => false,
                 'label' => 'label.category',
@@ -44,6 +48,10 @@ class ProductType extends AbstractType
             ->add('imageFile', VichFileType::class, [
                 'required' => false,
                 'allow_delete' => true,
+            ])
+            ->add('description', TextareaType::class, [
+                'required' => false,
+                'label' => 'label.description',
             ])
             ->add('contents', TextareaType::class, [
                 'attr' => ['class' => 'txt-ckeditor', 'data-height' => '500'],
@@ -58,6 +66,14 @@ class ProductType extends AbstractType
                 'required'			=> false,
                 'label'				=> true,
             ))
+            ->add('regularPrice', null, [
+                'required' => false,
+                'label' => 'label.regularPrice',
+            ])
+            ->add('salePrice', null, [
+                'required' => false,
+                'label' => 'label.salePrice',
+            ])
             ->add('pageTitle', TextType::class, [
                 'required' => false,
                 'label' => 'label.pageTitle',

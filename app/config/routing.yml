@@ -31,6 +31,20 @@ handle_comment_form:
     defaults:
         _controller: AppBundle:News:handleCommentForm
 
+shop:
+    path: /cua-hang/
+    defaults:
+        _controller: AppBundle:Product:list
+
+shop_category:
+    path: /cua-hang/{level1}/{page}
+    defaults:
+        page: 1
+        _controller: AppBundle:Product:list
+    requirements:
+        level1: '[-\w]+'
+        page: '\d+'
+
 news_category:
     path: /{level1}/{page}
     defaults:

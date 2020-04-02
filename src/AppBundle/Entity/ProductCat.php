@@ -4,6 +4,9 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\File;
+
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -11,6 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="productcats")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductCatRepository")
+ * @Vich\Uploadable
  */
 class ProductCat
 {
@@ -63,6 +67,19 @@ class ProductCat
      * @ORM\Column(name="enable", type="boolean")
      */
     private $enable = true;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="images", type="string", length=255, nullable=true)
+     */
+    private $images;
+
+    /**
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="images")
+     * @var File
+     */
+    private $imageFile;
 
     /**
      * @var string
@@ -258,6 +275,52 @@ class ProductCat
     public function getEnable()
     {
         return $this->enable;
+    }
+
+    /**
+     * Set imageFile file
+     *
+     * @param File $imageFile
+     * @return ProductCat
+     */
+    public function setImageFile(File $imageFile = null)
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set images
+     *
+     * @param string $images
+     * @return ProductCat
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    /**
+     * Get images
+     *
+     * @return string
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 
     /**

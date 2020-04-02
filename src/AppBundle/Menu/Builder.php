@@ -38,135 +38,49 @@ class Builder implements ContainerAwareInterface
             'routeParameters' => ['slug' => 'gioi-thieu']
         ]);
 
-        $menu['Giới thiệu']->addChild('Chính sách chất lượng', [
+        $menu['Giới thiệu']->addChild('Chính sách bảo hành', [
             'route' => 'news_show',
             'routeParameters' => ['slug' => 'chinh-sach-chat-luong']
         ]);
 
-        $menu['Giới thiệu']->addChild('Tuyển dụng', [
+        $menu['Giới thiệu']->addChild('Tuyển đại lý, cộng tác viên', [
             'route' => 'news_show',
             'routeParameters' => ['slug' => 'tuyen-dung']
         ]);
 
-        $menu->addChild('Bảng giá', [
+        $menu->addChild('Chăm sóc da', [
+            'route' => 'shop_category',
+            'routeParameters' => ['level1' => 'cham-soc-da']
+        ]);
+
+        $menu->addChild('Dầu gội', [
+            'route' => 'shop_category',
+            'routeParameters' => ['level1' => 'dau-goi']
+        ]);
+
+        $menu->addChild('Làm đẹp', [
             'route' => 'news_category',
-            'routeParameters' => ['level1' => 'bang-gia']
-        ])
-        ->setAttribute('class', 'dropdown')
-        ->setLinkAttribute('class', 'dropdown-toggle')
-        ->setLinkAttribute('data-toggle', 'dropdown')
-        ->setChildrenAttribute('class', 'dropdown-menu');
-
-        $menu['Bảng giá']->addChild('Xây nhà trọn gói', [
-            'route' => 'news_show',
-            'routeParameters' => ['slug' => 'bao-gia-xay-nha-tron-goi']
-        ]);
-
-        $menu['Bảng giá']->addChild('Sửa nhà trọn gói', [
-            'route' => 'news_show',
-            'routeParameters' => ['slug' => 'bao-gia-sua-nha-tron-goi']
-        ]);
-
-        $menu['Bảng giá']->addChild('Xây nhà phần thô', [
-            'route' => 'news_show',
-            'routeParameters' => ['slug' => 'bang-gia-xay-dung-nha-phan-tho']
-        ]);
-
-        $menu['Bảng giá']->addChild('Sửa chữa căn hộ chung cư', [
-            'route' => 'news_show',
-            'routeParameters' => ['slug' => 'dich-vu-bao-gia-sua-chua-can-ho-chung-cu']
-        ]);
-
-        $menu['Bảng giá']->addChild('Thiết kế nhà phố, biệt thự', [
-            'route' => 'news_show',
-            'routeParameters' => ['slug' => 'bao-gia-thiet-ke-nha-pho']
-        ]);
-        
-        $menu['Bảng giá']->addChild('Thiết kế, thi công quán cafe', [
-            'route' => 'news_show',
-            'routeParameters' => ['slug' => 'bao-gia-thiet-ke-thi-cong-quan-cafe-tron-goi-tai-tphcm']
-        ]);
-
-        $menu->addChild('Xây dựng', [
-            'route' => 'news_category',
-            'routeParameters' => ['level1' => 'xay-dung']
-        ])
-        ->setAttribute('class', 'dropdown')
-        ->setLinkAttribute('class', 'dropdown-toggle')
-        ->setLinkAttribute('data-toggle', 'dropdown')
-        ->setChildrenAttribute('class', 'dropdown-menu');
-
-        $menu['Xây dựng']->addChild('Xây nhà phố', [
-            'route' => 'news_category',
-            'routeParameters' => ['level1' => 'xay-dung']
-        ]);
-
-        $menu['Xây dựng']->addChild('Dự toán chi phí', [
-            'route' => 'caculator_cost_construction'
-        ]);
-
-        $menu['Xây dựng']->addChild('Chính sách bảo hành', [
-            'route' => 'news_show',
-            'routeParameters' => ['slug' => 'chinh-sach-bao-hanh']
-        ]);
-
-        $menu->addChild('Sửa chữa nhà', [
-            'route' => 'news_category',
-            'routeParameters' => ['level1' => 'sua-chua-nha']
-        ]);
-
-        $menu->addChild('Thiết kế', [
-            'route' => 'news_category',
-            'routeParameters' => ['level1' => 'thiet-ke']
-        ])
-        ->setAttribute('class', 'dropdown')
-        ->setLinkAttribute('class', 'dropdown-toggle')
-        ->setLinkAttribute('data-toggle', 'dropdown')
-        ->setChildrenAttribute('class', 'dropdown-menu');
-
-        $menu['Thiết kế']->addChild('Thiết kế nhà phố', [
-            'route' => 'list_category',
-            'routeParameters' => ['level1' => 'thiet-ke', 'level2' => 'thiet-ke-nha-pho']
-        ]);
-        
-        $menu['Thiết kế']->addChild('Thiết kế quán cafe', [
-            'route' => 'list_category',
-            'routeParameters' => ['level1' => 'thiet-ke', 'level2' => 'thiet-ke-thi-cong-quan-cafe']
-        ]);
-
-        $menu->addChild('Phong thủy xây dựng', [
-            'route' => 'news_category',
-            'routeParameters' => ['level1' => 'phong-thuy-xay-dung']
-        ]);
-
-        $menu->addChild('Dự án thi công', [
-            'route' => 'news_category',
-            'routeParameters' => ['level1' => 'du-an']
+            'routeParameters' => ['level1' => 'lam-dep']
         ])
         ->setAttribute('class', 'dropdown')
         ->setLinkAttribute('class', 'dropdown-toggle')
         ->setLinkAttribute('data-toggle', 'dropdown')
         ->setChildrenAttribute('class', 'dropdown-menu');
         
-        $menu['Dự án thi công']->addChild('Xây mới', [
-            'route' => 'list_category',
-            'routeParameters' => ['level1' => 'du-an', 'level2' => 'xay-moi']
-        ]);
-        $menu['Dự án thi công']->addChild('Sửa chữa', [
-            'route' => 'list_category',
-            'routeParameters' => ['level1' => 'du-an', 'level2' => 'sua-chua']
-        ]);
-        $menu['Dự án thi công']->addChild('Quán cafe, trà sữa', [
-            'route' => 'list_category',
-            'routeParameters' => ['level1' => 'du-an', 'level2' => 'quan-cafe-tra-sua']
-        ]);
-
-        $menu->addChild('Tư vấn', [
+        $menu['Làm đẹp']->addChild('Chăm sóc da', [
             'route' => 'news_category',
-            'routeParameters' => ['level1' => 'tu-van']
+            'routeParameters' => ['level1' => 'cham-soc-da']
+        ]);
+        $menu['Làm đẹp']->addChild('Chăm sóc tóc', [
+            'route' => 'news_category',
+            'routeParameters' => ['level1' => 'cham-soc-toc']
         ]);
 
-        // Contact us
+        $menu->addChild('Khuyến mãi', [
+            'route' => 'news_show',
+            'routeParameters' => ['slug' => 'khuyen-mai']
+        ]);
+
         $menu->addChild('Liên hệ', [
             'route' => 'contact'
         ]);

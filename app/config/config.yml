@@ -100,6 +100,10 @@ stof_doctrine_extensions:
 vich_uploader:
     db_driver: orm
     mappings:
+        product_cat_images:
+            uri_prefix:         '%app.path.product_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/productcats'
+            namer: vich_uploader.namer_origname
         product_images:
             uri_prefix:         '%app.path.product_images%'
             upload_destination: '%kernel.root_dir%/../web/uploads/images/products'
@@ -182,6 +186,14 @@ liip_imagine:
             quality: 100
             filters:
                 thumbnail: { size: [224, 169], mode: outbound }
+        product_cat_930_310:
+            quality: 100
+            filters:
+                thumbnail: { size: [930, 310], mode: outbound }
+        news_220_220:
+            quality: 100
+            filters:
+                thumbnail: { size: [220, 220], mode: outbound }
 
 # KnpPaginationBundle
 knp_paginator:

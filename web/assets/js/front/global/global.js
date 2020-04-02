@@ -44,7 +44,7 @@ function initProjectHotSlider() {
         pager: false,
         controls: true,
         minSlides: 1,
-        maxSlides: 6,
+        maxSlides: 5,
         moveSlides: 1,
         slideMargin: 0,
         touchEnabled: false,

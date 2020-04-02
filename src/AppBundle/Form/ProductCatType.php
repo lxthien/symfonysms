@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Vich\UploaderBundle\Form\Type\VichFileType;
+
 class ProductCatType extends AbstractType
 {
     /**
@@ -38,6 +40,10 @@ class ProductCatType extends AbstractType
             ->add('enable', CheckboxType::class, [
                 'required' => false,
                 'label' => 'label.enable',
+            ])
+            ->add('imageFile', VichFileType::class, [
+                'required' => false,
+                'allow_delete' => true,
             ])
             ->add('pageTitle', TextType::class, [
                 'required' => false,

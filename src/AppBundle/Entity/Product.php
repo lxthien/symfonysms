@@ -81,6 +81,13 @@ class Product
     private $enable = true;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isHot", type="boolean")
+     */
+    private $isHot = false;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="images", type="string", length=255, nullable=true)
@@ -94,12 +101,34 @@ class Product
     private $imageFile;
 
     /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+    
+    /**
      * @var text
      *
      * @Assert\NotBlank()
      * @ORM\Column(name="contents", type="text")
      */
     private $contents;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="regularPrice", type="integer", nullable=true)
+     */
+    private $regularPrice;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="salePrice", type="integer", nullable=true)
+     */
+    private $salePrice;
 
     /**
      * @var string
@@ -304,6 +333,25 @@ class Product
     }
 
     /**
+     * @param bool $isHot
+     * @return Product
+     */
+    public function setIsHot($isHot)
+    {
+        $this->isHot = $isHot;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsHot()
+    {
+        return $this->isHot;
+    }
+
+    /**
      * Set imageFile file
      *
      * @param File $imageFile
@@ -340,13 +388,30 @@ class Product
     }
 
     /**
-     * Get images
-     *
      * @return string
      */
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * @param string $description
+     * @return Product
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**
@@ -366,6 +431,44 @@ class Product
     public function getContents()
     {
         return $this->contents;
+    }
+
+    /**
+     * @param \int $regularPrice
+     * @return Product
+     */
+    public function setRegularPrice($regularPrice)
+    {
+        $this->regularPrice = $regularPrice;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRegularPrice()
+    {
+        return $this->regularPrice;
+    }
+
+    /**
+     * @param \int $salePrice
+     * @return Product
+     */
+    public function setSalePrice($salePrice)
+    {
+        $this->salePrice = $salePrice;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSalePrice()
+    {
+        return $this->salePrice;
     }
 
     /**
