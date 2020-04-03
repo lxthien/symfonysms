@@ -3,6 +3,7 @@
 require('bxslider/dist/jquery.bxslider');
 require('@fancyapps/fancybox');
 require('../../../libs/starrating/js/rating.js');
+require('slick-carousel');
 
 function initSearchBox() {
     var $formSearch = $('#form-search');
@@ -45,6 +46,21 @@ function initProjectHotSlider() {
         controls: true,
         minSlides: 1,
         maxSlides: 5,
+        moveSlides: 1,
+        slideMargin: 0,
+        touchEnabled: false,
+        autoHover: true,
+        adaptiveHeight: true
+    });
+
+    $('.bxslider-recommendations').show().bxSlider({
+        auto: true,
+        autoControls: false,
+        stopAutoOnClick: true,
+        pager: false,
+        controls: true,
+        minSlides: 1,
+        maxSlides: 4,
         moveSlides: 1,
         slideMargin: 0,
         touchEnabled: false,
@@ -275,4 +291,19 @@ exports.init = function () {
     initCostConstruction();
     initFancybox();
     initTypewriterEffect();
+
+    $('.slider-for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.slider-nav'
+    });
+    $('.slider-nav').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        asNavFor: '.slider-for',
+        dots: true,
+        focusOnSelect: true
+    });
 };

@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use AppBundle\Entity\ProductCat;
 use AppBundle\Entity\Product;
+use AppBundle\Entity\News;
 
 
 class ProductController extends Controller
@@ -27,7 +28,7 @@ class ProductController extends Controller
      * 
      * @return Product
      */
-    public function listAction($level1 = null, $page = 1)
+    public function listAction($level1, $page = 1)
     {
         $category = $this->getDoctrine()
             ->getRepository(ProductCat::class)
@@ -91,11 +92,18 @@ class ProductController extends Controller
             throw $this->createNotFoundException("The item does not exist");
         }
 
+        $shippingAndReturn = $this->getDoctrine()
+            ->getRepository(News::class)
+            ->findOneBy(
+                array('url' => 'chinh-sach-giao-hang-va-tra-hang', 'enable' => 1)
+            );
+
         // Init breadcrum for the post
         $breadcrumbs = $this->buildBreadcrums(null, $product, null);
 
         return $this->render('product/show.html.twig', [
-            'product'       => $product
+            'product' => $product,
+            'shippingAndReturn' => $shippingAndReturn
         ]);
     }
 

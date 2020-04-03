@@ -1,12 +1,13 @@
 footer {
-    padding-top: 30px;
+    padding-top: 45px;
     position: relative;
-    background-image: url("../../assets/images/background-footer.jpg");
-    background-color: rgb(17, 17, 17) !important;
-    background-position: 50% 119.476px;
+    background-color: #141414;
     color: $white;
 
     h3.text-uppercase {
+        font-family: $robotoCondesed;
+        margin-bottom: 20px;
+
         @media (max-width: 767.98px) {
             margin-top: 20px;
         }
@@ -33,87 +34,21 @@ footer {
     }
 
     .footer-middle {
-        padding-top: 20px;
-        margin-top: 20px;
-        border-top: 1px solid $gray94;
-
-        .footer-text-wrap {
-            p {
-                text-align: justify;
-                margin-bottom: 5px;
-            }
-        }
-
-        .td-social-icon-wrap {
-            display: inline-block;
-            margin: 5px 5px 5px 0;
-            
-            a {
-                color: $white;
-
-                i {
-                    font-size: 14px;
-                    width: 40px;
-                    height: 40px;
-                    line-height: 40px;
-                    text-align: center;
-                    border: 1px solid $white;
-                    position: relative;
-                    color: $white;
-                }
-            }
-        }
-    }
-
-    .keyword {
-        padding-left: 0;
-        
-        li {
-            list-style-type: none;
-            display: inline-block;
-            border: 1px solid $white;
-            margin: 0 0 10px 0;
-            padding: 0 10px;
-
-            a {
-                color: $white;
-            }
-        }
-    }
-
-    .copyright {
-        height: 45px;
-        line-height: 30px;
-        color: $white;
-        border-top: 1px solid $gray94;
-        margin-top: 8px;
-        padding-top: 8px;
-
-        p, a {
+        .copyright {
+            height: 45px;
+            line-height: 30px;
             color: $white;
-            font-size: 15px;
-            margin-bottom: 0;
-
-            @media (max-width: 767.98px) {
-                font-size: 13px;
-            }
-        }
-    }
-
-    .event-footer {
-        margin-top: 20px;
-
-        .event-footer-item {
-            h6 {
-                margin-bottom: 10px;
-                font-size: 14px;
-
-                a {
-                    color: $white;
-
-                    &:hover {
-                        color: $white;
-                    }
+            border-top: 1px solid $gray94;
+            margin-top: 45px;
+            padding-top: 8px;
+    
+            p, a {
+                color: $white;
+                font-size: 15px;
+                margin-bottom: 0;
+    
+                @media (max-width: 767.98px) {
+                    font-size: 13px;
                 }
             }
         }

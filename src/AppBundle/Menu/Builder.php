@@ -40,12 +40,12 @@ class Builder implements ContainerAwareInterface
 
         $menu['Giới thiệu']->addChild('Chính sách bảo hành', [
             'route' => 'news_show',
-            'routeParameters' => ['slug' => 'chinh-sach-chat-luong']
+            'routeParameters' => ['slug' => 'chinh-sach-bao-hanh']
         ]);
 
         $menu['Giới thiệu']->addChild('Tuyển đại lý, cộng tác viên', [
             'route' => 'news_show',
-            'routeParameters' => ['slug' => 'tuyen-dung']
+            'routeParameters' => ['slug' => 'tuyen-dai-ly-cong-tac-vien']
         ]);
 
         $menu->addChild('Chăm sóc da', [
@@ -53,9 +53,19 @@ class Builder implements ContainerAwareInterface
             'routeParameters' => ['level1' => 'cham-soc-da']
         ]);
 
-        $menu->addChild('Dầu gội', [
+        $menu->addChild('Chăm sóc tóc', [
             'route' => 'shop_category',
-            'routeParameters' => ['level1' => 'dau-goi']
+            'routeParameters' => ['level1' => 'cham-soc-toc']
+        ]);
+
+        $menu->addChild('Chăm sóc sức khỏe', [
+            'route' => 'shop_category',
+            'routeParameters' => ['level1' => 'cham-soc-suc-khoe']
+        ]);
+
+        $menu->addChild('Mẹ và bé', [
+            'route' => 'shop_category',
+            'routeParameters' => ['level1' => 'me-va-be']
         ]);
 
         $menu->addChild('Làm đẹp', [

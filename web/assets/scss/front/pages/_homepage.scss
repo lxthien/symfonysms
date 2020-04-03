@@ -397,53 +397,36 @@
                     text-transform: uppercase;
                     font-weight: 500;
                     line-height: 24px;
-                    font-size: 15px;
+                    font-size: 16px;
                     margin-bottom: 5px;
+                    font-family: $robotoCondesed;
                 }
 
                 h3.title {
                     font-size: 20px;
                     line-height: 26px;
                     margin-bottom: 0px;
+
+                    a {
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
                 }
             }
 
             .des {
                 line-height: 24px;
-                padding: 0 15px 10px;
+                padding: 0 15px;
                 margin: 0;
                 font-size: 16px;
                 color: #2d2d2d;
-            }
-
-            .spotlight-button {
-                color: #000;
-
-                &.btn {
-                    text-transform: uppercase;
-                    font-weight: 600;
-                    letter-spacing: .02em;
-                    font-size: 14px;
-                    line-height: 20px;
-                    outline: none;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    -moz-border-radius: 3px;
-                    -webkit-border-radius: 3px;
-                    -ms-border-radius: 3px;
-                    -o-border-radius: 3px;
-                    border-radius: 3px;
-                    padding: 9px 15px 9px;
-                    border: 1px solid rgba(255,255,255,0);
-                    min-width: 130px;
-                    max-width: 100%;
-                    -webkit-transition: all 0.3s ease;
-                    -moz-transition: all 0.3s ease;
-                    -ms-transition: all 0.3s ease;
-                    -o-transition: all 0.3s ease;
-                    transition: all 0.3s ease;
-                }
+                height: 70px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
             }
         }
     }

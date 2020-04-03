@@ -28,58 +28,117 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container page wrapper-post-container">
-        {{ include('news/components/listPrices.html.twig', {hasContainer:false}) }}
+    <div class="wrapper-body wrapper-container" id="PageContainer">
+        <div class="main-content" id="MainContent">
+            <div class="product-template product-template-default">
+                <div class="container">
+                    {{ include('news/components/breadcrumbs.html.twig') }}
 
-        <div class="row post-container">
-            {# Side bar #}
-            {{ include('layout/sidebar.html.twig') }}
-
-            <div class="col-12 col-md-12 col-lg-9 wrapper-post-container-left">
-                {# breadcrumbs #}
-                {{ include('news/components/breadcrumbs.html.twig') }}
-
-                <article id="post-{{ post.getId() }}" class="news hentry" itemscope itemtype="http://schema.org/Article">
-                    {# Begin google snippet #}
-                    <meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="{{ absolute_url(path('news_show', {'slug': post.getUrl() })) }}"/>
-                    <div itemprop="author" itemscope itemtype="https://schema.org/Person">
-                        <meta itemprop="name" content="{{ get_setting('siteName') }}"/>
-                    </div>
-                    <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                        <meta itemprop="url" content="{{ (vich_uploader_asset(post, 'imageFile') ? app.request.getUriForPath(vich_uploader_asset(post, 'imageFile')) : absolute_url(asset('assets/images/no-image.png'))) | imagine_filter('news_382_285') }}">
-                        <meta itemprop="width" content="382">
-                        <meta itemprop="height" content="285">
-                    </div>
-                    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-                        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-                            <meta itemprop="url" content="{{ absolute_url(asset('assets/images/SuaNhaMinhDuy.png')) }}">
-                            <meta itemprop="width" content="376">
-                            <meta itemprop="height" content="218">
+                    <div class="row">
+                        <div id="shopify-section-sidebar-section" class="shopify-section col-12 col-xl-3 col-sidebar">
+                            <div class="sidebar">
+                                <div class="widget sidebar-links">
+                                    <div class="widget-title">
+                                        <h3 class="sidebar-title">
+                                            <span>
+                                                Danh mục sản phẩm
+                                            </span>
+                                        </h3>
+                                    </div>
+                                    <div class="widget-content">
+                                        <ul>
+                                            <li class="sidebar-link-lv1 dropdown">
+                                                <p class="link-action-wrapper">
+                                                    <a href="/collections/lorem-dorus">
+                                                        <span>
+                                                            Chăm sóc da
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </li>
+                                            <li class="sidebar-link-lv1">
+                                                <p class="link-action-wrapper">
+                                                    <a href="/collections/all">
+                                                        <span>
+                                                            Chăm sóc tóc
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </li>
+                                            <li class="sidebar-link-lv1">
+                                                <p class="link-action-wrapper">
+                                                    <a href="#">
+                                                        <span>
+                                                            Chăm sóc sức khỏe
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </li>
+                                            <li class="sidebar-link-lv1">
+                                                <p class="link-action-wrapper">
+                                                    <a href="#">
+                                                        <span>
+                                                            Mẹ và bé
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="widget sidebar-banner">
+                                    <img data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/files/custom-image-1-compressor_1024x1024_crop_center.jpg?v=1570096669" src="//cdn.shopify.com/s/files/1/0270/5873/3109/files/custom-image-1-compressor_1024x1024_crop_center.jpg?v=1570096669" alt="cospora-theme" itemprop="logo" class="lazyautosizes lazyloaded" data-sizes="auto" sizes="224px">
+                                </div>
+                                <div class="widget sidebar-banner">
+                                    <img data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/files/custom-image-1-compressor_1024x1024_crop_center.jpg?v=1570096669" src="//cdn.shopify.com/s/files/1/0270/5873/3109/files/custom-image-1-compressor_1024x1024_crop_center.jpg?v=1570096669" alt="cospora-theme" itemprop="logo" class="lazyautosizes lazyloaded" data-sizes="auto" sizes="224px">
+                                </div>
+                            </div>
                         </div>
-                        <meta itemprop="name" content="{{ get_setting('siteName') }}">
-                    </div>
-                    <meta itemprop="datePublished" content="{{ post.getCreatedAt()|date("Y-m-d h:m:s") }}"/>
-                    <meta itemprop="dateModified" content="{{ post.getUpdatedAt()|date("Y-m-d h:m:s") }}"/>
-                    {# End google snippet #}
+                        <div id="shopify-section-product-template-default" class="shopify-section col-12 col-xl-9 col-main">
+                            <article id="post-{{ post.getId() }}" class="news hentry" itemscope itemtype="http://schema.org/Article">
+                                {# Begin google snippet #}
+                                <meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="{{ absolute_url(path('news_show', {'slug': post.getUrl() })) }}"/>
+                                <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                    <meta itemprop="name" content="{{ get_setting('siteName') }}"/>
+                                </div>
+                                <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                                    <meta itemprop="url" content="{{ (vich_uploader_asset(post, 'imageFile') ? app.request.getUriForPath(vich_uploader_asset(post, 'imageFile')) : absolute_url(asset('assets/images/no-image.png'))) | imagine_filter('news_382_285') }}">
+                                    <meta itemprop="width" content="382">
+                                    <meta itemprop="height" content="285">
+                                </div>
+                                <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                                    <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                                        <meta itemprop="url" content="{{ absolute_url(asset('assets/images/SuaNhaMinhDuy.png')) }}">
+                                        <meta itemprop="width" content="376">
+                                        <meta itemprop="height" content="218">
+                                    </div>
+                                    <meta itemprop="name" content="{{ get_setting('siteName') }}">
+                                </div>
+                                <meta itemprop="datePublished" content="{{ post.getCreatedAt()|date("Y-m-d h:m:s") }}"/>
+                                <meta itemprop="dateModified" content="{{ post.getUpdatedAt()|date("Y-m-d h:m:s") }}"/>
+                                {# End google snippet #}
 
-                    <h1 class="entry-title block-title" itemprop="headline">{{ post.getTitle() }}</h1>
-                    
-                    <div class="news-container" itemprop="articleBody">
-                        {{ post.getContents()|raw }}
-                    </div>
+                                <h1 class="entry-title block-title" itemprop="headline">{{ post.getTitle() }}</h1>
+                                
+                                <div class="news-container" itemprop="articleBody">
+                                    {{ post.getContents()|raw }}
+                                </div>
 
-                    {# Rating and Share #}
-                    <div class="rating-share-container">
-                        {{ include('news/rating/rating.html.twig') }}
-                        {{ include('news/components/share.html.twig') }}
-                    </div>
+                                {# Rating and Share #}
+                                <div class="rating-share-container">
+                                    {{ include('news/rating/rating.html.twig') }}
+                                    {{ include('news/components/share.html.twig') }}
+                                </div>
 
-                    {# List comments #}
-                    {{ include('news/comments/list.html.twig') }}
-                    
-                    {# Render form comment #}
-                    {{ include('news/comments/form.html.twig') }}
-                </article>
+                                {# List comments #}
+                                {{ include('news/comments/list.html.twig') }}
+                                
+                                {# Render form comment #}
+                                {{ include('news/comments/form.html.twig') }}
+                            </article>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

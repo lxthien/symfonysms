@@ -415,6 +415,7 @@
             </div>
         </section>
 
+        {% for blockOnHomepage in blocksOnHomepage %}
         <section class="home-spotlight-block">
             <div class="container">
                 <div>
@@ -422,13 +423,45 @@
                         <h3 class="box-title">
                             <span class="title">
                                 <span class="lang1">
-                                    Chăm sóc da
+                                    {{ blockOnHomepage.category.getName() }}
                                 </span>
                             </span>
                         </h3>
                     </div>
                     <div class="clearfix"></div>
                     <div class="row">
+                        {% for row in blockOnHomepage.posts %}
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="spotlight-item">
+                                <div class="img-box">
+                                    <a href="" class="animate-scale">
+                                        <img 
+                                            class="lazyload"
+                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                            data-src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('news_377_416') }}"
+                                            alt="{{ row.getTitle() }}" >
+                                    </a>
+                                </div>
+                                <div class="content spotlight-inner">
+                                    <div class="content-title">
+                                        <h4 class="title">
+                                            <span>{{ row.category.getName() }}</span>
+                                        </h4>
+                                        <h3 class="title">
+                                            <a href="{{ path('news_show', {'slug': row.getUrl() }) }}" title="{{ row.getTitle() }}">
+                                                <span>{{ row.getTitle() }}</span>
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <p class="des">
+                                        <span>
+                                            {{ row.getDescription() }}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
                         <div class="col-12 col-md-6 col-lg-4">
                             <div class="spotlight-item">
                                 <div class="img-box">
@@ -439,13 +472,12 @@
                                 <div class="content spotlight-inner">
                                     <div class="content-title">
                                         <h4 class="title">
-                                            <span>Tư vấn
-                                            </span>
+                                            <span>Tư vấn</span>
                                         </h4>
                                         <h3 class="title">
-                                            <span>
-                                                Kem dưỡng trắng da Saffron Lever Ayush Ấn Độ
-                                            </span>
+                                            <a href="">
+                                                <span>Kem dưỡng trắng da Saffron Lever Ayush Ấn Độ</span>
+                                            </a>
                                         </h3>
                                     </div>
                                     <p class="des">
@@ -453,11 +485,6 @@
                                             Kem dưỡng da Saffron Ấn Độ Lever Ayush là sự hòa quyện tinh túy giữa Saffron và Kumkumadi Tailam dựa theo phương pháp Ayurveda...
                                         </span>
                                     </p>
-                                    <a href="" class="spotlight-button btn">
-                                        <span>
-                                            Xem ngay
-                                        </span>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -471,13 +498,14 @@
                                 <div class="content spotlight-inner">
                                     <div class="content-title">
                                         <h4 class="title">
-                                            <span>Tư vấn
-                                            </span>
+                                            <span>Tư vấn làm đẹp</span>
                                         </h4>
                                         <h3 class="title">
-                                            <span>
-                                                Kem dưỡng trắng da Saffron Lever Ayush Ấn Độ
-                                            </span>
+                                            <a href="">
+                                                <span>
+                                                    Kem dưỡng trắng da Saffron Lever Ayush Ấn Độ
+                                                </span>
+                                            </a>
                                         </h3>
                                     </div>
                                     <p class="des">
@@ -485,43 +513,6 @@
                                             Kem dưỡng da Saffron Ấn Độ Lever Ayush là sự hòa quyện tinh túy giữa Saffron và Kumkumadi Tailam dựa theo phương pháp Ayurveda...
                                         </span>
                                     </p>
-                                    <a href="" class="spotlight-button btn">
-                                        <span>
-                                            Xem ngay
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="spotlight-item">
-                                <div class="img-box">
-                                    <a href="" class="animate-scale">
-                                        <img data-src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/home-bottom-banner-new-1-compressor_800x800_crop_center.jpg?v=1574405565" alt="cospora-theme" itemprop="logo" class="lazyautosizes lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-sizes="auto" data-image="" sizes="380px" src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/home-bottom-banner-new-1-compressor_800x800_crop_center.jpg?v=1574405565">
-                                    </a>
-                                </div>
-                                <div class="content spotlight-inner">
-                                    <div class="content-title">
-                                        <h4 class="title">
-                                            <span>Tư vấn làm đẹp
-                                            </span>
-                                        </h4>
-                                        <h3 class="title">
-                                            <span>
-                                                Kem dưỡng trắng da Saffron Lever Ayush Ấn Độ
-                                            </span>
-                                        </h3>
-                                    </div>
-                                    <p class="des">
-                                        <span>
-                                            Kem dưỡng da Saffron Ấn Độ Lever Ayush là sự hòa quyện tinh túy giữa Saffron và Kumkumadi Tailam dựa theo phương pháp Ayurveda...
-                                        </span>
-                                    </p>
-                                    <a href="" class="spotlight-button btn">
-                                        <span>
-                                            Xem ngay
-                                        </span>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -529,120 +520,6 @@
                 </div>
             </div>
         </section>
-
-        <section class="home-spotlight-block">
-            <div class="container">
-                <div>
-                    <div class="widget-title">
-                        <h3 class="box-title">
-                            <span class="title">
-                                <span class="lang1">
-                                    Chăm sóc tóc
-                                </span>
-                            </span>
-                        </h3>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="row">
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="spotlight-item">
-                                <div class="img-box">
-                                    <a href="" class="animate-scale">
-                                        <img data-src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/home-bottom-banner-new-1-compressor_800x800_crop_center.jpg?v=1574405565" alt="cospora-theme" itemprop="logo" class="lazyautosizes lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-sizes="auto" data-image="" sizes="380px" src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/home-bottom-banner-new-1-compressor_800x800_crop_center.jpg?v=1574405565">
-                                    </a>
-                                </div>
-                                <div class="content spotlight-inner">
-                                    <div class="content-title">
-                                        <h4 class="title">
-                                            <span>Tư vấn
-                                            </span>
-                                        </h4>
-                                        <h3 class="title">
-                                            <span>
-                                                Kem dưỡng trắng da Saffron Lever Ayush Ấn Độ
-                                            </span>
-                                        </h3>
-                                    </div>
-                                    <p class="des">
-                                        <span>
-                                            Kem dưỡng da Saffron Ấn Độ Lever Ayush là sự hòa quyện tinh túy giữa Saffron và Kumkumadi Tailam dựa theo phương pháp Ayurveda...
-                                        </span>
-                                    </p>
-                                    <a href="" class="spotlight-button btn">
-                                        <span>
-                                            Xem ngay
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="spotlight-item">
-                                <div class="img-box">
-                                    <a href="" class="animate-scale">
-                                        <img data-src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/home-bottom-banner-new-1-compressor_800x800_crop_center.jpg?v=1574405565" alt="cospora-theme" itemprop="logo" class="lazyautosizes lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-sizes="auto" data-image="" sizes="380px" src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/home-bottom-banner-new-1-compressor_800x800_crop_center.jpg?v=1574405565">
-                                    </a>
-                                </div>
-                                <div class="content spotlight-inner">
-                                    <div class="content-title">
-                                        <h4 class="title">
-                                            <span>Tư vấn
-                                            </span>
-                                        </h4>
-                                        <h3 class="title">
-                                            <span>
-                                                Kem dưỡng trắng da Saffron Lever Ayush Ấn Độ
-                                            </span>
-                                        </h3>
-                                    </div>
-                                    <p class="des">
-                                        <span>
-                                            Kem dưỡng da Saffron Ấn Độ Lever Ayush là sự hòa quyện tinh túy giữa Saffron và Kumkumadi Tailam dựa theo phương pháp Ayurveda...
-                                        </span>
-                                    </p>
-                                    <a href="" class="spotlight-button btn">
-                                        <span>
-                                            Xem ngay
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="spotlight-item">
-                                <div class="img-box">
-                                    <a href="" class="animate-scale">
-                                        <img data-src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/home-bottom-banner-new-1-compressor_800x800_crop_center.jpg?v=1574405565" alt="cospora-theme" itemprop="logo" class="lazyautosizes lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-sizes="auto" data-image="" sizes="380px" src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/home-bottom-banner-new-1-compressor_800x800_crop_center.jpg?v=1574405565">
-                                    </a>
-                                </div>
-                                <div class="content spotlight-inner">
-                                    <div class="content-title">
-                                        <h4 class="title">
-                                            <span>Tư vấn làm đẹp
-                                            </span>
-                                        </h4>
-                                        <h3 class="title">
-                                            <span>
-                                                Kem dưỡng trắng da Saffron Lever Ayush Ấn Độ
-                                            </span>
-                                        </h3>
-                                    </div>
-                                    <p class="des">
-                                        <span>
-                                            Kem dưỡng da Saffron Ấn Độ Lever Ayush là sự hòa quyện tinh túy giữa Saffron và Kumkumadi Tailam dựa theo phương pháp Ayurveda...
-                                        </span>
-                                    </p>
-                                    <a href="" class="spotlight-button btn">
-                                        <span>
-                                            Xem ngay
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        {% endfor %}
     </div>
 {% endblock %}
