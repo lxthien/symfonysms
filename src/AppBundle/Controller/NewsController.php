@@ -21,6 +21,7 @@ use AppBundle\Entity\News;
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Tag;
 use AppBundle\Entity\Rating;
+use AppBundle\Entity\Product;
 
 use blackknight467\StarRatingBundle\Form\RatingType as RatingType;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
@@ -181,7 +182,7 @@ class NewsController extends Controller
         // Render form comment for post.
         $form = $this->renderFormComment($post);
 
-        // Render form rating for post.
+        /* // Render form rating for post.
         $formRating = $this->createFormBuilder(null, array(
                 'csrf_protection' => false,
             ))
@@ -199,7 +200,7 @@ class NewsController extends Controller
             WHERE r.news_id = :news_id'
         )->setParameter('news_id', $post->getId());
 
-        $rating = $queryRating->setMaxResults(1)->getOneOrNullResult();
+        $rating = $queryRating->setMaxResults(1)->getOneOrNullResult(); */
 
         // Init breadcrum for the post
         $breadcrumbs = $this->buildBreadcrums(null, $post, null);
@@ -208,11 +209,6 @@ class NewsController extends Controller
             return $this->render('news/page.html.twig', [
                 'post'          => $post,
                 'form'          => $form->createView(),
-                'formRating'    => $formRating->createView(),
-                'rating'        => !empty($rating['ratingValue']) ? str_replace('.0', '', number_format($rating['ratingValue'], 1)) : 0,
-                'ratingPercent' => str_replace('.00', '', number_format(($rating['ratingValue'] * 100) / 5, 2)),
-                'ratingValue'   => round($rating['ratingValue']),
-                'ratingCount'   => round($rating['ratingCount']),
                 'comments'      => $comments
             ]);
         } else {
@@ -222,13 +218,8 @@ class NewsController extends Controller
 
             return $this->render('news/show.html.twig', [
                 'post'          => $post,
-                'relatedNews'   => $relatedNews,
                 'form'          => $form->createView(),
-                'formRating'    => $formRating->createView(),
-                'rating'        => !empty($rating['ratingValue']) ? str_replace('.0', '', number_format($rating['ratingValue'], 1)) : 0,
-                'ratingPercent' => str_replace('.00', '', number_format(($rating['ratingValue'] * 100) / 5, 2)),
-                'ratingValue'   => round($rating['ratingValue']),
-                'ratingCount'   => round($rating['ratingCount']),
+                'relatedNews'   => $relatedNews,
                 'comments'      => $comments,
                 'imageSize'    => $imageSize
             ]);
@@ -366,9 +357,17 @@ class NewsController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $product = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->find($request->request->get('productId'));
+
         $rating = new Rating();
-        $rating->setNewsId($request->request->get('newsId'));
+        $rating->setProduct($product);
         $rating->setRating($request->request->get('rating'));
+        $rating->setName($request->request->get('name'));
+        $rating->setEmail($request->request->get('email'));
+        $rating->setTitle($request->request->get('title'));
+        $rating->setContents($request->request->get('contents'));
 
         $em->persist($rating);
 
@@ -462,7 +461,7 @@ class NewsController extends Controller
             ))
             ->add('author', TextType::class, array('label' => 'label.author'))
             ->add('email', EmailType::class, array('label' => 'label.author_email'))
-            ->add('recaptcha', EWZRecaptchaType::class)
+            ->add('recaptcha', EWZRecaptchaType::class, array('label' => 'Capcha'))
             ->add('ip', HiddenType::class)
             ->add('news_id', HiddenType::class)
             ->add('comment_id', HiddenType::class)

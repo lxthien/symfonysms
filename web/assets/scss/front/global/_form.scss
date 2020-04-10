@@ -1,0 +1,83 @@
+.form-group {
+    margin-bottom: 10px;
+    
+    .control-label {
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .form-input {
+        .radio {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 14px;
+
+            input[type="radio"] {
+                margin-top: 4px;
+            }
+        }
+    }
+
+    input.form-input {
+        max-width: 370px;
+        border-color: #cacaca;
+        border-width: 1px;
+        height: initial;
+        padding: 9px 12px 7px;
+        border-radius: 3px;
+        display: block;
+        outline: none;
+
+        &.error {
+            border-color: #e7040f;
+        }
+    }
+
+    textarea.form-text {
+        max-width: 670px;
+        border-color: #cacaca;
+        border-width: 1px;
+        height: initial;
+        padding: 9px 12px 7px;
+        border-radius: 3px;
+        display: block;
+        outline: none;
+        height: 150px;
+
+        &.error {
+            border-color: #e7040f;
+        }
+    }
+
+    button.btn-primary {
+        float: none;
+        padding: 10px 15px 8px;
+        width: 100%;
+        max-width: 190px;
+        background: #000;
+        color: #fff;
+        border-width: 0;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: .02em;
+        font-size: 14px;
+        line-height: 20px;
+
+        &:active, &:focus, &:hover, &:checked, &:link, &:visited {
+            background: #e7040f;
+            color: #fff;
+            border-color: #e7040f;
+            border-width: 0;
+        }
+    }
+
+    label.error {
+        padding-top: 5px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #e7040f;
+        display: none !important;
+    }
+}

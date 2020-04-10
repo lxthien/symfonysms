@@ -1,5 +1,9 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}{{ product.getPageTitle() is not null ? product.getPageTitle() : product.getName() }}{% endblock %}
+{% block description %}{{ product.getPageDescription() is not null ? product.getPageDescription() : product.getDescription() }}{% endblock %}
+{% block keyword %}{{ product.getPageKeyword() }}{% endblock %}
+
 {% block body %}
 <div class="wrapper-body wrapper-container" id="PageContainer">
     <div class="main-content" id="MainContent">
@@ -14,57 +18,145 @@
                                 <div class="widget sidebar-links">
                                     <div class="widget-title">
                                         <h3 class="sidebar-title">
-                                            <span>
-                                                Danh mục sản phẩm
-                                            </span>
+                                            <span>Danh mục sản phẩm</span>
                                         </h3>
                                     </div>
                                     <div class="widget-content">
                                         <ul>
                                             <li class="sidebar-link-lv1 dropdown">
                                                 <p class="link-action-wrapper">
-                                                    <a href="/collections/lorem-dorus">
-                                                        <span>
-                                                            Chăm sóc da
-                                                        </span>
+                                                    <a href="{{ path('shop') }}">
+                                                        <span>Cửa hàng Lily House</span>
+                                                    </a>
+                                                </p>
+                                            </li>
+                                            <li class="sidebar-link-lv1 dropdown">
+                                                <p class="link-action-wrapper">
+                                                    <a href="{{ path('shop_category', {'level1': 'cham-soc-da' }) }}">
+                                                        <span>Chăm sóc da</span>
                                                     </a>
                                                 </p>
                                             </li>
                                             <li class="sidebar-link-lv1">
                                                 <p class="link-action-wrapper">
-                                                    <a href="/collections/all">
-                                                        <span>
-                                                            Chăm sóc tóc
-                                                        </span>
+                                                    <a href="{{ path('shop_category', {'level1': 'cham-soc-toc' }) }}">
+                                                        <span>Chăm sóc tóc</span>
                                                     </a>
                                                 </p>
                                             </li>
                                             <li class="sidebar-link-lv1">
                                                 <p class="link-action-wrapper">
-                                                    <a href="#">
-                                                        <span>
-                                                            Chăm sóc sức khỏe
-                                                        </span>
+                                                    <a href="{{ path('shop_category', {'level1': 'cham-soc-suc-khoe' }) }}">
+                                                        <span>Chăm sóc sức khỏe</span>
                                                     </a>
                                                 </p>
                                             </li>
                                             <li class="sidebar-link-lv1">
                                                 <p class="link-action-wrapper">
-                                                    <a href="#">
-                                                        <span>
-                                                            Mẹ và bé
-                                                        </span>
+                                                    <a href="{{ path('shop_category', {'level1': 'me-va-be' }) }}">
+                                                        <span>Mẹ và bé</span>
                                                     </a>
                                                 </p>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="widget sidebar-banner">
-                                    <img data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/files/custom-image-1-compressor_1024x1024_crop_center.jpg?v=1570096669" src="//cdn.shopify.com/s/files/1/0270/5873/3109/files/custom-image-1-compressor_1024x1024_crop_center.jpg?v=1570096669" alt="cospora-theme" itemprop="logo" class="lazyautosizes lazyloaded" data-sizes="auto" sizes="224px">
+                                <div class="widget sidebar-widget-product">
+                                    <div class="widget-title">
+                                        <h3 class="sidebar-title">
+                                            <span>Sản phẩm nổi bật</span>
+                                        </h3>
+                                    </div>
+                                    <div class="widget-product">
+                                        <div class="products-grid row">
+                                            <div class="products-hot-sidebar">
+                                                <div class="products-item">
+                                                    <div class="products-item-wrapper">
+                                                        <div class="media-thumb">
+                                                            <picture>
+                                                                <img
+                                                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                                    data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/11-compressor_076662b4-fa80-4ebb-97f6-f26db5adec01_300x.png?v=1574410402"
+                                                                    class="mr-3 img-thumbnail lazyload"
+                                                                    alt="" />
+                                                            </picture>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h5 class="mt-0 mb-1">
+                                                                <a title="" href="#" title="">
+                                                                    <span>Ainterdu pretium de miancelos dincidunts</span>
+                                                                </a>
+                                                            </h5>
+                                                            <div class="rating">
+                                                                <div class="star-full "></div>
+                                                                <div class="star-full "></div>
+                                                                <div class="star-full "></div>
+                                                                <div class="star-full "></div>
+                                                                <div class="star-full "></div>
+                                                            </div>
+                                                            <div class="price-box">
+                                                                <div class="price-regular">
+                                                                    <span><span class="money">Liên hệ</span></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="products-item">
+                                                    <div class="products-item-wrapper">
+                                                        <div class="media-thumb">
+                                                            <picture>
+                                                                <img
+                                                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                                    data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/11-compressor_076662b4-fa80-4ebb-97f6-f26db5adec01_300x.png?v=1574410402"
+                                                                    class="mr-3 img-thumbnail lazyload"
+                                                                    alt="" />
+                                                            </picture>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h5 class="mt-0 mb-1">
+                                                                <a title="" href="#" title="">
+                                                                    <span>Ainterdu pretium de miancelos dincidunts</span>
+                                                                </a>
+                                                            </h5>
+                                                            <div class="rating">
+                                                                <div class="star-full "></div>
+                                                                <div class="star-full "></div>
+                                                                <div class="star-full "></div>
+                                                                <div class="star-full "></div>
+                                                                <div class="star-full "></div>
+                                                            </div>
+                                                            <div class="price-box">
+                                                                <div class="price-regular">
+                                                                    <span><span class="money">Liên hệ</span></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="widget sidebar-banner">
-                                    <img data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/files/custom-image-1-compressor_1024x1024_crop_center.jpg?v=1570096669" src="//cdn.shopify.com/s/files/1/0270/5873/3109/files/custom-image-1-compressor_1024x1024_crop_center.jpg?v=1570096669" alt="cospora-theme" itemprop="logo" class="lazyautosizes lazyloaded" data-sizes="auto" sizes="224px">
+                                    <img
+                                        data-src="http://evalamo.com/wp-content/uploads/2019/05/sua-rua-mat-tot-cho-da-dau.jpg"
+                                        src="http://evalamo.com/wp-content/uploads/2019/05/sua-rua-mat-tot-cho-da-dau.jpg"
+                                        alt="cospora-theme"
+                                        itemprop="logo"
+                                        class="lazyautosizes lazyloaded"
+                                        data-sizes="auto"
+                                        sizes="224px" >
+                                </div>
+                                <div class="widget sidebar-banner">
+                                    <img
+                                        data-src="http://evalamo.com/wp-content/uploads/2019/05/kem-duong-trang-da-toan-than-nao-tot.jpg"
+                                        src="http://evalamo.com/wp-content/uploads/2019/05/kem-duong-trang-da-toan-than-nao-tot.jpg"
+                                        alt="cospora-theme"
+                                        itemprop="logo"
+                                        class="lazyautosizes lazyloaded"
+                                        data-sizes="auto"
+                                        sizes="224px" >
                                 </div>
                             </div>
                         </div>
@@ -77,19 +169,17 @@
                                             <div class="product-img-box horizontal-moreview">
                                                 <div class="wrapper-images">
                                                     <div class="slider slider-for">
-                                                        <div><img src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/16-compressor_c0523920-5696-408e-bcb9-ff039fc4e3ee_1024x1024.png?v=1574410733" /></div>
-                                                        <div><img src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/16-compressor_c0523920-5696-408e-bcb9-ff039fc4e3ee_1024x1024.png?v=1574410733" /></div>
-                                                        <div><img src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/16-compressor_c0523920-5696-408e-bcb9-ff039fc4e3ee_1024x1024.png?v=1574410733" /></div>
-                                                        <div><img src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/16-compressor_c0523920-5696-408e-bcb9-ff039fc4e3ee_1024x1024.png?v=1574410733" /></div>
-                                                        <div><img src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/16-compressor_c0523920-5696-408e-bcb9-ff039fc4e3ee_1024x1024.png?v=1574410733" /></div>
+                                                        <div><img src="{{ (vich_uploader_asset(product, 'imageFile') ? vich_uploader_asset(product, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('product_450_450') }}" /></div>
+                                                        {% for productImage in productImages %}
+                                                        <div><img src="{{ asset('uploads/images/productimages/' ~ productImage.getName()) | imagine_filter('product_450_450') }}"/></div>
+                                                        {% endfor %}
                                                     </div>
                                                 </div>
                                                 <div class="slider slider-nav">
-                                                    <div><img src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/16-compressor_c0523920-5696-408e-bcb9-ff039fc4e3ee_compact.png?v=1574410733"/></div>
-                                                    <div><img src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/16-compressor_c0523920-5696-408e-bcb9-ff039fc4e3ee_compact.png?v=1574410733"/></div>
-                                                    <div><img src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/16-compressor_c0523920-5696-408e-bcb9-ff039fc4e3ee_compact.png?v=1574410733"/></div>
-                                                    <div><img src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/16-compressor_c0523920-5696-408e-bcb9-ff039fc4e3ee_compact.png?v=1574410733"/></div>
-                                                    <div><img src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/16-compressor_c0523920-5696-408e-bcb9-ff039fc4e3ee_compact.png?v=1574410733"/></div>
+                                                    <div><img src="{{ (vich_uploader_asset(product, 'imageFile') ? vich_uploader_asset(product, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('product_84_70') }}"/></div>
+                                                    {% for productImage in productImages %}
+                                                    <div><img src="{{ asset('uploads/images/productimages/' ~ productImage.getName()) | imagine_filter('product_84_70') }}"/></div>
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                         </div>
@@ -101,7 +191,7 @@
                                             </h1>
                                             <div class="group_item">
                                                 <span class="spr-badge">
-                                                    {{ 4|rating }}
+                                                    {{ rating|rating }}
                                                 </span>
                                             </div>
                                             <div class="prices">
@@ -111,20 +201,28 @@
                                                     </div>
                                                 {% elseif product.getRegularPrice() > 0 and product.getSalePrice() > 0 %}
                                                     <div class="price-sale">
-                                                        <span class="old-price"><span class="money">{{ product.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
-                                                        <span class="special-price"><span class="money">{{ product.getSalePrice()|number_format(0, ',', '.') }}</span></span>
+                                                        <span class="old-price"><span class="money">{{ product.getRegularPrice()|number_format(0, ',', '.') }} vnđ</span></span>
+                                                        <span class="special-price"><span class="money">{{ product.getSalePrice()|number_format(0, ',', '.') }} vnđ</span></span>
                                                     </div>
                                                 {% elseif product.getRegularPrice() > 0 and product.getSalePrice() is empty %}
                                                     <div class="price-regular">
-                                                        <span><span class="money">{{ product.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                        <span><span class="money">{{ product.getRegularPrice()|number_format(0, ',', '.') }} vnđ</span></span>
                                                     </div>
                                                 {% endif %}
                                             </div>
                                             <div class="short-description">
                                                 {{ product.getDescription() }}
                                             </div>
+                                            <div class="groups-btn">
+                                                <div class="bottom-button">
+                                                    <a href="checkout" class="checkout">
+                                                        <strong>Thanh toán khi nhận hàng</strong>
+                                                        <span>Gọi điện xác nhận và giao hàng tận nơi</span>
+                                                    </a>
+                                                    {{ include('product/checkout.html.twig') }}
+                                                </div>
+                                            </div>
                                             <div class="share_toolbox">  
-                                                <!-- Go to www.addthis.com/dashboard to customize your tools -->
                                                 <div class="addthis_inline_share_toolbox_4ahk"></div>
                                             </div>
                                         </div>
@@ -141,7 +239,57 @@
                                                     {{ product.getContents()|raw }}
                                                 </div>
                                                 <div id="product-tab2" class="tab-pane fade">
-                                                    {{ 4|rating }}
+                                                    <div class="spr-form">
+                                                        {{ form_start(formRating, {'attr': {'id': 'form-rating-review', 'data-product-id': product.getId() }}) }}
+                                                            <h3 class="spr-form-title">Đánh giá sản phẩm</h3>
+                                                            <div class="form-group">
+                                                                {{ form_label(formRating.name) }}
+                                                                {{ form_errors(formRating.name) }}
+                                                                {{ form_widget(formRating.name, {'attr': {'class': 'form-control form-input'}}) }}
+                                                            </div>
+                                                            <div class="form-group">
+                                                                {{ form_label(formRating.email) }}
+                                                                {{ form_errors(formRating.email) }}
+                                                                {{ form_widget(formRating.email, {'attr': {'class': 'form-control form-input'}}) }}
+                                                            </div>
+                                                            <div class="form-group">
+                                                                {{ form_label(formRating.rating) }}
+                                                                {{ form_errors(formRating.rating) }}
+                                                                {{ form_widget(formRating.rating) }}
+                                                            </div>
+                                                            <div class="form-group">
+                                                                {{ form_label(formRating.title) }}
+                                                                {{ form_errors(formRating.title) }}
+                                                                {{ form_widget(formRating.title, {'attr': {'class': 'form-control form-input'}}) }}
+                                                            </div>
+                                                            <div class="form-group">
+                                                                {{ form_label(formRating.contents) }}
+                                                                {{ form_errors(formRating.contents) }}
+                                                                {{ form_widget(formRating.contents, {'attr': { 'class': 'form-control form-text', 'row': 10 }}) }}
+                                                            </div>
+                                                            <div class="form-group">
+                                                                {{ form_widget(formRating.send, {'attr': {'class': 'btn btn-primary'}}) }}
+                                                            </div>
+                                                        {{ form_end(formRating) }}
+                                                        <p class="rating-message"></p>
+                                                    </div>
+                                                    <div class="spr-reviews">
+                                                        {% for rating in listOfRating %}
+                                                        <div class="spr-review">
+                                                            <div class="spr-review-header">
+                                                                {{ rating.getRating()|rating }}
+                                                                <h3 class="spr-review-header-title">{{ rating.getTitle() }}</h3>
+                                                                <span class="spr-review-header-byline">
+                                                                    <strong>{{ rating.getName() }}</strong>
+                                                                </span>
+                                                            </div>
+                                                            <div class="spr-review-content">
+                                                                <p class="spr-review-content-body">{{ rating.getContents() }}</p>
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
+                                                    </div>
+
                                                 </div>
                                                 <div id="product-tab3" class="tab-pane fade">
                                                     {{ shippingAndReturn.getContents()|raw }}

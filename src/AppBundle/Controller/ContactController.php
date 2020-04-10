@@ -27,15 +27,31 @@ class ContactController extends Controller
         $contact = new Contact();
         
         $form = $this->createFormBuilder($contact)
-            ->add('name', TextType::class, array('label' => 'label.author'))
-            ->add('email', EmailType::class, array('label' => 'label.author_email'))
-            ->add('phone', TextType::class, array('label' => 'label.phone'))
-            ->add('contents', TextareaType::class, array(
-                'label' => 'label.content',
-                'attr' => array('rows' => '7')
-            ))
-            ->add('recaptcha', EWZRecaptchaType::class)
-            ->add('send', SubmitType::class, array('label' => 'label.send', 'attr' => array('class' => 'btn btn-primary')))
+            ->add('name', TextType::class, [
+                'required' => true,
+                'label' => 'Tên',
+                'attr' => array('class' => 'form-input')
+            ])
+            ->add('email', EmailType::class, [
+                'required' => true,
+                'label' => 'Email',
+                'attr' => array('class' => 'form-input')
+            ])
+            ->add('phone', TextType::class, [
+                'required' => true,
+                'label' => 'Số điện thoại',
+                'attr' => array('class' => 'form-input')
+            ])
+            ->add('contents', TextareaType::class, [
+                'required' => true,
+                'label' => 'Nội dung',
+                'attr' => array('rows' => '7', 'class' => 'form-text')
+            ])
+            ->add('recaptcha', EWZRecaptchaType::class, [
+                'required' => true,
+                'label' => 'Capcha',
+            ])
+            ->add('send', SubmitType::class, array('label' => 'Gửi', 'attr' => array('class' => 'btn btn-primary')))
             ->getForm();
 
         $form->handleRequest($request);

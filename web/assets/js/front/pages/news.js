@@ -16,7 +16,6 @@ function intHandleFormComment() {
                     if (response.status === 'success') {
                         $('p#comment-response').html(response.message);
     
-                        // Clear form comment
                         $formComment[0].reset();
                     } else {
                         $('p#comment-response').html(response.message);

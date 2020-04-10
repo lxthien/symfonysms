@@ -167,6 +167,11 @@ class Product
     private $author;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Rating", mappedBy="product")
+     */
+    private $rating;
+
+    /**
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
@@ -193,6 +198,7 @@ class Product
     {
         $this->productCat = new ArrayCollection();
         $this->productImages = new ArrayCollection();
+        $this->rating = new ArrayCollection();
     }
 
     /**

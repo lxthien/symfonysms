@@ -14,24 +14,4 @@
             }
         }
     }
-
-    #form {
-        .form-group {
-            .form-control, input {
-                border-width: 1px;
-                height: 40px;
-                padding: 5px 15px;
-            }
-
-            textarea.form-control {
-                height: 100px;
-            }
-
-            button.btn {
-                background: $primaryColor;
-                border-width: 0px;
-                width: 90px;
-            }
-        }
-    }
 }

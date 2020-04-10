@@ -2,34 +2,33 @@
     .sidebar {
         position: relative;
     }
-
-    #form-search {
-        input {
-            border-width: 1px;
-            border: 1px solid $mercury;
-        }
-    }
-
+    
     .list-group {
-        .list-group-item-action {
-            background: none;
-            font-weight: bold;
-            color: $black;
-            border: none;
-            padding-left: 0px;
-            font-size: 20px;
-            position: relative;
-            border-bottom: 3px solid $primaryColor;
-            margin-bottom: 20px;
+        margin-bottom: 30px;
 
-            &:before {
-                position: absolute;
-                bottom: -3px;
-                left: 0;
-                content: "";
-                width: 100px;
-                height: 3px;
-                background: $primaryColor2;
+        .list-group-item-action {
+            font-size: 19px;
+            text-transform: uppercase;
+            font-weight: 600;
+            line-height: 22px;
+            color: $black;
+            border-bottom: 1px solid #efefef;
+            margin: 0 0 10px 0;
+            padding-bottom: 8px;
+            font-family: $robotoCondesed;
+
+            span {
+                position: relative;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: -9px;
+                    width: 100%;
+                    height: 2px;
+                    background: $black;
+                }
             }
         }
 
@@ -38,21 +37,20 @@
             padding: 10px 0;
             color: $black;
             border: none;
-            border-top: 1px solid #ecf0f1;
+            border-bottom: 1px solid #efefef;
+            margin-bottom: 0;
 
             &:last-child {
-                border-bottom: 1px solid #ecf0f1;
+                border-bottom: 1px solid #efefef;
             }
 
             &:hover {
-                background: $gray94;
-                color: $primaryColor;
+                background: $white;
             }
 
             img {
                 float: left;
                 margin-right: 10px;
-                border: 1px solid $mercury;
             }
 
             span {
@@ -88,6 +86,14 @@
             a {
                 border-radius: 0;
             }
+        }
+    }
+}
+
+#shopify-section-sidebar-section {
+    .products-hot-sidebar {
+        &.slick-slider {
+            width: 240px;
         }
     }
 }

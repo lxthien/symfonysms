@@ -24,12 +24,48 @@ class Rating
     private $id;
 
     /**
-     * @var int
+     * @var AppBundle\Entity\Product;
      *
-     * @ORM\Column(name="news_id", type="integer", nullable=false)
-     * @Assert\NotBlank(message="news.blank")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Product", inversedBy="product")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
-    private $news_id;
+    private $product;
+
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "The name cannot be longer than {{ limit }} characters"
+     * )
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var text
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(name="contents", type="text")
+     */
+    private $contents;
 
     /**
      * @var int
@@ -71,28 +107,100 @@ class Rating
     }
 
     /**
-     * Set news ID
-     *
-     * @param int $newsId
+     * @param \AppBundle\Entity\Product $product
      * @return Rating
      */
-    public function setNewsId($newsId)
+    public function setProduct(\AppBundle\Entity\Product $product = null)
     {
-        $this->news_id = $newsId;
+        $this->product = $product;
 
         return $this;
     }
 
     /**
-     * Get news ID
-     *
-     * @return int
+     * @return \AppBundle\Entity\Product 
      */
-    public function getNewsId()
+    public function getProduct()
     {
-        return $this->news_id;
+        return $this->product;
     }
 
+    /**
+     * @param string $name
+     * @return Rating
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $email
+     * @return Rating
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $title
+     * @return Rating
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $contents
+     * @return Rating
+     */
+    public function setContents($contents)
+    {
+        $this->contents = $contents;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContents()
+    {
+        return $this->contents;
+    }
+    
     /**
      * Set rating
      *

@@ -4,6 +4,7 @@ require('bxslider/dist/jquery.bxslider');
 require('@fancyapps/fancybox');
 require('../../../libs/starrating/js/rating.js');
 require('slick-carousel');
+require('jquery-validation');
 
 function initSearchBox() {
     var $formSearch = $('#form-search');
@@ -130,168 +131,7 @@ function initFixedSidebar() {
     });
 }
 
-function initCostConstruction() {
-    var $formType = $('.costs #form_type');
-    var $formFloor = $('.costs #form_floor');
-
-    if ($formType.val() == 3) {
-        $formFloor.val(1);
-        $formFloor.attr('disabled', 'disabled');
-    }
-
-    $formType.change(function(e) {
-        if ($(this).val() == 3) {
-            $formFloor.val(1);
-            $formFloor.attr('disabled', 'disabled');
-        } else {
-            $formFloor.removeAttr('disabled');
-        }
-    })
-}
-
-function initFancybox() {
-    var $rating = $('.rating-container .rating');
-    var $ratingMessage = $('p.rating-message');
-    var $star = $('#form-rating-review .rating-well .star');
-    var $formRating = $('#form-rating-review');
-
-    $rating.click(function() {
-        $formRating.show();
-        $ratingMessage.html('');
-        
-        $.fancybox.open({
-            src: '#form-rating-container',
-            touch : false
-        });
-
-        return false;
-    });
-
-    $('a#rating').click(function(e) {
-        e.preventDefault();
-
-        $formRating.show();
-        $ratingMessage.html('');
-        
-        $.fancybox.open({
-            src: '#form-rating-container',
-            touch : false
-        });
-
-        return false;
-    });
-
-    $star.on('click', function(e) {
-        var rating = $(this).data('value');
-        var newsId = $formRating.data('newsId');
-
-        $.ajax({
-            type: "POST",
-            url: $formRating.attr('action'),
-            data: 'rating=' + rating + '&newsId=' + newsId,
-            success: function(data) {
-                var response = JSON.parse(data);
-                
-                if (response.status === 'success') {
-                    $formRating.hide();
-                    $ratingMessage.html(response.message);
-                }
-            }
-        });
-    });
-}
-
-function initTypewriterEffect() {
-    var i = 0,
-        a = 0,
-        isBackspacing = false,
-        isParagraph = false;
-
-    var textArray = [
-        "CÔNG TY TNHH TƯ VẤN THIẾT KẾ XÂY DỰNG MINH DUY|10E3 ĐƯỜNG 30, PHƯỜNG TÂN PHONG, QUẬN 7, TP HCM"
-    ];
-
-    // Speed (in milliseconds) of typing.
-    var speedForward = 80, //Typing Speed
-        speedWait = 1500, // Wait between typing and backspacing
-        speedBetweenLines = 1500, //Wait between first and second lines
-        speedBackspace = 25; //Backspace Speed
-
-    //Run the loop
-    typeWriter("output", textArray);
-
-    function typeWriter(id, ar) {
-        var element = $("#" + id),
-            aString = ar[a],
-            eHeader = element.children("p#header-company"), //Header element
-            eParagraph = element.children("p#header-address"); //Subheader element
-
-        // Determine if animation should be typing or backspacing
-        if (!isBackspacing) {
-
-            // If full string hasn't yet been typed out, continue typing
-            if (i < aString.length) {
-                // If character about to be typed is a pipe, switch to second line and continue.
-                if (aString.charAt(i) == "|") {
-                    isParagraph = true;
-                    eHeader.removeClass("cursor");
-                    eParagraph.addClass("cursor");
-                    i++;
-                    setTimeout(function () { typeWriter(id, ar); }, speedBetweenLines);
-                    // If character isn't a pipe, continue typing.
-                } else {
-                    // Type header or subheader depending on whether pipe has been detected
-                    if (!isParagraph) {
-                        eHeader.text(eHeader.text() + aString.charAt(i));
-                    } else {
-                        eParagraph.text(eParagraph.text() + aString.charAt(i));
-                    }
-                    i++;
-                    setTimeout(function () { typeWriter(id, ar); }, speedForward);
-                }
-                // If full string has been typed, switch to backspace mode.
-            } else if (i == aString.length) {
-
-                isBackspacing = true;
-                setTimeout(function () { typeWriter(id, ar); }, speedWait);
-            }
-            // If backspacing is enabled
-        } else {
-            // If either the header or the paragraph still has text, continue backspacing
-            if (eHeader.text().length > 0 || eParagraph.text().length > 0) {
-                // If paragraph still has text, continue erasing, otherwise switch to the header.
-                if (eParagraph.text().length > 0) {
-                    eParagraph.text(eParagraph.text().substring(0, eParagraph.text().length - 1));
-                } else if (eHeader.text().length > 0) {
-                    eParagraph.removeClass("cursor");
-                    eHeader.addClass("cursor");
-                    eHeader.text(eHeader.text().substring(0, eHeader.text().length - 1));
-                }
-                setTimeout(function () { typeWriter(id, ar); }, speedBackspace);
-                // If neither head or paragraph still has text, switch to next quote in array and start typing.
-            } else {
-                isBackspacing = false;
-                i = 0;
-                isParagraph = false;
-                a = (a + 1) % ar.length; //Moves to next position in array, always looping back to 0
-                setTimeout(function () { typeWriter(id, ar); }, 50);
-            }
-        }
-    }
-}
-
-exports.init = function () {
-    initSearchBox();
-    initProjectHotSlider();
-    initNewsSlider();
-    initProtectedContent();
-    initGoToTop();
-    initFixedMenu();
-    initFixedSidebar();
-    initCostConstruction();
-    initFancybox();
-    initTypewriterEffect();
-
+function initProductImages() {
     $('.slider-for').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -303,7 +143,68 @@ exports.init = function () {
         slidesToShow: 5,
         slidesToScroll: 1,
         asNavFor: '.slider-for',
-        dots: true,
+        dots: false,
         focusOnSelect: true
     });
+}
+
+function initProductRating() {
+    var $formRating = $('#form-rating-review');
+    $formRating.validate();
+
+    $formRating.find('button#form_send').on('click', function(e) {
+        if ($formRating.valid()) {
+            var name = $formRating.find('input[name="form[name]"]').val();
+            var email = $formRating.find('input[name="form[email]"]').val();
+            var rating = $formRating.find('input[name="form[rating]"]').val();
+            var title = $formRating.find('input[name="form[title]"]').val();
+            var contents = $formRating.find('textarea[name="form[contents]').val();
+            var productId = $formRating.data('productId');
+            var $ratingMessage = $('.rating-message');
+
+            $.ajax({
+                type: "POST",
+                url: $formRating.attr('action'),
+                data: 'rating=' + rating + '&productId=' + productId + '&name=' + name + '&email=' + email + '&title=' + title + '&contents=' + contents,
+                success: function(data) {
+                    var response = JSON.parse(data);
+                    
+                    if (response.status === 'success') {
+                        $formRating.hide();
+                        $ratingMessage.html(response.message);
+                    }
+                }
+            });
+        }
+    });
+}
+
+function initProductHotSidebar() {
+    $('.products-hot-sidebar').show().bxSlider({
+        auto: false,
+        autoControls: false,
+        stopAutoOnClick: true,
+        pager: false,
+        controls: true,
+        minSlides: 1,
+        maxSlides: 1,
+        moveSlides: 1,
+        slideMargin: 0,
+        touchEnabled: false,
+        autoHover: true,
+        adaptiveHeight: true
+    });
+}
+
+exports.init = function () {
+    initSearchBox();
+    initProjectHotSlider();
+    initNewsSlider();
+    initProtectedContent();
+    initGoToTop();
+    initFixedMenu();
+    initFixedSidebar();
+    initProductRating();
+    initProductImages();
+    initProductHotSidebar();
 };

@@ -87,8 +87,8 @@ class Builder implements ContainerAwareInterface
         ]);
 
         $menu->addChild('Khuyến mãi', [
-            'route' => 'news_show',
-            'routeParameters' => ['slug' => 'khuyen-mai']
+            'route' => 'news_category',
+            'routeParameters' => ['level1' => 'khuyen-mai']
         ]);
 
         $menu->addChild('Liên hệ', [

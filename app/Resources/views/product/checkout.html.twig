@@ -1,0 +1,72 @@
+<div style="display:none">
+    <div id="checkout">
+        <form action="{{ path('rating') }}" id="form-checkout" data-news-id="{{ product.getId() }}">
+            <div class="row">
+                {{ form_start(formCheckout, {'attr': {'id': 'form-checkout' }}) }}
+                    <div class="col-md-6">
+                        <div class="product-information">
+                            <h3>Thông tin sản phẩm</h3>
+                            <div class="media">
+                                <img class="mr-3" src="{{ (vich_uploader_asset(product, 'imageFile') ? vich_uploader_asset(product, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('product_120_120') }}" alt="{{ product.getName() }}">
+                                <div class="media-body">
+                                    <h5 class="mt-0">{{ product.getName() }}</h5>
+                                    <div class="product_price">
+                                        {% if product.getRegularPrice() is empty and product.getSalePrice() is empty %}
+                                            <div class="price-regular">
+                                                <span><span class="money">Liên hệ</span></span>
+                                            </div>
+                                        {% elseif product.getRegularPrice() > 0 and product.getSalePrice() > 0 %}
+                                            <div class="price-sale">
+                                                <span class="old-price"><span class="money">{{ product.getRegularPrice()|number_format(0, ',', '.') }} vnđ</span></span>
+                                                <span class="special-price"><span class="money">{{ product.getSalePrice()|number_format(0, ',', '.') }} vnđ</span></span>
+                                            </div>
+                                        {% elseif product.getRegularPrice() > 0 and product.getSalePrice() is empty %}
+                                            <div class="price-regular">
+                                                <span><span class="money">{{ product.getRegularPrice()|number_format(0, ',', '.') }} vnđ</span></span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <p>Bạn vui lòng nhập đúng số điện thoại để chúng tôi sẽ gọi xác nhận đơn hàng trước khi giao hàng. Xin cảm ơn!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="customer-information">
+                            <h3>Thông tin người mua</h3>
+                            <div class="form-group">
+                                {{ form_label(formCheckout.customerGender) }}
+                                {{ form_errors(formCheckout.customerGender) }}
+                                {{ form_widget(formCheckout.customerGender, {'attr': {'class': 'form-input'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(formCheckout.customerName) }}
+                                {{ form_errors(formCheckout.customerName) }}
+                                {{ form_widget(formCheckout.customerName, {'attr': {'class': 'form-control form-input'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(formCheckout.customerPhone) }}
+                                {{ form_errors(formCheckout.customerPhone) }}
+                                {{ form_widget(formCheckout.customerPhone, {'attr': {'class': 'form-control form-input'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(formCheckout.customerEmail) }}
+                                {{ form_errors(formCheckout.customerEmail) }}
+                                {{ form_widget(formCheckout.customerEmail, {'attr': {'class': 'form-control form-input'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(formCheckout.customerAddress) }}
+                                {{ form_errors(formCheckout.customerAddress) }}
+                                {{ form_widget(formCheckout.customerAddress, {'attr': {'class': 'form-control form-text'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_widget(formCheckout.send, {'attr': {'class': 'btn btn-primary'}}) }}
+                            </div>
+                        </div>
+                    </div>
+                {{ form_end(formCheckout) }}
+            </div>
+        </form>
+        <p class="checkout-message"></p>
+    </div>
+</div>

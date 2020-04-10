@@ -1,23 +1,25 @@
 <div class="comment-form mt-3">
     <div id="respond" class="comment-respond">
-        <h3 id="reply-title" class="comment-reply-title">{{ 'comment.leave_your_comment_below'|trans }}</h3>
+        <h3 id="reply-title" class="comment-reply-title">
+            <span>Bình luận</span>
+        </h3>
         <p class="comment-response" id="comment-response"></p>
         {{ form_start(form, {'attr': {'id': 'form-comment'}}) }}
             {{ form_errors(form) }}
             <div class="form-group">
-                {{ form_label(form.content) }}
-                {{ form_errors(form.content) }}
-                {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
-            </div>
-            <div class="form-group">
                 {{ form_label(form.author) }}
                 {{ form_errors(form.author) }}
-                {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(form.author, {'attr': {'class': 'form-input'}}) }}
             </div>
             <div class="form-group">
                 {{ form_label(form.email) }}
                 {{ form_errors(form.email) }}
-                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-input'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.content) }}
+                {{ form_errors(form.content) }}
+                {{ form_widget(form.content, {'attr': {'class': 'form-text'}}) }}
             </div>
             <div class="form-group">
                 {{ form_label(form.recaptcha) }}

@@ -52,9 +52,20 @@ class HomepageController extends Controller
             ->orderBy('n.createdAt', 'DESC')
             ->getQuery()->getResult();
 
+        $productsHot = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->createQueryBuilder('n')
+            ->where('n.enable = :enable')
+            ->andWhere('n.isHot = :isHot')
+            ->setParameter('enable', 1)
+            ->setParameter('isHot', 1)
+            ->orderBy('n.createdAt', 'DESC')
+            ->getQuery()->getResult();
+
         return $this->render('homepage/index.html.twig', [
             'blocksOnHomepage' => $blocksOnHomepage,
             'productsNew' => $productsNew,
+            'productsHot' => $productsHot,
             'showSlide' => true
         ]);
     }

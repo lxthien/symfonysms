@@ -18,8 +18,12 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use AppBundle\Entity\ProductCat;
 use AppBundle\Entity\Product;
+use AppBundle\Entity\ProductImage;
 use AppBundle\Entity\News;
+use AppBundle\Entity\Rating;
+use AppBundle\Entity\QuickOrder;
 
+use blackknight467\StarRatingBundle\Form\RatingType as RatingType;
 
 class ProductController extends Controller
 {
@@ -28,40 +32,49 @@ class ProductController extends Controller
      * 
      * @return Product
      */
-    public function listAction($level1, $page = 1)
+    public function listAction($level1 = null, $page = 1)
     {
-        $category = $this->getDoctrine()
-            ->getRepository(ProductCat::class)
-            ->findOneBy(array('url' => $level1, 'enable' => 1));
+        if (!empty($level1)) {
+            $category = $this->getDoctrine()
+                ->getRepository(ProductCat::class)
+                ->findOneBy(array('url' => $level1, 'enable' => 1));
 
-        if (!$category) {
-            throw $this->createNotFoundException("The item does not exist");
+            if (!$category) {
+                throw $this->createNotFoundException("The item does not exist");
+            }
+
+            // Init breadcrum
+            $breadcrumbs = $this->buildBreadcrums(!empty($level2) ? $subCategory : $category, null, null);
+
+            $products = $this->getDoctrine()
+                ->getRepository(Product::class)
+                ->createQueryBuilder('n')
+                ->innerJoin('n.productCat', 't')
+                ->where('t.id = :productcat_id')
+                ->andWhere('n.enable = :enable')
+                ->setParameter('productcat_id', $category->getId())
+                ->setParameter('enable', 1)
+                ->orderBy('n.createdAt', 'DESC')
+                ->getQuery()->getResult();
+        } else {
+            $products = $this->getDoctrine()
+                ->getRepository(Product::class)
+                ->createQueryBuilder('n')
+                ->where('n.enable = :enable')
+                ->setParameter('enable', 1)
+                ->orderBy('n.createdAt', 'DESC')
+                ->getQuery()->getResult();
         }
-
-        // Init breadcrum for category page
-        $breadcrumbs = $this->buildBreadcrums(!empty($level2) ? $subCategory : $category, null, null);
-
-        // Get the list post related to tag
-        $products = $this->getDoctrine()
-            ->getRepository(Product::class)
-            ->createQueryBuilder('n')
-            ->innerJoin('n.productCat', 't')
-            ->where('t.id = :productcat_id')
-            ->andWhere('n.enable = :enable')
-            ->setParameter('productcat_id', $category->getId())
-            ->setParameter('enable', 1)
-            ->orderBy('n.createdAt', 'DESC')
-            ->getQuery()->getResult();
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $products,
             $page,
-            $this->get('settings_manager')->get('numberRecordOnPage') ?: 10
+            $this->get('settings_manager')->get('numberRecordOnPage') ? $this->get('settings_manager')->get('numberRecordOnPage') : 10
         );
 
         return $this->render('product/list.html.twig', [
-            'category' => !empty($level2) ? $subCategory : $category,
+            'category' => !empty($category) ? $category : null,
             'pagination' => $pagination
         ]);
     }
@@ -92,18 +105,111 @@ class ProductController extends Controller
             throw $this->createNotFoundException("The item does not exist");
         }
 
+        //echo $product->getProductCat()[0]->getName(); die;
+
         $shippingAndReturn = $this->getDoctrine()
             ->getRepository(News::class)
             ->findOneBy(
                 array('url' => 'chinh-sach-giao-hang-va-tra-hang', 'enable' => 1)
             );
 
+        $productImages = $this->getDoctrine()
+            ->getRepository(ProductImage::class)
+            ->createQueryBuilder('p')
+            ->where('p.product = :product_id')
+            ->setParameter('product_id', $product->getId())
+            ->getQuery()->getResult();
+
+        
+        // Render the form product rating
+        $formRating = $this->createFormBuilder(null, array(
+                'csrf_protection' => false,
+            ))
+            ->setAction($this->generateUrl('rating'))
+            ->add('name', TextType::class, [
+                'required' => true,
+                'label' => 'Tên',
+            ])
+            ->add('email', TextType::class, [
+                'required' => true,
+                'label' => 'Email',
+            ])
+            ->add('rating', RatingType::class, [
+                'required' => true,
+                'label' => 'Rating',
+            ])
+            ->add('title', TextType::class, [
+                'required' => true,
+                'label' => 'Tiêu đề đánh giá',
+            ])
+            ->add('contents', TextareaType::class, [
+                'required' => true,
+                'label' => 'Nội dung đánh giá',
+            ])
+            ->add('send', ButtonType::class, array('label' => 'label.send'))
+            ->getForm();
+
+        // Render the form checkout
+        $formCheckout = $this->createFormBuilder(null, array(
+            'csrf_protection' => false,
+            ))
+            ->setAction($this->generateUrl('rating'))
+            ->add('customerGender', ChoiceType::class, [
+                'required' => true,
+                'choices' => array('Name' => '0', 'Nữ' => '1'),
+                'data' => 0,
+                'choices_as_values' => true,
+                'expanded' => true,
+                'label' => 'Giới tính'
+            ])
+            ->add('customerName', TextType::class, [
+                'required' => true,
+                'label' => 'Tên',
+            ])
+            ->add('customerPhone', TextType::class, [
+                'required' => true,
+                'label' => 'Số điện thoại',
+            ])
+            ->add('customerEmail', TextType::class, [
+                'required' => false,
+                'label' => 'Địa chị email',
+            ])
+            ->add('customerAddress', TextareaType::class, [
+                'required' => true,
+                'label' => 'Địa chỉ',
+            ])
+            ->add('send', ButtonType::class, array('label' => 'Đặt hàng ngay'))
+            ->getForm();
+
+        // Get rating of the post
+        $repositoryRating = $this->getDoctrine()->getManager();
+
+        $queryRating = $repositoryRating->createQuery(
+            'SELECT AVG(r.rating) as ratingValue, COUNT(r) as ratingCount
+            FROM AppBundle:Rating r
+            WHERE r.product = :product_id'
+        )->setParameter('product_id', $product->getId());
+
+        $rating = $queryRating->setMaxResults(1)->getOneOrNullResult();
+
+        $listOfRating = $this->getDoctrine()
+            ->getRepository(Rating::class)
+            ->createQueryBuilder('r2')
+            ->where('r2.product = :product_id')
+            ->setParameter('product_id', $product->getId())
+            ->getQuery()->getResult();
+        
         // Init breadcrum for the post
         $breadcrumbs = $this->buildBreadcrums(null, $product, null);
 
         return $this->render('product/show.html.twig', [
             'product' => $product,
-            'shippingAndReturn' => $shippingAndReturn
+            'shippingAndReturn' => $shippingAndReturn,
+            'productImages'     => $productImages,
+            'formRating'        => $formRating->createView(),
+            'formCheckout'      => $formCheckout->createView(),
+            'rating'            => !empty($rating['ratingValue']) ? str_replace('.0', '', number_format($rating['ratingValue'], 1)) : 0,
+            'listOfRating'      => $listOfRating
         ]);
     }
 

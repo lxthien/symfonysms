@@ -57,7 +57,15 @@
                     <div class="sub-banner banner-item">
                         <div class="img-box">
                             <a href="" class="animate-scale">
-                                <img data-src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/banner-top-1-compressor_1200x_crop_center.jpg?v=1568964367" alt="cospora-theme" class="lazyautosizes ls-is-cached lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-sizes="auto" data-image="" sizes="380px" src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/banner-top-1-compressor_1200x_crop_center.jpg?v=1568964367">
+                                <img
+                                    data-src="http://evalamo.com/wp-content/uploads/2019/05/kem-tri-nam-tot-nhat-hien-nay.jpg"
+                                    alt="cospora-theme"
+                                    class="lazyautosizes ls-is-cached lazyloaded"
+                                    data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                                    data-sizes="auto"
+                                    data-image=""
+                                    sizes="380px"
+                                    src="http://evalamo.com/wp-content/uploads/2019/05/kem-tri-nam-tot-nhat-hien-nay.jpg">
                             </a>
                         </div>
                         <div class="content-box">
@@ -74,7 +82,15 @@
                     <div class="sub-banner banner-item">
                         <div class="img-box">
                             <a href="" class="animate-scale">
-                                <img data-src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/banner-top-2-compressor_1200x_crop_center.jpg?v=1568964382" alt="cospora-theme" class="lazyautosizes ls-is-cached lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-sizes="auto" data-image="" sizes="380px" src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/banner-top-2-compressor_1200x_crop_center.jpg?v=1568964382">
+                                <img
+                                    data-src="http://evalamo.com/wp-content/uploads/2019/05/kem-duong-trang-da-toan-than-nao-tot.jpg"
+                                    alt="cospora-theme"
+                                    class="lazyautosizes ls-is-cached lazyloaded"
+                                    data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                                    data-sizes="auto"
+                                    data-image=""
+                                    sizes="380px"
+                                    src="http://evalamo.com/wp-content/uploads/2019/05/kem-duong-trang-da-toan-than-nao-tot.jpg">
                             </a>
                         </div>
                         <div class="content-box">
@@ -91,15 +107,23 @@
                     <div class="sub-banner banner-item">
                         <div class="img-box">
                             <a href="" class="animate-scale">
-                                <img data-src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/banner-top-3-compressor_1200x_crop_center.jpg?v=1568964390" alt="cospora-theme" class="lazyautosizes ls-is-cached lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-sizes="auto" data-image="" sizes="380px" src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/banner-top-3-compressor_1200x_crop_center.jpg?v=1568964390">
+                                <img
+                                    data-src="http://evalamo.com/wp-content/uploads/2019/05/kem-tri-mun-hieu-qua-gia-re.jpg"
+                                    alt="cospora-theme"
+                                    class="lazyautosizes ls-is-cached lazyloaded"
+                                    data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                                    data-sizes="auto"
+                                    data-image=""
+                                    sizes="380px"
+                                    src="http://evalamo.com/wp-content/uploads/2019/05/kem-tri-mun-hieu-qua-gia-re.jpg">
                             </a>
                         </div>
                         <div class="content-box">
-                            <h3 class="banner-title" style="color: #fff;">
+                            <h3 class="banner-title">
                                 <span>
                                     Tools
                                 </span>
-                                <span class="border-bt-hover" style="background-color: #fff;"></span>
+                                <span class="border-bt-hover"></span>
                             </h3>
                         </div>
                     </div>
@@ -280,39 +304,45 @@
 
                     <div class="products-items">
                         <div class="bxslider">
+                            {% for row in productsHot %}
                             <div class="products-item">
                                 <div class="products-item-wrapper">
                                     <div class="media-thumb">
                                         <picture>
                                             <img
                                                 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/11-compressor_076662b4-fa80-4ebb-97f6-f26db5adec01_300x.png?v=1574410402"
+                                                data-src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('news_220_220') }}"
                                                 class="mr-3 img-thumbnail lazyload"
-                                                alt="" />
+                                                alt="{{ row.getName() }}" />
                                         </picture>
                                     </div>
                                     <div class="media-body">
                                         <h5 class="mt-0 mb-1">
-                                            <a title="" href="#" title="">
-                                                <span>Ainterdu pretium de miancelos dincidunts</span>
+                                            <a href="{{ path('product_show', {'slug': row.getUrl() }) }}" title="{{ row.getName() }}">
+                                                <span>{{ row.getName() }}</span>
                                             </a>
                                         </h5>
-                                        <div class="rating">
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star "></div>
-                                        </div>
+                                        {{ 4|rating }}
                                         <div class="price-box">
-                                            <div class="price-sale">
-                                                <span class="old-price"><span class="money">320.000</span></span>
-                                                <span class="special-price"><span class="money">300.000</span></span>
-                                            </div>
+                                            {% if row.getRegularPrice() is empty and row.getSalePrice() is empty %}
+                                                <div class="price-regular">
+                                                    <span><span class="money">Liên hệ</span></span>
+                                                </div>
+                                            {% elseif row.getRegularPrice() > 0 and row.getSalePrice() > 0 %}
+                                                <div class="price-sale">
+                                                    <span class="old-price"><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                    <span class="special-price"><span class="money">{{ row.getSalePrice()|number_format(0, ',', '.') }}</span></span>
+                                                </div>
+                                            {% elseif row.getRegularPrice() > 0 and row.getSalePrice() is empty %}
+                                                <div class="price-regular">
+                                                    <span><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
                             <div class="products-item">
                                 <div class="products-item-wrapper">
                                     <div class="media-thumb">
@@ -415,6 +445,12 @@
             </div>
         </section>
 
+        <section class="home-new-product-tab">
+            <div class="container">
+                <img src="http://evalamo.com/wp-content/uploads/2019/05/serum-tri-nam.jpg">
+             </div>
+        </section>
+
         {% for blockOnHomepage in blocksOnHomepage %}
         <section class="home-spotlight-block">
             <div class="container">
@@ -434,12 +470,12 @@
                         <div class="col-12 col-md-6 col-lg-4">
                             <div class="spotlight-item">
                                 <div class="img-box">
-                                    <a href="" class="animate-scale">
+                                    <a href="{{ path('news_show', {'slug': row.getUrl() }) }}" class="animate-scale">
                                         <img 
                                             class="lazyload"
                                             src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                            data-src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('news_377_416') }}"
-                                            alt="{{ row.getTitle() }}" >
+                                            data-src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('news_377_385') }}"
+                                            alt="{{ row.getTitle() }}" />
                                     </a>
                                 </div>
                                 <div class="content spotlight-inner">
@@ -455,67 +491,13 @@
                                     </div>
                                     <p class="des">
                                         <span>
-                                            {{ row.getDescription() }}
+                                            {{ row.getDescription()|slice(0, 150) }}
                                         </span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         {% endfor %}
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="spotlight-item">
-                                <div class="img-box">
-                                    <a href="" class="animate-scale">
-                                        <img data-src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/home-bottom-banner-new-1-compressor_800x800_crop_center.jpg?v=1574405565" alt="cospora-theme" itemprop="logo" class="lazyautosizes lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-sizes="auto" data-image="" sizes="380px" src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/home-bottom-banner-new-1-compressor_800x800_crop_center.jpg?v=1574405565">
-                                    </a>
-                                </div>
-                                <div class="content spotlight-inner">
-                                    <div class="content-title">
-                                        <h4 class="title">
-                                            <span>Tư vấn</span>
-                                        </h4>
-                                        <h3 class="title">
-                                            <a href="">
-                                                <span>Kem dưỡng trắng da Saffron Lever Ayush Ấn Độ</span>
-                                            </a>
-                                        </h3>
-                                    </div>
-                                    <p class="des">
-                                        <span>
-                                            Kem dưỡng da Saffron Ấn Độ Lever Ayush là sự hòa quyện tinh túy giữa Saffron và Kumkumadi Tailam dựa theo phương pháp Ayurveda...
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="spotlight-item">
-                                <div class="img-box">
-                                    <a href="" class="animate-scale">
-                                        <img data-src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/home-bottom-banner-new-1-compressor_800x800_crop_center.jpg?v=1574405565" alt="cospora-theme" itemprop="logo" class="lazyautosizes lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-sizes="auto" data-image="" sizes="380px" src="https://cdn.shopify.com/s/files/1/0270/5873/3109/files/home-bottom-banner-new-1-compressor_800x800_crop_center.jpg?v=1574405565">
-                                    </a>
-                                </div>
-                                <div class="content spotlight-inner">
-                                    <div class="content-title">
-                                        <h4 class="title">
-                                            <span>Tư vấn làm đẹp</span>
-                                        </h4>
-                                        <h3 class="title">
-                                            <a href="">
-                                                <span>
-                                                    Kem dưỡng trắng da Saffron Lever Ayush Ấn Độ
-                                                </span>
-                                            </a>
-                                        </h3>
-                                    </div>
-                                    <p class="des">
-                                        <span>
-                                            Kem dưỡng da Saffron Ấn Độ Lever Ayush là sự hòa quyện tinh túy giữa Saffron và Kumkumadi Tailam dựa theo phương pháp Ayurveda...
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

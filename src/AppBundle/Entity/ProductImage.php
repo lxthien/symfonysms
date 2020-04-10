@@ -182,7 +182,7 @@ class ProductImage
         // Move the file to the upload folder
         $this->file->move(
             $this->getUploadRootDir(),
-            $this->name.'.'.$this->extension
+            $this->name
         );
     }
 
