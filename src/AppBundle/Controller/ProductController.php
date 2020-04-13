@@ -214,6 +214,27 @@ class ProductController extends Controller
     }
 
     /**
+     * Render the list product hot
+     * @return Product
+     */
+    public function productHotAction()
+    {
+        $products = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->createQueryBuilder('n')
+            ->where('n.enable = :enable')
+            ->andWhere('n.isHot = :isHot')
+            ->setParameter('enable', 1)
+            ->setParameter('isHot', 1)
+            ->orderBy('n.createdAt', 'DESC')
+            ->getQuery()->getResult();
+
+        return $this->render('product/productHot.html.twig', [
+            'products' => $products,
+        ]);
+    }
+
+    /**
      * Handle the breadcrumb
      * 
      * @return Breadcrums

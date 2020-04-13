@@ -181,7 +181,7 @@ function initProductRating() {
 
 function initProductHotSidebar() {
     $('.products-hot-sidebar').show().bxSlider({
-        auto: false,
+        auto: true,
         autoControls: false,
         stopAutoOnClick: true,
         pager: false,

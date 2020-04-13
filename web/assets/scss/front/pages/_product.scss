@@ -417,7 +417,7 @@
                 }
 
                 .rating {
-                    div.star {
+                    .star-full, .star, .star-empty  {
                         font-size: 20px;
                     }
                 }
@@ -487,27 +487,34 @@
 #product-recommendations {
     .related-products {
         .widget-title {
-            border-top: 2px solid #555555;
-            text-align: left;
             text-align: left;
             padding-top: 15px;
             margin-bottom: 10px;
+            margin-top: 30px;
 
-            .box-title {
-                color: #141414;
-                font-size: 24px;
-                letter-spacing: .02em;
-                font-weight: 600;
+            h3 {
+                font-size: 19px;
                 text-transform: uppercase;
-                position: relative;
-                margin-bottom: 12px;
-                padding: 0 25px;
-                display: inline-block;
-                font-size: 16px;
-                padding: 0;
-    
-                &::before, &::after {
-                    content: none;
+                font-weight: 600;
+                line-height: 22px;
+                color: $black;
+                border-bottom: 1px solid #efefef;
+                margin: 0;
+                padding-bottom: 8px;
+                font-family: $robotoCondesed;
+
+                span {
+                    position: relative;
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        bottom: -9px;
+                        width: 100%;
+                        height: 2px;
+                        background: $black;
+                    }
                 }
             }
         }
@@ -559,7 +566,7 @@
                             width: 30px;
                             height: 40px;
                             top: 48%;
-                            right: -35px    ;
+                            right: -35px;
                             background: url("../../../images/r-right.png") no-repeat;
                             background-size: 40px;
                         }

@@ -91,9 +91,49 @@
 }
 
 #shopify-section-sidebar-section {
-    .products-hot-sidebar {
-        &.slick-slider {
-            width: 240px;
+    .sidebar-widget-product {
+        margin-bottom: 0;
+
+        .products-grid {
+            .bx-wrapper {
+                margin-bottom: 30px;
+
+                .bx-viewport {
+                    .products-item {
+                        .products-item-wrapper {
+                            .media-thumb {
+                                height: 247px;
+            
+                                img {
+                                    height: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .bx-controls {
+                    .bx-controls-direction {
+                        .bx-prev {
+                            width: 30px;
+                            height: 40px;
+                            top: 48%;
+                            left: -4px;
+                            background: url("../../../images/r-left.png") no-repeat;
+                            background-size: 40px;
+                        }
+    
+                        .bx-next {
+                            width: 30px;
+                            height: 40px;
+                            top: 48%;
+                            right: 4px;
+                            background: url("../../../images/r-right.png") no-repeat;
+                            background-size: 40px;
+                        }
+                    }
+                }
+            }
         }
     }
 }

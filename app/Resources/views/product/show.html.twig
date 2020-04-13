@@ -61,83 +61,11 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="widget sidebar-widget-product">
-                                    <div class="widget-title">
-                                        <h3 class="sidebar-title">
-                                            <span>Sản phẩm nổi bật</span>
-                                        </h3>
-                                    </div>
-                                    <div class="widget-product">
-                                        <div class="products-grid row">
-                                            <div class="products-hot-sidebar">
-                                                <div class="products-item">
-                                                    <div class="products-item-wrapper">
-                                                        <div class="media-thumb">
-                                                            <picture>
-                                                                <img
-                                                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                                    data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/11-compressor_076662b4-fa80-4ebb-97f6-f26db5adec01_300x.png?v=1574410402"
-                                                                    class="mr-3 img-thumbnail lazyload"
-                                                                    alt="" />
-                                                            </picture>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h5 class="mt-0 mb-1">
-                                                                <a title="" href="#" title="">
-                                                                    <span>Ainterdu pretium de miancelos dincidunts</span>
-                                                                </a>
-                                                            </h5>
-                                                            <div class="rating">
-                                                                <div class="star-full "></div>
-                                                                <div class="star-full "></div>
-                                                                <div class="star-full "></div>
-                                                                <div class="star-full "></div>
-                                                                <div class="star-full "></div>
-                                                            </div>
-                                                            <div class="price-box">
-                                                                <div class="price-regular">
-                                                                    <span><span class="money">Liên hệ</span></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="products-item">
-                                                    <div class="products-item-wrapper">
-                                                        <div class="media-thumb">
-                                                            <picture>
-                                                                <img
-                                                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                                    data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/11-compressor_076662b4-fa80-4ebb-97f6-f26db5adec01_300x.png?v=1574410402"
-                                                                    class="mr-3 img-thumbnail lazyload"
-                                                                    alt="" />
-                                                            </picture>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h5 class="mt-0 mb-1">
-                                                                <a title="" href="#" title="">
-                                                                    <span>Ainterdu pretium de miancelos dincidunts</span>
-                                                                </a>
-                                                            </h5>
-                                                            <div class="rating">
-                                                                <div class="star-full "></div>
-                                                                <div class="star-full "></div>
-                                                                <div class="star-full "></div>
-                                                                <div class="star-full "></div>
-                                                                <div class="star-full "></div>
-                                                            </div>
-                                                            <div class="price-box">
-                                                                <div class="price-regular">
-                                                                    <span><span class="money">Liên hệ</span></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                {{ render(controller(
+                                    'AppBundle:Product:productHot'
+                                )) }}
+
                                 <div class="widget sidebar-banner">
                                     <img
                                         data-src="http://evalamo.com/wp-content/uploads/2019/05/sua-rua-mat-tot-cho-da-dau.jpg"
@@ -300,13 +228,7 @@
                                             <div>
                                                 <div class="related-products page-width product-recommendations js-product-recomendation">
                                                     <div class="widget-title">
-                                                        <h3 class="box-title">
-                                                            <span class="title">
-                                                                <span class="lang1">
-                                                                    Sản phẩm cùng danh mục
-                                                                </span>
-                                                            </span>
-                                                        </h3>
+                                                        <h3><span>Sản phẩm cùng danh mục</span></h3>
                                                     </div>
                                                     <div class="widget-product">
                                                         <div class="products-grid grid grid--uniform grid--view-items row products-items">

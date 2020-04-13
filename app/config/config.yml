@@ -202,6 +202,10 @@ liip_imagine:
             quality: 100
             filters:
                 thumbnail: { size: [120, 120], mode: outbound }
+        product_247_247:
+            quality: 100
+            filters:
+                thumbnail: { size: [247, 247], mode: outbound }
         news_220_220:
             quality: 100
             filters:

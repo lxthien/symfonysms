@@ -33,9 +33,9 @@ class QuickOrder
     private $qty = 0;
 
     /**
-     * @var boolean
+     * @var int
      *
-     * @ORM\Column(name="customerGender", type="int")
+     * @ORM\Column(name="customerGender", type="integer")
      */
     private $customerGender = 1;
 
