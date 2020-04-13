@@ -7,26 +7,72 @@
         margin: 0;
 
         .product-information {
-            .devvn-popup-prod {
-                display: block;
+            .img-thumbnail {
+                padding: 0;
+                margin-right: 10px;
+                border-radius: 0;
+            }
 
-                .devvn-popup-img {
-                    display: inline-block;
-                    margin-right: 10px;
-                    width: 120px;
+            .media-body {
+                display: inline-block;
+                width: 70%;
+
+                h5.mt-0 {
+                    font-size: 20px;
+                    margin-bottom: 15px;
                 }
 
-                .devvn-popup-info {
-                    display: inline-block;
+                .product_price {
+                    letter-spacing: 0;
+                    margin-bottom: 10px;
+                    font-size: 18px;
+                    font-weight: bold;
 
-                    .devvn-product-popup-info {
-                        display: block;
+                    .price-regular {
+                        color: $black;
+                    }
 
-                        .devvn_title {
-                            font-size: 18px;
+                    .price-sale {
+                        .old-price {
+                            color: #969696;
+                            text-decoration: line-through;
+                            margin-right: 5px;
+                        }
+
+                        .special-price {
+                            color: #e7040f;
                         }
                     }
                 }
+
+                .quantity {
+                    label {
+                        font-weight: 400;
+                        margin-right: 8px;
+
+                        &.error {
+                            display: none !important;
+                        }
+                    }
+
+                    input {
+                        padding-left: 5px;
+                        border-width: 1px;
+
+                        &:focus {
+                            border-width: 1px;
+                        }
+
+                        &.error {
+                            padding-top: 0px;
+                            border-color: #e7040f;
+                        }
+                    }
+                }
+            }
+            
+            p.checkout-note {
+                margin-top: 30px;
             }
         }
 
@@ -40,6 +86,12 @@
                     height: 65px;
                 }
             }
+        }
+
+        #checkout-message {
+            display: none;
+            text-align: center;
+            font-size: 18px;
         }
     }
 }

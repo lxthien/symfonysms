@@ -172,6 +172,11 @@ class Product
     private $rating;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\QuickOrder", mappedBy="product")
+     */
+    private $quickOrder;
+
+    /**
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
@@ -199,6 +204,7 @@ class Product
         $this->productCat = new ArrayCollection();
         $this->productImages = new ArrayCollection();
         $this->rating = new ArrayCollection();
+        $this->quickOrder = new ArrayCollection();
     }
 
     /**

@@ -26,6 +26,14 @@ class QuickOrder
     private $id;
 
     /**
+     * @var AppBundle\Entity\Product;
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Product", inversedBy="product")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     */
+    private $product;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="qty", type="integer")
@@ -83,6 +91,25 @@ class QuickOrder
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param \AppBundle\Entity\Product $product
+     * @return QuickOrder
+     */
+    public function setProduct(\AppBundle\Entity\Product $product = null)
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * @return \AppBundle\Entity\Product 
+     */
+    public function getProduct()
+    {
+        return $this->product;
     }
 
     /**

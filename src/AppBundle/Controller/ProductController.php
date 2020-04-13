@@ -235,6 +235,42 @@ class ProductController extends Controller
     }
 
     /**
+     * @Route("/checkout", name="checkout")
+     * 
+     * @return JSON
+     */
+    public function checkoutAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $product = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->find($request->request->get('productId'));
+
+        $quickOrder = new QuickOrder();
+        $quickOrder->setProduct( $product );
+        $quickOrder->setQty( $request->request->get('quantity') );
+        $quickOrder->setCustomerGender( $request->request->get('form')["customerGender"] );
+        $quickOrder->setCustomerName( $request->request->get('form')["customerName"] );
+        $quickOrder->setCustomerPhone( $request->request->get('form')["customerPhone"] );
+        $quickOrder->setCustomerEmail( $request->request->get('form')["customerEmail"] );
+        $quickOrder->setCustomerAddress( $request->request->get('form')["customerAddress"] );
+
+        $em->persist($quickOrder);
+
+        $em->flush();
+        
+        return new Response(
+            json_encode(
+                array(
+                    'status'=>'success',
+                    'message' => 'Đơn hàng của bạn đã được đặt thành công. Chúng tôi sẽ kiểm tra và liên hệ đến bạn để xác nhận đơn hàng'
+                )
+            )
+        );
+    }
+
+    /**
      * Handle the breadcrumb
      * 
      * @return Breadcrums

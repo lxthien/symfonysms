@@ -38,7 +38,7 @@ twig:
 
 # EWZRecaptchaBundle
 ewz_recaptcha:
-    public_key:  6LetSH4UAAAAADHHSf0CxnXrUyEWEWye2miXC0s7
-    private_key: 6LetSH4UAAAAACjZ-T0_rI5mz5pF7dWUyGSWTTNf
+    public_key:  6LchGukUAAAAAEj2FW_us_vISse6-Fbd3OueGT1p
+    private_key: 6LchGukUAAAAAJjTFN0tQ9UIBUsCS6F_DxJX3_-F
     locale_key:  %kernel.default_locale%
     locale_from_request: true
