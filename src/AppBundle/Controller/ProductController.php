@@ -24,9 +24,25 @@ use AppBundle\Entity\Rating;
 use AppBundle\Entity\QuickOrder;
 
 use blackknight467\StarRatingBundle\Form\RatingType as RatingType;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class ProductController extends Controller
 {
+    /**
+     * @var UploaderHelper
+     */
+    private $helper;
+
+    /**
+     * Constructs a new instance of UploaderExtension.
+     *
+     * @param UploaderHelper $helper
+     */
+    public function __construct(UploaderHelper $helper)
+    {
+        $this->helper = $helper;
+    }
+    
     /**
      * Render the list products of the category
      * 
@@ -44,7 +60,7 @@ class ProductController extends Controller
             }
 
             // Init breadcrum
-            $breadcrumbs = $this->buildBreadcrums(!empty($level2) ? $subCategory : $category, null, null);
+            $breadcrumbs = $this->buildBreadcrums($category, null, null);
 
             $products = $this->getDoctrine()
                 ->getRepository(Product::class)
@@ -57,6 +73,9 @@ class ProductController extends Controller
                 ->orderBy('n.createdAt', 'DESC')
                 ->getQuery()->getResult();
         } else {
+            // Init breadcrum
+            $breadcrumbs = $this->buildBreadcrums(null, null, null);
+
             $products = $this->getDoctrine()
                 ->getRepository(Product::class)
                 ->createQueryBuilder('n')
@@ -73,10 +92,16 @@ class ProductController extends Controller
             $this->get('settings_manager')->get('numberRecordOnPage') ? $this->get('settings_manager')->get('numberRecordOnPage') : 10
         );
 
-        return $this->render('product/list.html.twig', [
-            'category' => !empty($category) ? $category : null,
-            'pagination' => $pagination
-        ]);
+        if (!empty($level1)) {
+            return $this->render('product/list.html.twig', [
+                'category' => $category,
+                'pagination' => $pagination
+            ]);
+        } else {
+            return $this->render('product/shop.html.twig', [
+                'pagination' => $pagination
+            ]);
+        }
     }
 
     /**
@@ -202,10 +227,15 @@ class ProductController extends Controller
         // Init breadcrum for the post
         $breadcrumbs = $this->buildBreadcrums(null, $product, null);
 
+        $imagePath = $this->helper->asset($product, 'imageFile');
+        $imagePath = substr($imagePath, 1);
+        $imageSize = getimagesize($imagePath);
+
         return $this->render('product/show.html.twig', [
             'product' => $product,
             'shippingAndReturn' => $shippingAndReturn,
             'productImages'     => $productImages,
+            'imageSize'         => $imageSize,
             'formRating'        => $formRating->createView(),
             'formCheckout'      => $formCheckout->createView(),
             'rating'            => !empty($rating['ratingValue']) ? str_replace('.0', '', number_format($rating['ratingValue'], 1)) : 0,
@@ -291,6 +321,8 @@ class ProductController extends Controller
                 //$breadcrumbs->addItem($productCat->getParentcat()->getName(), $this->generateUrl("news_category", array('level1' => $productCat->getParentcat()->getUrl() )));
                 //$breadcrumbs->addItem($productCat->getName(), $this->generateUrl("list_category", array('level1' => $productCat->getParentcat()->getUrl(), 'level2' => $productCat->getUrl() )));
             }
+        } else {
+            $breadcrumbs->addItem("Cửa hàng Lily house", $this->generateUrl("shop"));
         }
 
         // Breadcrum for post page

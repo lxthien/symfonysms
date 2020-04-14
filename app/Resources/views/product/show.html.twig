@@ -4,6 +4,23 @@
 {% block description %}{{ product.getPageDescription() is not null ? product.getPageDescription() : product.getDescription() }}{% endblock %}
 {% block keyword %}{{ product.getPageKeyword() }}{% endblock %}
 
+{% block structuredOpenGraph %}
+    <meta property="og:type" content="og:product" />
+    <meta property="og:title" content="{{ product.getPageTitle() is not null ? post.getPageTitle() : product.getName() }}" />
+    {% if app.request.attributes.get('_route') is not null %}
+    <meta property="og:url" content="{{ app.request.uri }}" />
+    {% endif %}
+    <meta property="og:description" content="{{ product.getPageDescription() is not null ? product.getPageDescription() : product.getDescription() }}" />
+    <meta property="og:image" content="{{ vich_uploader_asset(product, 'imageFile') ? app.request.getUriForPath(vich_uploader_asset(product, 'imageFile')) : absolute_url(asset('assets/images/no-image.png')) }}" />
+    <meta property="og:image:width" content="{{ imageSize[0] }}" />
+    <meta property="og:image:height" content="{{ imageSize[1] }}" />
+    <meta property="product:plural_title" content="{{ product.getName() }}" />
+{% endblock %}
+
+{% block twitterImage %}
+    <meta property="twitter:image" content="{{ vich_uploader_asset(product, 'imageFile') ? app.request.getUriForPath(vich_uploader_asset(product, 'imageFile')) : absolute_url(asset('assets/images/no-image.png')) }}" />
+{% endblock %}
+
 {% block body %}
 <div class="wrapper-body wrapper-container" id="PageContainer">
     <div class="main-content" id="MainContent">
@@ -68,23 +85,17 @@
 
                                 <div class="widget sidebar-banner">
                                     <img
-                                        data-src="http://evalamo.com/wp-content/uploads/2019/05/sua-rua-mat-tot-cho-da-dau.jpg"
-                                        src="http://evalamo.com/wp-content/uploads/2019/05/sua-rua-mat-tot-cho-da-dau.jpg"
-                                        alt="cospora-theme"
-                                        itemprop="logo"
-                                        class="lazyautosizes lazyloaded"
-                                        data-sizes="auto"
-                                        sizes="224px" >
+                                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                        data-src="{{ asset('assets/images/sua-rua-mat-tot-cho-da-dau.jpg') }}"
+                                        alt="Lily House"
+                                        class="lazyload" >
                                 </div>
                                 <div class="widget sidebar-banner">
                                     <img
-                                        data-src="http://evalamo.com/wp-content/uploads/2019/05/kem-duong-trang-da-toan-than-nao-tot.jpg"
-                                        src="http://evalamo.com/wp-content/uploads/2019/05/kem-duong-trang-da-toan-than-nao-tot.jpg"
-                                        alt="cospora-theme"
-                                        itemprop="logo"
-                                        class="lazyautosizes lazyloaded"
-                                        data-sizes="auto"
-                                        sizes="224px" >
+                                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                        data-src="{{ asset('assets/images/kem-duong-trang-da-toan-than-nao-tot.jpg') }}"
+                                        alt="Lily House"
+                                        class="lazyload" >
                                 </div>
                             </div>
                         </div>

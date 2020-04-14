@@ -5,8 +5,8 @@
     {
         "@context": "http://schema.org",
         "@type": "Organization",
-        "url": "https://www.lilyhouse.vn/",
-        "logo": "https://www.lilyhouse.vn/assets/images/logo.png",
+        "url": "https://lilyhouse.vn/",
+        "logo": "https://lilyhouse.vn/assets/images/logo.png",
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+84909356718",
@@ -21,10 +21,10 @@
     {
         "@context": "http://schema.org",
         "@type": "WebSite",
-        "url": "https://www.lilyhouse.vn/",
+        "url": "https://lilyhouse.vn/",
         "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://www.lilyhouse.vn/search?q={search_term_string}",
+            "target": "https://lilyhouse.vn/search?q={search_term_string}",
             "query-input": "required name=search_term_string"
         }
     }
@@ -37,7 +37,7 @@
         "@context": "http://schema.org",
         "@type": "Person",
         "name": "Lily House",
-        "url": "https://www.lilyhouse.vn/",
+        "url": "https://lilyhouse.vn/",
         "sameAs": [
             "{{ get_setting('linkToFacebook') }}",
             "{{ get_setting('linkToTwitter') }}",
@@ -58,22 +58,15 @@
                         <div class="img-box">
                             <a href="" class="animate-scale">
                                 <img
-                                    data-src="http://evalamo.com/wp-content/uploads/2019/05/kem-tri-nam-tot-nhat-hien-nay.jpg"
-                                    alt="cospora-theme"
-                                    class="lazyautosizes ls-is-cached lazyloaded"
-                                    data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-                                    data-sizes="auto"
-                                    data-image=""
-                                    sizes="380px"
-                                    src="http://evalamo.com/wp-content/uploads/2019/05/kem-tri-nam-tot-nhat-hien-nay.jpg">
+                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                    alt="Kem trị nám"
+                                    class="lazyload"
+                                    data-src="{{ asset('assets/images/kem-tri-nam-tot-nhat-hien-nay.jpg') }}">
                             </a>
                         </div>
                         <div class="content-box">
                             <h3 class="banner-title" style="color: #fff;">
-                                <span>
-                                    Lipstick
-                                </span>
-                                <span class="border-bt-hover" style="background-color: #fff;"></span>
+                                <span class="text-uppercase">Kem trị nám</span>
                             </h3>
                         </div>
                     </div>
@@ -83,22 +76,15 @@
                         <div class="img-box">
                             <a href="" class="animate-scale">
                                 <img
-                                    data-src="http://evalamo.com/wp-content/uploads/2019/05/kem-duong-trang-da-toan-than-nao-tot.jpg"
-                                    alt="cospora-theme"
-                                    class="lazyautosizes ls-is-cached lazyloaded"
-                                    data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-                                    data-sizes="auto"
-                                    data-image=""
-                                    sizes="380px"
-                                    src="http://evalamo.com/wp-content/uploads/2019/05/kem-duong-trang-da-toan-than-nao-tot.jpg">
+                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                    alt="Kem dưỡng trắng da"
+                                    class="lazyload"
+                                    data-src="{{ asset('assets/images/kem-duong-trang-da-toan-than-nao-tot.jpg') }}">
                             </a>
                         </div>
                         <div class="content-box">
                             <h3 class="banner-title" style="color: #fff;">
-                                <span>
-                                    Makeup
-                                </span>
-                                <span class="border-bt-hover" style="background-color: #fff;"></span>
+                                <span class="text-uppercase">Kem dưỡng trắng da</span>
                             </h3>
                         </div>
                     </div>
@@ -108,22 +94,15 @@
                         <div class="img-box">
                             <a href="" class="animate-scale">
                                 <img
-                                    data-src="http://evalamo.com/wp-content/uploads/2019/05/kem-tri-mun-hieu-qua-gia-re.jpg"
+                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                                     alt="cospora-theme"
-                                    class="lazyautosizes ls-is-cached lazyloaded"
-                                    data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-                                    data-sizes="auto"
-                                    data-image=""
-                                    sizes="380px"
-                                    src="http://evalamo.com/wp-content/uploads/2019/05/kem-tri-mun-hieu-qua-gia-re.jpg">
+                                    class="lazyload"
+                                    data-src="{{ asset('assets/images/kem-tri-mun-hieu-qua-gia-re.jpg') }}">
                             </a>
                         </div>
                         <div class="content-box">
-                            <h3 class="banner-title">
-                                <span>
-                                    Tools
-                                </span>
-                                <span class="border-bt-hover"></span>
+                            <h3 class="banner-title" style="color: #fff;">
+                                <span class="text-uppercase">Kem trị mun</span>
                             </h3>
                         </div>
                     </div>
@@ -137,150 +116,93 @@
                     <div class="widget-title">
                         <h3 class="box-title">
                             <span class="title">
-                                <span class="lang1">
-                                    Sản phẩm mới
-                                </span>
+                                <span class="lang1">Sản phẩm mới</span>
                             </span>
                         </h3>
                     </div>
+
                     <div class="clearfix"></div>
+
                     <div class="products-items">
                         <div class="bxslider">
                             {% for row in productsNew %}
-                            <div class="products-item">
-                                <div class="products-item-wrapper">
-                                    <div class="media-thumb">
-                                        <picture>
-                                            <img
-                                                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                data-src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('news_220_220') }}"
-                                                class="mr-3 img-thumbnail lazyload"
-                                                alt="{{ row.getName() }}" />
-                                        </picture>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0 mb-1">
-                                            <a href="{{ path('product_show', {'slug': row.getUrl() }) }}" title="{{ row.getName() }}">
-                                                <span>{{ row.getName() }}</span>
-                                            </a>
-                                        </h5>
-                                        {{ 4|rating }}
-                                        <div class="price-box">
-                                            {% if row.getRegularPrice() is empty and row.getSalePrice() is empty %}
-                                                <div class="price-regular">
-                                                    <span><span class="money">Liên hệ</span></span>
-                                                </div>
-                                            {% elseif row.getRegularPrice() > 0 and row.getSalePrice() > 0 %}
-                                                <div class="price-sale">
-                                                    <span class="old-price"><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
-                                                    <span class="special-price"><span class="money">{{ row.getSalePrice()|number_format(0, ',', '.') }}</span></span>
-                                                </div>
-                                            {% elseif row.getRegularPrice() > 0 and row.getSalePrice() is empty %}
-                                                <div class="price-regular">
-                                                    <span><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
-                                                </div>
-                                            {% endif %}
+                                <div class="products-item">
+                                    <div class="products-item-wrapper">
+                                        <div class="media-thumb">
+                                            <picture>
+                                                <img
+                                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                    data-src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('news_220_220') }}"
+                                                    class="mr-3 img-thumbnail lazyload"
+                                                    alt="{{ row.getName() }}" />
+                                            </picture>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="mt-0 mb-1">
+                                                <a href="{{ path('product_show', {'slug': row.getUrl() }) }}" title="{{ row.getName() }}">
+                                                    <span>{{ row.getName() }}</span>
+                                                </a>
+                                            </h5>
+                                            {{ 4|rating }}
+                                            <div class="price-box">
+                                                {% if row.getRegularPrice() is empty and row.getSalePrice() is empty %}
+                                                    <div class="price-regular">
+                                                        <span><span class="money">Liên hệ</span></span>
+                                                    </div>
+                                                {% elseif row.getRegularPrice() > 0 and row.getSalePrice() > 0 %}
+                                                    <div class="price-sale">
+                                                        <span class="old-price"><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                        <span class="special-price"><span class="money">{{ row.getSalePrice()|number_format(0, ',', '.') }}</span></span>
+                                                    </div>
+                                                {% elseif row.getRegularPrice() > 0 and row.getSalePrice() is empty %}
+                                                    <div class="price-regular">
+                                                        <span><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             {% endfor %}
-                            <div class="products-item">
-                                <div class="products-item-wrapper">
-                                    <div class="media-thumb">
-                                        <picture>
-                                            <img
-                                                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/11-compressor_076662b4-fa80-4ebb-97f6-f26db5adec01_300x.png?v=1574410402"
-                                                class="mr-3 img-thumbnail lazyload"
-                                                alt="" />
-                                        </picture>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0 mb-1">
-                                            <a title="" href="#" title="">
-                                                <span>Ainterdu pretium de miancelos dincidunts</span>
-                                            </a>
-                                        </h5>
-                                        <div class="rating">
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
+                            {% for row in productsNew %}
+                                <div class="products-item">
+                                    <div class="products-item-wrapper">
+                                        <div class="media-thumb">
+                                            <picture>
+                                                <img
+                                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                    data-src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('news_220_220') }}"
+                                                    class="mr-3 img-thumbnail lazyload"
+                                                    alt="{{ row.getName() }}" />
+                                            </picture>
                                         </div>
-                                        <div class="price-box">
-                                            <div class="price-regular">
-                                                <span><span class="money">Liên hệ</span></span>
+                                        <div class="media-body">
+                                            <h5 class="mt-0 mb-1">
+                                                <a href="{{ path('product_show', {'slug': row.getUrl() }) }}" title="{{ row.getName() }}">
+                                                    <span>{{ row.getName() }}</span>
+                                                </a>
+                                            </h5>
+                                            {{ 4|rating }}
+                                            <div class="price-box">
+                                                {% if row.getRegularPrice() is empty and row.getSalePrice() is empty %}
+                                                    <div class="price-regular">
+                                                        <span><span class="money">Liên hệ</span></span>
+                                                    </div>
+                                                {% elseif row.getRegularPrice() > 0 and row.getSalePrice() > 0 %}
+                                                    <div class="price-sale">
+                                                        <span class="old-price"><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                        <span class="special-price"><span class="money">{{ row.getSalePrice()|number_format(0, ',', '.') }}</span></span>
+                                                    </div>
+                                                {% elseif row.getRegularPrice() > 0 and row.getSalePrice() is empty %}
+                                                    <div class="price-regular">
+                                                        <span><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                    </div>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="products-item">
-                                <div class="products-item-wrapper">
-                                    <div class="media-thumb">
-                                        <picture>
-                                            <img
-                                                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                data-src="https://cdn.shopify.com/s/files/1/0270/5873/3109/products/1-compressor_1024x1024.png?v=1574408992"
-                                                class="mr-3 img-thumbnail lazyload"
-                                                alt="" />
-                                        </picture>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0 mb-1">
-                                            <a title="" href="#" title="">
-                                                <span>Ainterdu pretium de miancelos dincidunts</span>
-                                            </a>
-                                        </h5>
-                                        <div class="rating">
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                        </div>
-                                        <div class="price-box">
-                                            <div class="price-regular">
-                                                <span><span class="money">860.000</span></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="products-item">
-                                <div class="products-item-wrapper">
-                                    <div class="media-thumb">
-                                        <picture>
-                                            <img
-                                                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                data-src="https://cdn.shopify.com/s/files/1/0270/5873/3109/products/1-compressor_1024x1024.png?v=1574408992"
-                                                class="mr-3 img-thumbnail lazyload"
-                                                alt="" />
-                                        </picture>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0 mb-1">
-                                            <a title="" href="#" title="">
-                                                <span>Ainterdu pretium de miancelos dincidunts</span>
-                                            </a>
-                                        </h5>
-                                        <div class="rating">
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                        </div>
-                                        <div class="price-box">
-                                            <div class="price-regular">
-                                                <span><span class="money">860.000</span></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -293,9 +215,7 @@
                     <div class="widget-title">
                         <h3 class="box-title">
                             <span class="title">
-                                <span class="lang1">
-                                    Sản phẩm nổi bật
-                                </span>
+                                <span class="lang1">Sản phẩm nổi bật</span>
                             </span>
                         </h3>
                     </div>
@@ -305,140 +225,83 @@
                     <div class="products-items">
                         <div class="bxslider">
                             {% for row in productsHot %}
-                            <div class="products-item">
-                                <div class="products-item-wrapper">
-                                    <div class="media-thumb">
-                                        <picture>
-                                            <img
-                                                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                data-src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('news_220_220') }}"
-                                                class="mr-3 img-thumbnail lazyload"
-                                                alt="{{ row.getName() }}" />
-                                        </picture>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0 mb-1">
-                                            <a href="{{ path('product_show', {'slug': row.getUrl() }) }}" title="{{ row.getName() }}">
-                                                <span>{{ row.getName() }}</span>
-                                            </a>
-                                        </h5>
-                                        {{ 4|rating }}
-                                        <div class="price-box">
-                                            {% if row.getRegularPrice() is empty and row.getSalePrice() is empty %}
-                                                <div class="price-regular">
-                                                    <span><span class="money">Liên hệ</span></span>
-                                                </div>
-                                            {% elseif row.getRegularPrice() > 0 and row.getSalePrice() > 0 %}
-                                                <div class="price-sale">
-                                                    <span class="old-price"><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
-                                                    <span class="special-price"><span class="money">{{ row.getSalePrice()|number_format(0, ',', '.') }}</span></span>
-                                                </div>
-                                            {% elseif row.getRegularPrice() > 0 and row.getSalePrice() is empty %}
-                                                <div class="price-regular">
-                                                    <span><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
-                                                </div>
-                                            {% endif %}
+                                <div class="products-item">
+                                    <div class="products-item-wrapper">
+                                        <div class="media-thumb">
+                                            <picture>
+                                                <img
+                                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                    data-src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('news_220_220') }}"
+                                                    class="mr-3 img-thumbnail lazyload"
+                                                    alt="{{ row.getName() }}" />
+                                            </picture>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="mt-0 mb-1">
+                                                <a href="{{ path('product_show', {'slug': row.getUrl() }) }}" title="{{ row.getName() }}">
+                                                    <span>{{ row.getName() }}</span>
+                                                </a>
+                                            </h5>
+                                            {{ 4|rating }}
+                                            <div class="price-box">
+                                                {% if row.getRegularPrice() is empty and row.getSalePrice() is empty %}
+                                                    <div class="price-regular">
+                                                        <span><span class="money">Liên hệ</span></span>
+                                                    </div>
+                                                {% elseif row.getRegularPrice() > 0 and row.getSalePrice() > 0 %}
+                                                    <div class="price-sale">
+                                                        <span class="old-price"><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                        <span class="special-price"><span class="money">{{ row.getSalePrice()|number_format(0, ',', '.') }}</span></span>
+                                                    </div>
+                                                {% elseif row.getRegularPrice() > 0 and row.getSalePrice() is empty %}
+                                                    <div class="price-regular">
+                                                        <span><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             {% endfor %}
-                            <div class="products-item">
-                                <div class="products-item-wrapper">
-                                    <div class="media-thumb">
-                                        <picture>
-                                            <img
-                                                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                data-src="//cdn.shopify.com/s/files/1/0270/5873/3109/products/11-compressor_076662b4-fa80-4ebb-97f6-f26db5adec01_300x.png?v=1574410402"
-                                                class="mr-3 img-thumbnail lazyload"
-                                                alt="" />
-                                        </picture>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0 mb-1">
-                                            <a title="" href="#" title="">
-                                                <span>Ainterdu pretium de miancelos dincidunts</span>
-                                            </a>
-                                        </h5>
-                                        <div class="rating">
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
+                            {% for row in productsHot %}
+                                <div class="products-item">
+                                    <div class="products-item-wrapper">
+                                        <div class="media-thumb">
+                                            <picture>
+                                                <img
+                                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                    data-src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('news_220_220') }}"
+                                                    class="mr-3 img-thumbnail lazyload"
+                                                    alt="{{ row.getName() }}" />
+                                            </picture>
                                         </div>
-                                        <div class="price-box">
-                                            <div class="price-regular">
-                                                <span><span class="money">Liên hệ</span></span>
+                                        <div class="media-body">
+                                            <h5 class="mt-0 mb-1">
+                                                <a href="{{ path('product_show', {'slug': row.getUrl() }) }}" title="{{ row.getName() }}">
+                                                    <span>{{ row.getName() }}</span>
+                                                </a>
+                                            </h5>
+                                            {{ 4|rating }}
+                                            <div class="price-box">
+                                                {% if row.getRegularPrice() is empty and row.getSalePrice() is empty %}
+                                                    <div class="price-regular">
+                                                        <span><span class="money">Liên hệ</span></span>
+                                                    </div>
+                                                {% elseif row.getRegularPrice() > 0 and row.getSalePrice() > 0 %}
+                                                    <div class="price-sale">
+                                                        <span class="old-price"><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                        <span class="special-price"><span class="money">{{ row.getSalePrice()|number_format(0, ',', '.') }}</span></span>
+                                                    </div>
+                                                {% elseif row.getRegularPrice() > 0 and row.getSalePrice() is empty %}
+                                                    <div class="price-regular">
+                                                        <span><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                    </div>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="products-item">
-                                <div class="products-item-wrapper">
-                                    <div class="media-thumb">
-                                        <picture>
-                                            <img
-                                                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                data-src="https://cdn.shopify.com/s/files/1/0270/5873/3109/products/1-compressor_1024x1024.png?v=1574408992"
-                                                class="mr-3 img-thumbnail lazyload"
-                                                alt="" />
-                                        </picture>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0 mb-1">
-                                            <a title="" href="#" title="">
-                                                <span>Ainterdu pretium de miancelos dincidunts</span>
-                                            </a>
-                                        </h5>
-                                        <div class="rating">
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                        </div>
-                                        <div class="price-box">
-                                            <div class="price-regular">
-                                                <span><span class="money">860.000</span></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="products-item">
-                                <div class="products-item-wrapper">
-                                    <div class="media-thumb">
-                                        <picture>
-                                            <img
-                                                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                                data-src="https://cdn.shopify.com/s/files/1/0270/5873/3109/products/1-compressor_1024x1024.png?v=1574408992"
-                                                class="mr-3 img-thumbnail lazyload"
-                                                alt="" />
-                                        </picture>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0 mb-1">
-                                            <a title="" href="#" title="">
-                                                <span>Ainterdu pretium de miancelos dincidunts</span>
-                                            </a>
-                                        </h5>
-                                        <div class="rating">
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                            <div class="star-full "></div>
-                                        </div>
-                                        <div class="price-box">
-                                            <div class="price-regular">
-                                                <span><span class="money">860.000</span></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -447,7 +310,7 @@
 
         <section class="home-new-product-tab">
             <div class="container">
-                <img src="http://evalamo.com/wp-content/uploads/2019/05/serum-tri-nam.jpg">
+                <img src="{{ asset('assets/images/serum-tri-nam.jpg') }}" alt="Serum trị nám">
              </div>
         </section>
 

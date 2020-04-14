@@ -1,0 +1,149 @@
+{% extends 'layout.html.twig' %}
+
+{% if category is defined %}
+    {% block title %} {{ "Cửa hàng Lily House" ~ ' - Trang ' ~ pagination.currentPageNumber }} {% endblock %}
+    {% block description %} {{ "Cửa hàng Lily House" ~ ' - Trang ' ~ pagination.currentPageNumber }} {% endblock %}
+{% endif %}
+
+{% block body %}
+    <div class="wrapper-body wrapper-container" id="PageContainer">
+        <div class="main-content" id="MainContent">
+            <div class="product-template product-template-default">
+                <div class="container">
+                    {{ include('news/components/breadcrumbs.html.twig') }}
+
+                    <div class="halo-product-content">
+                        <div class="row pro-page">
+                            <div id="shopify-section-sidebar-section" class="shopify-section col-12 col-xl-3 col-sidebar">
+                                <div class="sidebar">
+                                    <div class="widget sidebar-links">
+                                        <div class="widget-title">
+                                            <h3 class="sidebar-title">
+                                                <span>Danh mục sản phẩm</span>
+                                            </h3>
+                                        </div>
+                                        <div class="widget-content">
+                                            <ul>
+                                                <li class="sidebar-link-lv1 dropdown">
+                                                    <p class="link-action-wrapper">
+                                                        <a href="{{ path('shop') }}">
+                                                            <span>Cửa hàng Lily House</span>
+                                                        </a>
+                                                    </p>
+                                                </li>
+                                                <li class="sidebar-link-lv1 dropdown">
+                                                    <p class="link-action-wrapper">
+                                                        <a href="{{ path('shop_category', {'level1': 'cham-soc-da' }) }}">
+                                                            <span>Chăm sóc da</span>
+                                                        </a>
+                                                    </p>
+                                                </li>
+                                                <li class="sidebar-link-lv1">
+                                                    <p class="link-action-wrapper">
+                                                        <a href="{{ path('shop_category', {'level1': 'cham-soc-toc' }) }}">
+                                                            <span>Chăm sóc tóc</span>
+                                                        </a>
+                                                    </p>
+                                                </li>
+                                                <li class="sidebar-link-lv1">
+                                                    <p class="link-action-wrapper">
+                                                        <a href="{{ path('shop_category', {'level1': 'cham-soc-suc-khoe' }) }}">
+                                                            <span>Chăm sóc sức khỏe</span>
+                                                        </a>
+                                                    </p>
+                                                </li>
+                                                <li class="sidebar-link-lv1">
+                                                    <p class="link-action-wrapper">
+                                                        <a href="{{ path('shop_category', {'level1': 'me-va-be' }) }}">
+                                                            <span>Mẹ và bé</span>
+                                                        </a>
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    {{ render(controller(
+                                        'AppBundle:Product:productHot'
+                                    )) }}
+
+                                    <div class="widget sidebar-banner">
+                                        <img
+                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                            data-src="{{ asset('assets/images/sua-rua-mat-tot-cho-da-dau.jpg') }}"
+                                            alt="Lily House"
+                                            class="lazyload" >
+                                    </div>
+                                    <div class="widget sidebar-banner">
+                                        <img
+                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                            data-src="{{ asset('assets/images/kem-duong-trang-da-toan-than-nao-tot.jpg') }}"
+                                            alt="Lily House"
+                                            class="lazyload" >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="shopify-section-product-template-default" class="shopify-section col-12 col-xl-9 col-main">
+                                <div>
+                                    <header class="collection-header">
+                                        <div class="collection-wrapper">
+                                            <h1>
+                                                <span>
+                                                    {{ 'Cửa hàng Lily House' }}
+                                                </span>
+                                            </h1>
+                                        </div>
+                                    </header>
+                                    <div class="product-collection products-grid row">
+                                        {% for row in pagination %}
+                                            <div class="grid-item col-6 col-md-4 col-lg-3">
+                                                <div class="products-item">
+                                                    <div class="products-item-wrapper">
+                                                        <div class="media-thumb">
+                                                            <picture>
+                                                                <img
+                                                                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                                                    data-src="{{ (vich_uploader_asset(row, 'imageFile') ? vich_uploader_asset(row, 'imageFile') : asset('assets/images/no-image.png')) | imagine_filter('news_220_220') }}"
+                                                                    class="mr-3 img-thumbnail lazyload"
+                                                                    alt="{{ row.getName() }}" />
+                                                            </picture>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h5 class="mt-0 mb-1">
+                                                                <a href="{{ path('product_show', {'slug': row.getUrl() }) }}" title="{{ row.getName() }}">
+                                                                    <span>{{ row.getName() }}</span>
+                                                                </a>
+                                                            </h5>
+                                                            {{ 4|rating }}
+                                                            <div class="price-box">
+                                                                {% if row.getRegularPrice() is empty and row.getSalePrice() is empty %}
+                                                                    <div class="price-regular">
+                                                                        <span><span class="money">Liên hệ</span></span>
+                                                                    </div>
+                                                                {% elseif row.getRegularPrice() > 0 and row.getSalePrice() > 0 %}
+                                                                    <div class="price-sale">
+                                                                        <span class="old-price"><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                                        <span class="special-price"><span class="money">{{ row.getSalePrice()|number_format(0, ',', '.') }}</span></span>
+                                                                    </div>
+                                                                {% elseif row.getRegularPrice() > 0 and row.getSalePrice() is empty %}
+                                                                    <div class="price-regular">
+                                                                        <span><span class="money">{{ row.getRegularPrice()|number_format(0, ',', '.') }}</span></span>
+                                                                    </div>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
