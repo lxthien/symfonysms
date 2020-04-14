@@ -7,6 +7,7 @@ footer {
     h3.text-uppercase {
         font-family: $robotoCondesed;
         margin-bottom: 20px;
+        font-size: 22px;
 
         @media (max-width: 767.98px) {
             margin-top: 20px;
@@ -52,5 +53,11 @@ footer {
                 }
             }
         }
+    }
+
+    .fb-page,
+    .fb-page span,
+    .fb-page span iframe[style] {
+        max-width: 100% !important;
     }
 }
