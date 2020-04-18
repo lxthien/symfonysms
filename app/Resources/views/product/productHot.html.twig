@@ -21,11 +21,11 @@
                         </div>
                         <div class="media-body">
                             <h5 class="mt-0 mb-1">
-                                <a href="#" title="{{ row.getName() }}">
+                                <a href="{{ path('product_show', {'slug': row.getUrl() }) }}" title="{{ row.getName() }}">
                                     <span>{{ row.getName() }}</span>
                                 </a>
                             </h5>
-                            {{ 4|rating }}
+                            {{ row.ratingNumber|rating }}
                             <div class="price-box">
                                 {% if row.getRegularPrice() is empty and row.getSalePrice() is empty %}
                                     <div class="price-regular">

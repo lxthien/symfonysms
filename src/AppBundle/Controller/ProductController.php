@@ -130,8 +130,6 @@ class ProductController extends Controller
             throw $this->createNotFoundException("The item does not exist");
         }
 
-        //echo $product->getProductCat()[0]->getName(); die;
-
         $shippingAndReturn = $this->getDoctrine()
             ->getRepository(News::class)
             ->findOneBy(
@@ -225,7 +223,7 @@ class ProductController extends Controller
             ->getQuery()->getResult();
         
         // Init breadcrum for the post
-        $breadcrumbs = $this->buildBreadcrums(null, $product, null);
+        $breadcrumbs = $this->buildBreadcrums($product->getProductCat()[0], $product, null);
 
         $imagePath = $this->helper->asset($product, 'imageFile');
         $imagePath = substr($imagePath, 1);
@@ -258,6 +256,20 @@ class ProductController extends Controller
             ->setParameter('isHot', 1)
             ->orderBy('n.createdAt', 'DESC')
             ->getQuery()->getResult();
+
+        foreach ($products as $row) {
+            $repositoryRating = $this->getDoctrine()->getManager();
+            $queryRating = $repositoryRating->createQuery(
+                'SELECT AVG(r.rating) as ratingValue
+                FROM AppBundle:Rating r
+                WHERE r.product = :product_id'
+            )->setParameter('product_id', $row->getId());
+            $rating = $queryRating->setMaxResults(1)->getOneOrNullResult();
+
+            $ratingValue = !empty($rating['ratingValue']) ? str_replace('.0', '', number_format($rating['ratingValue'], 1)) : 0;
+
+            $row->ratingNumber = $ratingValue;
+        }
 
         return $this->render('product/productHot.html.twig', [
             'products' => $products,
@@ -316,7 +328,7 @@ class ProductController extends Controller
         // Breadcrum for category page
         if (!empty($productCat)) {
             if ($productCat->getParentcat() === 'root') {
-                $breadcrumbs->addItem($productCat->getName(), $this->generateUrl("news_category", array('level1' => $productCat->getUrl() )));
+                $breadcrumbs->addItem($productCat->getName(), $this->generateUrl("shop_category", array('level1' => $productCat->getUrl() )));
             } else {
                 //$breadcrumbs->addItem($productCat->getParentcat()->getName(), $this->generateUrl("news_category", array('level1' => $productCat->getParentcat()->getUrl() )));
                 //$breadcrumbs->addItem($productCat->getName(), $this->generateUrl("list_category", array('level1' => $productCat->getParentcat()->getUrl(), 'level2' => $productCat->getUrl() )));

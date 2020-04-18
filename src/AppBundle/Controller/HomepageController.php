@@ -50,7 +50,22 @@ class HomepageController extends Controller
             ->where('n.enable = :enable')
             ->setParameter('enable', 1)
             ->orderBy('n.createdAt', 'DESC')
+            ->setMaxResults( 10 )
             ->getQuery()->getResult();
+
+        foreach ($productsNew as $row) {
+            $repositoryRating = $this->getDoctrine()->getManager();
+            $queryRating = $repositoryRating->createQuery(
+                'SELECT AVG(r.rating) as ratingValue
+                FROM AppBundle:Rating r
+                WHERE r.product = :product_id'
+            )->setParameter('product_id', $row->getId());
+            $rating = $queryRating->setMaxResults(1)->getOneOrNullResult();
+
+            $ratingValue = !empty($rating['ratingValue']) ? str_replace('.0', '', number_format($rating['ratingValue'], 1)) : 0;
+
+            $row->ratingNumber = $ratingValue;
+        }
 
         $productsHot = $this->getDoctrine()
             ->getRepository(Product::class)
@@ -61,6 +76,20 @@ class HomepageController extends Controller
             ->setParameter('isHot', 1)
             ->orderBy('n.createdAt', 'DESC')
             ->getQuery()->getResult();
+
+        foreach ($productsHot as $row) {
+            $repositoryRating = $this->getDoctrine()->getManager();
+            $queryRating = $repositoryRating->createQuery(
+                'SELECT AVG(r.rating) as ratingValue
+                FROM AppBundle:Rating r
+                WHERE r.product = :product_id'
+            )->setParameter('product_id', $row->getId());
+            $rating = $queryRating->setMaxResults(1)->getOneOrNullResult();
+
+            $ratingValue = !empty($rating['ratingValue']) ? str_replace('.0', '', number_format($rating['ratingValue'], 1)) : 0;
+
+            $row->ratingNumber = $ratingValue;
+        }
 
         return $this->render('homepage/index.html.twig', [
             'blocksOnHomepage' => $blocksOnHomepage,
