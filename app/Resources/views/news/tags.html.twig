@@ -17,37 +17,37 @@
 {% endblock %}
 
 {% block body %}
-    {# breadcrumbs #}
-    {{ include('news/components/breadcrumbs.html.twig', {type: 'category', title: tag.getName(), description: tag.getContents() }) }}
-
-    <div class="container wrapper-container">
-        <div class="row category-list-items">
-            <div class="col-12 col-md-12 col-lg-12">
-                {# List item on this page #}
+    <div class="container contacts wrapper-post-container">
+        <div class="row post-container">
+            <div class="container">
+                {{ include('news/components/breadcrumbs.html.twig') }}
+            </div>
+            
+            {{ include('layout/sidebar.html.twig') }}
+            
+            <div class="col-xs-12 col-sm-12 col-md-9">
+                <h1>{{ tag.getName() }}</h1>
+                <p>{{ tag.getContents()|raw }}</p>
                 {% if pagination|length > 0  %}
-                    {# Sort #}
                     {% if get_setting('isShowSortOnCategory') %}
                         {{ include('news/components/sort.html.twig') }}
                     {% endif %}
 
                     <div class="list-news-items">
                         <div class="row">
-                            {% for row in pagination %}
-                                {{ include('news/components/itemsGrid.html.twig') }}
-                            {% endfor %}
+                            <div class="home-spotlight-block">
+                                {% for row in pagination %}
+                                    {{ include('news/components/itemsGrid.html.twig') }}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
 
-                    {# Pagination #}
                     {{ include('news/components/pagination.html.twig') }}
                 {% else %}
                     {{ include('news/components/noRecord.html.twig') }}
                 {% endif %}
             </div>
         </div>
-
-        {{ render(controller(
-            'AppBundle:News:listNewsByCategory', { 'categoryId': 2 }
-        )) }}
     </div>
 {% endblock %}
