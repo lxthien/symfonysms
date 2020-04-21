@@ -76,6 +76,13 @@ class Rating
     private $rating;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="enable", type="boolean")
+     */
+    private $enable = false;
+
+    /**
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
@@ -222,6 +229,29 @@ class Rating
     public function getRating()
     {
         return $this->rating;
+    }
+
+    /**
+     * Set enable
+     *
+     * @param bool $enable
+     * @return Rating
+     */
+    public function setEnable($enable)
+    {
+        $this->enable = $enable;
+
+        return $this;
+    }
+
+    /**
+     * Get enable
+     *
+     * @return bool
+     */
+    public function getEnable()
+    {
+        return $this->enable;
     }
 
     /**

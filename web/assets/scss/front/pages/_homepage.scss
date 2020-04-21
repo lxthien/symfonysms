@@ -42,7 +42,6 @@
         .item {
             img {
                 width: 100%;
-                height: 550px;
 
                 /* Small Devices, Tablets */
                 @media only screen and (max-width : 768px) {
@@ -154,6 +153,10 @@
         display: inline-block;
         font-family: $arimo;
 
+        @media only screen and (max-width: 767.98px) {
+            padding: 0 10px;
+        }
+
         &::before,
         &::after {
             top: 50%;
@@ -162,18 +165,30 @@
             position: absolute;
             background-color: #141414;
             content: "";
+
+            @media only screen and (max-width: 767.98px) {
+                width: 50px;
+            }
         }
 
         &::before {
             left: -120px;
             -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
+
+            @media only screen and (max-width: 767.98px) {
+                left: -50px;
+            }
         }
 
         &::after {
             right: -120px;
             -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
+
+            @media only screen and (max-width: 767.98px) {
+                right: -50px;
+            }
         }
     }
 }

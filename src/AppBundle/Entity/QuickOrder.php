@@ -147,7 +147,7 @@ class QuickOrder
      */
     public function getCustomerGender()
     {
-        return $this->customerGender;
+        return $this->customerGender == 0 ? 'Nam' : 'Nữ';
     }
     
     /**

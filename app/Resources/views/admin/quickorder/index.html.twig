@@ -1,0 +1,47 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body_id 'admin_quickorder_index' %}
+
+{% block main %}
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Order</strong>
+                        </div>
+                        <div class="card-body">
+                            <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Gender</th>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>Product</th>
+                                        <th>Qty</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in objects %}
+                                    <tr>
+                                        <td>{{ row.getCustomerGender() }}</td>
+                                        <td>{{ row.getCustomerName() }}</td>
+                                        <td>{{ row.getCustomerPhone() }}</td>
+                                        <td>{{ row.getCustomerEmail() }}</td>
+                                        <td>{{ row.getCustomerAddress() }}</td>
+                                        <td>{{ row.getProduct().getName() }}</td>
+                                        <td>{{ row.getQty() }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

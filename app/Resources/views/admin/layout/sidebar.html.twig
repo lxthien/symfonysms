@@ -98,6 +98,19 @@
 
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="menu-icon fa fa-file"></i>
+                        Đơn hàng
+                    </a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li>
+                            <i class="fa fa-list-alt"></i>
+                            <a href="{{ path('admin_quickorder_index') }}">Danh sách đơn hàng</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="menu-icon fa fa-picture-o"></i>
                         {{ 'menu.banners'|trans }}
                     </a>
