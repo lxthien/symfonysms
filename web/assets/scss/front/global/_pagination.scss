@@ -1,7 +1,7 @@
 .pagination {
     margin: 20px auto 0;
     display: block;
-    border: 1px solid $killarney;
+    border-bottom: 1px solid $primaryColor;
     padding: 10px 0;
     text-align: center;
     border-radius: 0;
@@ -10,12 +10,22 @@
         display: inline-block;
         padding: 0px 10px;
         margin: 0 3px;
-        border: 1px solid $mercury;
+        border: 1px solid $primaryColor;
         font-size: 13px;
 
+        &:hover {
+            background: $primaryColor2;
+            border: 1px solid $primaryColor2;
+
+            a {
+                color: $white;
+                text-decoration: none;
+            }
+        }
+
         &.current {
-            background: $killarney;
-            border: 1px solid $killarney;
+            background: $primaryColor2;
+            border: 1px solid $primaryColor2;
             color: $white;
         }
     }

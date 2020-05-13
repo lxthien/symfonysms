@@ -38,11 +38,6 @@ class Builder implements ContainerAwareInterface
             'routeParameters' => ['slug' => 'gioi-thieu']
         ]);
 
-        $menu['Giới thiệu']->addChild('Chính sách chất lượng', [
-            'route' => 'news_show',
-            'routeParameters' => ['slug' => 'chinh-sach-chat-luong']
-        ]);
-
         $menu['Giới thiệu']->addChild('Tuyển dụng', [
             'route' => 'news_show',
             'routeParameters' => ['slug' => 'tuyen-dung']
