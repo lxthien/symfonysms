@@ -197,6 +197,19 @@
     margin: 10px 0 20px;
 
     .rating-container {
+        .rating {
+            .star-empty {
+                font-family: "Font Awesome 5 Free";
+    
+                &:before {
+                    content: "\F005";
+                }
+            }
+            .star-full {
+                font-family: "Font Awesome 5 Free";
+            }
+        }
+
         a#rating {
             display: inline-block;
             font-size: 20px;
@@ -231,6 +244,15 @@
 }
 
 #form-rating-container {
+    .rating {
+        .star {
+            font-family: "Font Awesome 5 Free";
+
+            &:before {
+                content: "\F005";
+            }
+        }
+    }
     .rating-message {
         color: $primaryColor;
         margin: 0;
