@@ -222,6 +222,9 @@ class NewsController extends Controller
         // Init breadcrum for the post
         $breadcrumbs = $this->buildBreadcrums(null, $post, null);
 
+        // Filter content to support Lazy Loading
+        $contentsLazy = $this->lazyloadContent($post);
+
         if ($post->isPage()) {
             return $this->render('news/page.html.twig', [
                 'post'          => $post,
@@ -240,6 +243,7 @@ class NewsController extends Controller
 
             return $this->render('news/show.html.twig', [
                 'post'          => $post,
+                'contentsLazy'  => $contentsLazy,
                 'relatedNews'   => $relatedNews,
                 'form'          => $form->createView(),
                 'formRating'    => $formRating->createView(),
@@ -251,6 +255,150 @@ class NewsController extends Controller
                 'imageSize'    => $imageSize
             ]);
         }
+    }
+
+    private function lazyloadContent($post) {
+        $content = $post->getContents();
+        $dom = new \DOMDocument();
+
+        // set error level
+        $internalErrors = libxml_use_internal_errors(true);
+
+        $dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+
+        // Restore error level
+        libxml_use_internal_errors($internalErrors);
+
+        $imgs = $dom->getElementsByTagName('img');
+        
+        foreach ( $imgs as $img) {
+            $src = $img->getAttribute('src');
+            $alt = $img->getAttribute('alt');
+            $img->setAttribute('data-src', $src);
+            $img->setAttribute('alt', $alt);
+            $img->setAttribute('class', 'lazyload');
+            $img->setAttribute('src', 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
+        }
+        
+        return html_entity_decode($dom->saveHTML());
+    }
+
+    /**
+     * @Route("amp/{slug}.html",
+     *      defaults={"_format"="html"},
+     *      name="amp_show",
+     *      requirements={
+     *          "slug": "[^/\.]++"
+     *      })
+     */
+    public function ampShowAction($slug, Request $request)
+    {
+        if ($request->query->get('preview') === false || $request->query->get('preview_id') === null) {
+            $post = $this->getDoctrine()
+                ->getRepository(News::class)
+                ->findOneBy(
+                    array('url' => $slug, 'enable' => 1)
+                );
+        } else {
+            $post = $this->getDoctrine()
+                ->getRepository(News::class)
+                ->find($request->query->get('preview_id'));
+        }
+
+        if (!$post) {
+            throw $this->createNotFoundException("The item does not exist");
+        }
+
+        // Update viewCount for post
+        $post->setViewCounts( $post->getViewCounts() + 1 );
+        $this->getDoctrine()->getManager()->flush();
+
+        // Get news related
+        $relatedNews = $this->getDoctrine()
+            ->getRepository(News::class)
+            ->createQueryBuilder('r')
+            ->where('r.id <> :id')
+            ->andWhere('r.postType = :postType')
+            ->andWhere('r.category = :category')
+            ->andWhere('r.enable = :enable')
+            ->setParameter('id', $post->getId())
+            ->setParameter('postType', $post->getPostType())
+            ->setParameter('category', $post->getCategory())
+            ->setParameter('enable', 1)
+            ->setMaxResults( 8 )
+            ->orderBy('r.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+        // Get the list comment for post
+        $comments = $this->getDoctrine()
+            ->getRepository(Comment::class)
+            ->createQueryBuilder('c')
+            ->where('c.news_id = :news_id')
+            ->andWhere('c.approved = :approved')
+            ->setParameter('news_id', $post->getId())
+            ->setParameter('approved', 1)
+            ->getQuery()->getResult();
+
+        // Get rating of the post
+        $repositoryRating = $this->getDoctrine()->getManager();
+
+        $queryRating = $repositoryRating->createQuery(
+            'SELECT AVG(r.rating) as ratingValue, COUNT(r) as ratingCount
+            FROM AppBundle:Rating r
+            WHERE r.news_id = :news_id'
+        )->setParameter('news_id', $post->getId());
+
+        $rating = $queryRating->setMaxResults(1)->getOneOrNullResult();
+
+        // Init breadcrum for the post
+        $breadcrumbs = $this->buildBreadcrums(null, $post, null);
+
+        // Filter content to support Lazy Loading
+        $contentsAmp = $this->amploadContent($post);
+
+        return $this->render('amp/amp-theme/index.html.twig', [
+            'post'          => $post,
+            'contentsAmp'   => $contentsAmp,
+            'relatedNews'   => !empty($relatedNews) ? $relatedNews : NULL,
+            'category'      => !empty($category) ? $category : NULL,
+            'rating'        => !empty($rating['ratingValue']) ? str_replace('.0', '', number_format($rating['ratingValue'], 1)) : 0,
+            'ratingPercent' => str_replace('.00', '', number_format(($rating['ratingValue'] * 100) / 5, 2)),
+            'ratingValue'   => round($rating['ratingValue']),
+            'ratingCount'   => round($rating['ratingCount']),
+            'comments'      => $comments
+        ]);
+    }
+
+    private function amploadContent($post) {
+        $html = $post->getContents();
+        preg_match_all("#<img(.*?)\\/?>#", $html, $img_matches);
+
+        foreach ($img_matches[1] as $key => $img_tag) {
+            preg_match_all('/(alt|src|width|height)=["\'](.*?)["\']/i', $img_tag, $attribute_matches);
+            $attributes = array_combine($attribute_matches[1], $attribute_matches[2]);
+
+            if (!array_key_exists('width', $attributes) || !array_key_exists('height', $attributes)) {
+                if (array_key_exists('src', $attributes)) {
+                    list($width, $height) = @getimagesize(substr($attributes['src'], 1));
+                    $attributes['width'] = !empty($width) ? $width : 500;
+                    $attributes['height'] = !empty($height) ? $height : 500;
+                }
+            }
+
+            $amp_tag = '<amp-img ';
+            foreach ($attributes as $attribute => $val) {
+                $amp_tag .= $attribute .'="'. $val .'" ';
+            }
+
+            $amp_tag .= 'layout="responsive"';
+            $amp_tag .= '>';
+            $amp_tag .= '</amp-img>';
+
+            $html = str_replace($img_matches[0][$key], $amp_tag, $html);
+        }
+
+        return html_entity_decode($html);
     }
 
     /**

@@ -69,6 +69,9 @@ twig:
     form_themes:
         - 'form/layout.html.twig'
         - 'form/fields.html.twig'
+    paths:
+        'web/build': 'web'
+        'app/Resources/views/amp/amp-theme': 'amp_theme'
 
 # Doctrine Configuration (used to access databases and manipulate their information)
 doctrine:
@@ -182,6 +185,14 @@ liip_imagine:
             quality: 100
             filters:
                 thumbnail: { size: [224, 169], mode: outbound }
+        banner_768_400:
+            quality: 100
+            filters:
+                thumbnail: { size: [768, 400], mode: outbound }
+        banner_1500_500:
+            quality: 100
+            filters:
+                thumbnail: { size: [1500, 500], mode: outbound }
 
 # KnpPaginationBundle
 knp_paginator:
@@ -216,7 +227,7 @@ white_october_breadcrumbs:
 ewz_recaptcha:
     public_key:  6LfF6jkUAAAAAEXwdFdSqBiu7S5EQ6EuDAf449uM
     private_key: 6LfF6jkUAAAAAJzxFsfmh2Pt3MxuQT5MC62fzPiH
-    locale_key:  %kernel.default_locale%
+    locale_key:  '%kernel.default_locale%'
     locale_from_request: true
 
 # FriendSofBundle

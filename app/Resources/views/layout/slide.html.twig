@@ -10,10 +10,19 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img class="lazyload"
-                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    data-src="{{ asset('assets/images/banner/banner-cafe-cach-coffee.jpg') }}"
-                    alt="Cach Cafe">
+                <picture>
+                    <source
+                        srcset="{{ asset('assets/images/banner/banner-cafe-cach-coffee.jpg') | imagine_filter('banner_768_400') }}"
+                        media="(max-width: 799px)" />
+                    <source
+                        srcset="{{ asset('assets/images/banner/banner-cafe-cach-coffee.jpg') | imagine_filter('banner_1500_500') }}"
+                        media="(min-width: 800px)" />
+                    <img
+                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                        data-src="{{ asset('assets/images/banner/banner-cafe-cach-coffee.jpg') | imagine_filter('banner_1500_500') }}"
+                        alt="Cach Cafe"
+                        class="lazyload" />
+                </picture>
                 <div class="container">
                     <div class="carousel-caption text-left">
                         <h2>Cach Cafe</h2>
@@ -21,22 +30,40 @@
                 </div>
             </div>
             <div class="item">
-                <img class="lazyload"
-                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    data-src="{{ asset('assets/images/banner/banner-cafe.jpg') }}"
-                    alt="Xây Dựng Minh Duy">
+                <picture>
+                    <source
+                        srcset="{{ asset('assets/images/banner/banner-cafe.jpg') | imagine_filter('banner_768_400') }}"
+                        media="(max-width: 799px)" />
+                    <source
+                        srcset="{{ asset('assets/images/banner/banner-cafe.jpg') | imagine_filter('banner_1500_500') }}"
+                        media="(min-width: 800px)" />
+                    <img
+                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                        data-src="{{ asset('assets/images/banner/banner-cafe.jpg') | imagine_filter('banner_1500_500') }}"
+                        alt="Xây Dựng Minh Duy"
+                        class="lazyload" />
+                </picture>
                 <div class="container">
                     <div class="carousel-caption text-left">
                         <h3>Xây Dựng Minh Duy</h3>
                     </div>
                 </div>
             </div>
-			<div class="item">
+            <div class="item">
                 <a href="{{ path('news_show', {'slug': 'du-an-xay-nha-tron-goi-cmt8-quan-10-tp-hcm' }) }}">
-                    <img class="lazyload"
-                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    data-src="{{ asset('assets/images/banner/xay-nha-tron-goi-cmt8.jpg') }}"
-                    alt="Công Trình Xây Nhà Trọn Gói CMT8">
+                    <picture>
+                        <source
+                            srcset="{{ asset('assets/images/banner/xay-nha-tron-goi-cmt8.jpg') | imagine_filter('banner_768_400') }}"
+                            media="(max-width: 799px)" />
+                        <source
+                            srcset="{{ asset('assets/images/banner/xay-nha-tron-goi-cmt8.jpg') | imagine_filter('banner_1500_500') }}"
+                            media="(min-width: 800px)" />
+                        <img
+                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                            data-src="{{ asset('assets/images/banner/xay-nha-tron-goi-cmt8.jpg') | imagine_filter('banner_1500_500') }}"
+                            alt="Công Trình Xây Nhà Trọn Gói CMT8"
+                            class="lazyload" />
+                    </picture>
                 </a>
                 <div class="container">
                     <div class="carousel-caption text-left">
@@ -46,10 +73,19 @@
             </div>
             <div class="item">
                 <a href="{{ path('homepage') }}">
-                    <img class="lazyload"
-                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-src="{{ asset('assets/images/banner/minhduyconstruction.jpg') }}"
-                        alt="Minh Duy Construction">
+                    <picture>
+                        <source
+                            srcset="{{ asset('assets/images/banner/minhduyconstruction.jpg') | imagine_filter('banner_768_400') }}"
+                            media="(max-width: 799px)" />
+                        <source
+                            srcset="{{ asset('assets/images/banner/minhduyconstruction.jpg') | imagine_filter('banner_1500_500') }}"
+                            media="(min-width: 800px)" />
+                        <img
+                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                            data-src="{{ asset('assets/images/banner/minhduyconstruction.jpg') | imagine_filter('banner_1500_500') }}"
+                            alt="Minh Duy Construction"
+                            class="lazyload" />
+                    </picture>
                 </a>
                 <div class="container">
                     <div class="carousel-caption text-left">
@@ -59,10 +95,19 @@
             </div>
             <div class="item">
                 <a href="{{ path('news_show', {'slug': 'xay-nha-pho-4-tang-anh-huu-quan-12' }) }}">
-                    <img class="lazyload"
-                        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-src="{{ asset('assets/images/banner/banner-xay-nha-pho-3-tang-thay-hanh.jpg') }}"
-                        alt="Xây nhà phố 3 tầng, Thầy Hạnh">
+                    <picture>
+                        <source
+                            srcset="{{ asset('assets/images/banner/banner-xay-nha-pho-3-tang-thay-hanh.jpg') | imagine_filter('banner_768_400') }}"
+                            media="(max-width: 799px)" />
+                        <source
+                            srcset="{{ asset('assets/images/banner/banner-xay-nha-pho-3-tang-thay-hanh.jpg') | imagine_filter('banner_1500_500') }}"
+                            media="(min-width: 800px)" />
+                        <img
+                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                            data-src="{{ asset('assets/images/banner/banner-xay-nha-pho-3-tang-thay-hanh.jpg') | imagine_filter('banner_1500_500') }}"
+                            alt="Xây nhà phố 3 tầng, Thầy Hạnh"
+                            class="lazyload" />
+                    </picture>
                 </a>
                 <div class="container">
                     <div class="carousel-caption text-left">
