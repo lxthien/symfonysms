@@ -113,6 +113,11 @@
             {{ include('layout/footer.html.twig') }}
             {{ include('layout/footer_UI.html.twig') }}
 
+            {{ include('layout/contactbar.html.twig') }}
+            {% block contactHotline %}
+                {{ include('layout/hotline.html.twig') }}
+            {% endblock %}
+
             {{ get_setting('facebookMessenger')|raw }}
 
             <!-- Google Tag Manager (noscript) -->
