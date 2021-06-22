@@ -82,6 +82,11 @@ class Builder implements ContainerAwareInterface
             'routeParameters' => ['slug' => 'bao-gia-thiet-ke-thi-cong-quan-cafe-tron-goi-tai-tphcm']
         ]);
 
+        $menu['Bảng giá']->addChild('Thi công nội thất chung cư', [
+            'route' => 'news_show',
+            'routeParameters' => ['slug' => 'don-gia-thi-cong-noi-that-chung-cu']
+        ]);
+
         $menu->addChild('Xây dựng', [
             'route' => 'news_category',
             'routeParameters' => ['level1' => 'xay-dung']

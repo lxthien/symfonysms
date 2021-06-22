@@ -245,7 +245,8 @@
 
 #form-rating-container {
     .rating {
-        .star {
+        .star,
+        .star-full {
             font-family: "Font Awesome 5 Free";
 
             &:before {

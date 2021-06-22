@@ -98,3 +98,9 @@ dmishh_settings:
             type: Symfony\Component\Form\Extension\Core\Type\TextType
             options:
                 required: false
+        dmcaScript:
+            type: Symfony\Component\Form\Extension\Core\Type\TextareaType
+            options:
+                required: false
+                attr:
+                    rows: 5

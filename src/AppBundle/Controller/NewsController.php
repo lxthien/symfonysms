@@ -226,6 +226,10 @@ class NewsController extends Controller
         $contentsLazy = $this->lazyloadContent($post);
 
         if ($post->isPage()) {
+            $imagePath = $this->helper->asset($post, 'imageFile');
+            $imagePath = substr($imagePath, 1);
+            $imageSize = @getimagesize($imagePath);
+
             return $this->render('news/page.html.twig', [
                 'post'          => $post,
                 'form'          => $form->createView(),
@@ -234,7 +238,8 @@ class NewsController extends Controller
                 'ratingPercent' => str_replace('.00', '', number_format(($rating['ratingValue'] * 100) / 5, 2)),
                 'ratingValue'   => round($rating['ratingValue']),
                 'ratingCount'   => round($rating['ratingCount']),
-                'comments'      => $comments
+                'comments'      => $comments,
+                'imageSize'     => $imageSize
             ]);
         } else {
             $imagePath = $this->helper->asset($post, 'imageFile');
