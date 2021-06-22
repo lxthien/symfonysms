@@ -6,7 +6,11 @@
                 {% if comment.getCommentId is null %}
                 <li class="media {{ loop.first ? 'first' : '' }}" id="comment-{{ comment.getId() }}">
                     <div class="media-left">
-                        <img alt="{{ comment.getAuthor() }}" class="media-object" src="{{ asset('assets/images/user.png') | imagine_filter('user') }}">
+                        <img
+                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                            data-src="{{ asset('assets/images/user.png') | imagine_filter('user') }}"
+                            alt="{{ comment.getAuthor() }}"
+                            class="media-object lazyload" />
                     </div>
                     <div class="media-body">
                         <h5 class="mt-0">{{ comment.getAuthor() }}</h5>
@@ -17,7 +21,11 @@
                             {% if replyComment.getCommentId is same as (comment.getId()) %}
                                 <li class="media">
                                     <div class="media-left">
-                                        <img alt="{{ replyComment.getAuthor() is same as ('Webmaster') ? get_setting('displayNameCommentAs')|raw : replyComment.getAuthor() }}" class="media-object" src="{{ asset('assets/images/user.png') | imagine_filter('user') }}">
+                                        <img
+                                            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                                            data-src="{{ asset('assets/images/user.png') | imagine_filter('user') }}"
+                                            alt="{{ replyComment.getAuthor() is same as ('Webmaster') ? get_setting('displayNameCommentAs')|raw : replyComment.getAuthor() }}"
+                                            class="media-object lazyload" />
                                     </div>
                                     <div class="media-body">
                                         <h5 class="mt-0">{{ replyComment.getAuthor() is same as ('Webmaster') ? get_setting('displayNameCommentAs')|raw : replyComment.getAuthor() }}</h5>

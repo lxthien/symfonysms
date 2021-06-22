@@ -24,7 +24,6 @@ use AppBundle\Entity\Rating;
 
 use blackknight467\StarRatingBundle\Form\RatingType as RatingType;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
-use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 
 class NewsController extends Controller
@@ -633,7 +632,6 @@ class NewsController extends Controller
             ))
             ->add('author', TextType::class, array('label' => 'label.author'))
             ->add('email', EmailType::class, array('label' => 'label.author_email'))
-            ->add('recaptcha', EWZRecaptchaType::class)
             ->add('ip', HiddenType::class)
             ->add('news_id', HiddenType::class)
             ->add('comment_id', HiddenType::class)
@@ -666,12 +664,6 @@ class NewsController extends Controller
                 ->add('content', TextareaType::class)
                 ->add('author', TextType::class)
                 ->add('email', EmailType::class)
-                ->add('recaptcha', EWZRecaptchaType::class, array(
-                    'mapped'      => false,
-                    'constraints' => array(
-                        new RecaptchaTrue()
-                    )
-                ))
                 ->add('ip', HiddenType::class)
                 ->add('news_id', HiddenType::class)
                 ->add('comment_id', HiddenType::class)
